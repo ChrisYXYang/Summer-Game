@@ -1,4 +1,5 @@
 .editorconfig
+.vs/
 summer game.sln
 summer game/*
 !summer game/*.cs

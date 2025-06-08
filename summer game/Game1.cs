@@ -112,7 +112,7 @@ public class Game1 : DebugMode
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // TODO: Add your drawing code here
+        // set render modes
         SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);
 
         // debugging
@@ -127,15 +127,6 @@ public class Game1 : DebugMode
             DebugMode.DrawTilemapCollider(tileMap);
 
         }
-
-        // game rendering
-        foreach ( IRenderer renderer in _renderers)
-        {
-            renderer.Draw();
-        }
-
-        SpriteBatch.End();
-
 
         base.Draw(gameTime);
     }
