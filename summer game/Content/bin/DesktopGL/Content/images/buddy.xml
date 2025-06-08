@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SpriteSheet>
+	<Settings size="16" scale="10" centered="true"/>
+	<Sprites>
+		<Sprite name="blue_0"/>
+		<Sprite name="blue_1"/>
+		<Sprite name="green_0"/>
+		<Sprite name="green_1"/>
+	</Sprites>
+	<Animations>
+		<Animation name="blue_slime" delay="500">
+			<Frame name="blue_0"/>
+			<Frame name="blue_1"/>
+		</Animation>
+		<Animation name="green_slime">
+			<Frame name="green_0"/>
+			<Frame name="green_1"/>
+		</Animation>
+	</Animations>
+</SpriteSheet>

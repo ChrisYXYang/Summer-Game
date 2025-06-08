@@ -1,5 +1,2 @@
 # Summer-Game
-
-Create by Chris Yang.
-
-My game for the summer. Made using my Monogame class library.
+My game for the summer. Made using Monogame using the class library that I made (private repository currently).

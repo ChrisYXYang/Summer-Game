@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SpriteSheet>
+	<Settings texture="images/characters" size="16" centered="true"/>
+	<Sprites>
+		<Sprite name="player_0" originY="12"/>
+		<Sprite name="blue_0" originY="11"/>
+		<Sprite name="blue_1" originY="11"/>
+		<Sprite name="green_0" originY="11"/>
+		<Sprite name="green_1" originY="11"/>
+	</Sprites>
+	<Animations>
+		<Animation name="blue_slime" delay="500">
+			<Frame name="blue_0"/>
+			<Frame name="blue_1"/>
+		</Animation>
+		<Animation name="green_slime">
+			<Frame name="green_0"/>
+			<Frame name="green_1"/>
+		</Animation>
+	</Animations>
+</SpriteSheet>

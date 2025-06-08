@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GameObject>
+	<Components>
+		<Transform/>
+		<BoxCollider width="6" height="9"/>
+		<SpriteRenderer spriteSheet="characters" sprite="player_0" layerDepth="0.5"/>
+		<PlayerController moveSpeed="4"/>
+	</Components>
+</GameObject>

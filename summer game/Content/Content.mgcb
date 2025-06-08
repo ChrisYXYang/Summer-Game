@@ -1,0 +1,78 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin/$(Platform)
+/intermediateDir:obj/$(Platform)
+/platform:DesktopGL
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+
+#---------------------------------- Content ---------------------------------#
+
+#begin GameObjects/AnimatedBlue.xml
+/copy:GameObjects/AnimatedBlue.xml
+
+#begin GameObjects/AnimatedGreen.xml
+/copy:GameObjects/AnimatedGreen.xml
+
+#begin GameObjects/Blue.xml
+/copy:GameObjects/Blue.xml
+
+#begin GameObjects/Green.xml
+/copy:GameObjects/Green.xml
+
+#begin GameObjects/Player.xml
+/copy:GameObjects/Player.xml
+
+#begin images/characters.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:images/characters.png
+
+#begin images/characters.xml
+/copy:images/characters.xml
+
+#begin images/debug.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:images/debug.png
+
+#begin images/debug.xml
+/copy:images/debug.xml
+
+#begin images/overworld tileset.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:images/overworld tileset.png
+
+#begin images/overworld tileset.xml
+/copy:images/overworld tileset.xml
+
+#begin Tilemaps/overworld.xml
+/copy:Tilemaps/overworld.xml
+

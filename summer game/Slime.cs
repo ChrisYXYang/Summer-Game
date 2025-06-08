@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using MyMonoGameLibrary.Scene;
+using Microsoft.Xna.Framework;
+using MyMonoGameLibrary;
+
+namespace summer_game;
+
+public class Slime : Component, IGameBehavior
+{
+    private SpriteRenderer _spriteRenderer;
+    private int _collisions = 0;
+
+    public override void Initialize(GameObject parent)
+    {
+        base.Initialize(parent);
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    public void Start()
+    {
+
+    }
+
+    public void Update(GameTime gameTime)
+    {
+        
+    }
+
+    public void OnCollisionEnter(IRectCollider other)
+    {
+        _spriteRenderer.Color = Color.Red;
+        _collisions++;
+    }
+
+    public void OnCollisionExit(IRectCollider other)
+    {
+        _collisions--;
+
+        if (_collisions == 0)
+        {
+            _spriteRenderer.Color = Color.White;
+        }
+    }
+
+    public void OnCollisionStay(IRectCollider other)
+    {
+
+    }
+
+    public void LateUpdate(GameTime gameTime)
+    {
+    }
+}

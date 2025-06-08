@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SpriteSheet>
+	<Settings texture="images/debug" size="8" centered="true"/>
+	<Sprites>
+		<Sprite name="origin_point"/>
+		<Sprite name="box_collider" originX="0" originY="0"/>
+	</Sprites>
+</SpriteSheet>

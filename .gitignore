@@ -1,0 +1,5 @@
+.editorconfig
+summer game.sln
+summer game/*
+!summer game/*.cs
+!summer game/Content/
