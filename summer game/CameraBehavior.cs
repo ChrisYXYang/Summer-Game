@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using MyMonoGameLibrary;
-using MyMonoGameLibrary.Scene;
+using MyMonoGameLibrary.Scenes;
 
 
 namespace summer_game;

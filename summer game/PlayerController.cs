@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
 using MyMonoGameLibrary.Input;
-using MyMonoGameLibrary.Scene;
+using MyMonoGameLibrary.Scenes;
 
 namespace summer_game;
 

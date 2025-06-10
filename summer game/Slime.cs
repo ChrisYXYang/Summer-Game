@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MyMonoGameLibrary.Scene;
+using MyMonoGameLibrary.Scenes;
 using Microsoft.Xna.Framework;
 using MyMonoGameLibrary;
 

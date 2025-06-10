@@ -13,7 +13,7 @@ using MyMonoGameLibrary.Graphics;
 using MyMonoGameLibrary.Input;
 using MyMonoGameLibrary.Tools;
 using MyMonoGameLibrary.Tilemap;
-using MyMonoGameLibrary.Scene;
+using MyMonoGameLibrary.Scenes;
 
 namespace summer_game;
 
