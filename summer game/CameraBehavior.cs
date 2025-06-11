@@ -11,9 +11,14 @@ public class CameraBehavior : IBehavior
 {
     Transform _playerTransform;
     
+    public CameraBehavior(GameObject player)
+    {
+        _playerTransform = player.GetComponent<Transform>();
+    }
+
     public void Start()
     {
-        _playerTransform = Core.Instance.GetGameObject("player").GetComponent<Transform>();
+
     }
 
     public void Update(GameTime gameTime)

@@ -1,0 +1,109 @@
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using MyMonoGameLibrary.Graphics;
+using MyMonoGameLibrary.Scenes;
+using MyMonoGameLibrary.Tilemap;
+using MyMonoGameLibrary.Tools;
+using MyMonoGameLibrary;
+
+namespace summer_game;
+
+public class GameScene : Scene
+{
+    public override void LoadContent()
+    {
+        // load assets
+        SceneSpriteLibrary.AddSpriteSheet(this.Content, "characters");
+        SceneSpriteLibrary.AddTileset(this.Content, "overworld tileset");
+
+        // create objects   
+        Instantiate("overworld", SceneSpriteLibrary.GetTileset("overworld tileset"));
+
+        Instantiate
+        (
+            "player",
+            [
+            new Transform(),
+            new BoxCollider(6, 9),
+            new SpriteRenderer(SceneSpriteLibrary.GetSprite("characters", "player_0")),
+            new PlayerController(4)
+            ]
+        );
+
+        Instantiate
+        (
+            "green",
+            [
+            new Transform(new Vector2(1.5f, 3)),
+            new BoxCollider(6, 6),
+            new SpriteRenderer(SceneSpriteLibrary.GetSprite("characters", "green_1"), Color.White, true, false, 0.2f),
+            new Slime(),
+            ]
+        );
+
+        Instantiate
+        (
+            "blue",
+            [
+            new Transform(new Vector2(1.5f, -1.5f)),
+            new BoxCollider(6, 6),
+            new SpriteRenderer(SceneSpriteLibrary.GetSprite("characters", "blue_1"), Color.White, true, false, 0.2f),
+            new Slime(),
+            ]
+        );
+
+        Instantiate
+        (
+            "animated green",
+            [
+            new Transform(new Vector2(-1.5f, -1.5f)),
+            new BoxCollider(6, 6),
+            new SpriteRenderer(SceneSpriteLibrary.GetSprite("characters", "green_0"), 0.2f),
+            new Animator(SceneSpriteLibrary.GetAnimation("characters", "green_slime")),
+            new Slime(),
+            ]
+        );
+
+        Instantiate
+        (
+            "animated blue",
+            [
+            new Transform(new Vector2(-1.5f, 1.5f)),
+            new BoxCollider(6, 6),
+            new SpriteRenderer(SceneSpriteLibrary.GetSprite("characters", "blue_0"), 0.2f),
+            new Animator(SceneSpriteLibrary.GetAnimation("characters", "blue_slime")),
+            new Slime(),
+            ]
+        );
+
+        AddBehavior(new CameraBehavior(GetGameObject("player")));
+
+
+        base.LoadContent();
+    }
+
+    public override void Draw(GameTime gameTime)
+    {
+        Core.GraphicsDevice.Clear(Color.CornflowerBlue);
+
+        // set render modes
+        Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);
+
+        // debugging
+        foreach (GameObject gameObject in GetGameObjects())
+        {
+            DebugMode.DrawOrigin(gameObject);
+            DebugMode.DrawBoxCollider(gameObject);
+        }
+
+        foreach (TileMap tileMap in GetTileMaps())
+        {
+            DebugMode.DrawTilemapCollider(tileMap);
+        }
+
+        base.Draw(gameTime);
+    }
+}
