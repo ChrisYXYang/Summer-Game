@@ -8,15 +8,15 @@ using MyMonoGameLibrary.Scenes;
 using MyMonoGameLibrary.Tilemap;
 using MyMonoGameLibrary.Tools;
 using MyMonoGameLibrary;
+using MyMonoGameLibrary.Input;
 
 namespace summer_game;
 
-public class GameScene : Scene
+public class Scene1 : Scene
 {
     public override void LoadContent()
     {
         // load assets
-        SceneSpriteLibrary.AddSpriteSheet(this.Content, "characters");
         SceneSpriteLibrary.AddTileset(this.Content, "overworld tileset");
 
         // create objects   
@@ -28,7 +28,7 @@ public class GameScene : Scene
             [
             new Transform(),
             new BoxCollider(6, 9),
-            new SpriteRenderer(SceneSpriteLibrary.GetSprite("characters", "player_0")),
+            new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "player_0")),
             new PlayerController(4)
             ]
         );
@@ -39,7 +39,7 @@ public class GameScene : Scene
             [
             new Transform(new Vector2(1.5f, 3)),
             new BoxCollider(6, 6),
-            new SpriteRenderer(SceneSpriteLibrary.GetSprite("characters", "green_1"), Color.White, true, false, 0.2f),
+            new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "green_1"), Color.White, true, false, 0.2f),
             new Slime(),
             ]
         );
@@ -50,7 +50,7 @@ public class GameScene : Scene
             [
             new Transform(new Vector2(1.5f, -1.5f)),
             new BoxCollider(6, 6),
-            new SpriteRenderer(SceneSpriteLibrary.GetSprite("characters", "blue_1"), Color.White, true, false, 0.2f),
+            new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "blue_1"), Color.White, true, false, 0.2f),
             new Slime(),
             ]
         );
@@ -61,8 +61,8 @@ public class GameScene : Scene
             [
             new Transform(new Vector2(-1.5f, -1.5f)),
             new BoxCollider(6, 6),
-            new SpriteRenderer(SceneSpriteLibrary.GetSprite("characters", "green_0"), 0.2f),
-            new Animator(SceneSpriteLibrary.GetAnimation("characters", "green_slime")),
+            new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "green_0"), 0.2f),
+            new Animator(Core.GlobalSpriteLibrary.GetAnimation("characters", "green_slime")),
             new Slime(),
             ]
         );
@@ -73,8 +73,8 @@ public class GameScene : Scene
             [
             new Transform(new Vector2(-1.5f, 1.5f)),
             new BoxCollider(6, 6),
-            new SpriteRenderer(SceneSpriteLibrary.GetSprite("characters", "blue_0"), 0.2f),
-            new Animator(SceneSpriteLibrary.GetAnimation("characters", "blue_slime")),
+            new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "blue_0"), 0.2f),
+            new Animator(Core.GlobalSpriteLibrary.GetAnimation("characters", "blue_slime")),
             new Slime(),
             ]
         );
@@ -85,6 +85,13 @@ public class GameScene : Scene
         base.LoadContent();
     }
 
+    public override void Update(GameTime gameTime)
+    {
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.Enter))
+            Core.ChangeScene(new Scene2());
+        
+        base.Update(gameTime);
+    }
     public override void Draw(GameTime gameTime)
     {
         Core.GraphicsDevice.Clear(Color.CornflowerBlue);

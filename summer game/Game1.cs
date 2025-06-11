@@ -24,13 +24,15 @@ public class Game1 : DebugMode
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
-        ChangeScene(new GameScene());
+        ChangeScene(new Scene1());
 
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
+        GlobalSpriteLibrary.AddSpriteSheet(Core.Content, "characters");
+        
         base.LoadContent();
     }
     
