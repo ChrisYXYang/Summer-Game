@@ -13,9 +13,11 @@ public class PlayerController : Component, IGameBehavior
 {
     // variables and properties
     public float MoveSpeed { get; set; }
+    private int _collisions = 0;
 
     private Transform _transform;
-    private Vector2 _direction = new Vector2();
+    private SpriteRenderer _spriteRenderer;
+    private Vector2 _direction = new();
 
     // constructor
     //
@@ -32,6 +34,7 @@ public class PlayerController : Component, IGameBehavior
     {
         base.Initialize(parent);
         _transform = GetComponent<Transform>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void Start()
@@ -89,16 +92,23 @@ public class PlayerController : Component, IGameBehavior
         _transform.position += _direction * speed;
     }
 
-    public void OnCollisionEnter(IRectCollider other)
+    public void OnCollisionEnter(ICollider other)
     {
-
+        _spriteRenderer.Color = Color.Red;
+        _collisions++;
     }
 
-    public void OnCollisionExit(IRectCollider other)
+    public void OnCollisionExit(ICollider other)
     {
+        _collisions--;
+
+        if (_collisions == 0)
+        {
+            _spriteRenderer.Color = Color.White;
+        }
     }
 
-    public void OnCollisionStay(IRectCollider other)
+    public void OnCollisionStay(ICollider other)
     {
     }
 

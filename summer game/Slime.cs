@@ -27,13 +27,13 @@ public class Slime : Component, IGameBehavior
         
     }
 
-    public void OnCollisionEnter(IRectCollider other)
+    public void OnCollisionEnter(ICollider other)
     {
         _spriteRenderer.Color = Color.Red;
         _collisions++;
     }
 
-    public void OnCollisionExit(IRectCollider other)
+    public void OnCollisionExit(ICollider other)
     {
         _collisions--;
 
@@ -43,7 +43,7 @@ public class Slime : Component, IGameBehavior
         }
     }
 
-    public void OnCollisionStay(IRectCollider other)
+    public void OnCollisionStay(ICollider other)
     {
 
     }

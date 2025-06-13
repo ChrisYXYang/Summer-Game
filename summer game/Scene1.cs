@@ -27,7 +27,7 @@ public class Scene1 : Scene
             "player",
             [
             new Transform(),
-            new BoxCollider(6, 9),
+            new CircleCollider(6),
             new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "player_0")),
             new PlayerController(4)
             ]
@@ -37,8 +37,8 @@ public class Scene1 : Scene
         (
             "green",
             [
-            new Transform(new Vector2(1.5f, 3)),
-            new BoxCollider(6, 6),
+            new Transform(new Vector2(-7f, -3)),
+            new CircleCollider(6),
             new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "green_1"), Color.White, true, false, 0.2f),
             new Slime(),
             ]
@@ -48,8 +48,8 @@ public class Scene1 : Scene
         (
             "blue",
             [
-            new Transform(new Vector2(1.5f, -1.5f)),
-            new BoxCollider(6, 6),
+            new Transform(new Vector2(7f, -3f)),
+                        new CircleCollider(6),
             new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "blue_1"), Color.White, true, false, 0.2f),
             new Slime(),
             ]
@@ -59,8 +59,8 @@ public class Scene1 : Scene
         (
             "animated green",
             [
-            new Transform(new Vector2(-1.5f, -1.5f)),
-            new BoxCollider(6, 6),
+            new Transform(new Vector2(2f, 3f)),
+                        new CircleCollider(6),
             new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "green_0"), 0.2f),
             new Animator(Core.GlobalSpriteLibrary.GetAnimation("characters", "green_slime")),
             new Slime(),
@@ -71,8 +71,8 @@ public class Scene1 : Scene
         (
             "animated blue",
             [
-            new Transform(new Vector2(-1.5f, 1.5f)),
-            new BoxCollider(6, 6),
+            new Transform(new Vector2(-2f, 3f)),
+            new CircleCollider (6),
             new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "blue_0"), 0.2f),
             new Animator(Core.GlobalSpriteLibrary.GetAnimation("characters", "blue_slime")),
             new Slime(),
@@ -103,7 +103,7 @@ public class Scene1 : Scene
         foreach (GameObject gameObject in GetGameObjects())
         {
             DebugMode.DrawOrigin(gameObject);
-            DebugMode.DrawBoxCollider(gameObject);
+            DebugMode.DrawGameObjectCollider(gameObject);
         }
 
         foreach (TileMap tileMap in GetTileMaps())
