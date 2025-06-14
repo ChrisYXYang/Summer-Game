@@ -12,20 +12,12 @@ namespace summer_game;
 public class PlayerController : Component, IGameBehavior
 {
     // variables and properties
-    public float MoveSpeed { get; set; }
     private int _collisions = 0;
 
     private Transform _transform;
     private SpriteRenderer _spriteRenderer;
-    private Vector2 _direction = new();
-
-    // constructor
-    //
-    // param: speed - movement speed
-    public PlayerController(float speed)
-    {
-        MoveSpeed = speed;
-    }
+    private CircleCollider _collider;
+    private bool _canDash = false;
 
     // initialize
     //
@@ -35,6 +27,7 @@ public class PlayerController : Component, IGameBehavior
         base.Initialize(parent);
         _transform = GetComponent<Transform>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _collider = GetComponent<CircleCollider>();
     }
 
     public void Start()
@@ -47,49 +40,27 @@ public class PlayerController : Component, IGameBehavior
     // param: gameTime - get the game time
     public void Update(GameTime gameTime)
     {
-        //move the player
-        float speed = MoveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-        // get movement direction
-        if (InputManager.Keyboard.IsKeyDown(Keys.W) && InputManager.Keyboard.IsKeyDown(Keys.S))
+        if (Collisions.PointInCollider(_collider, Camera.PixelToUnit(InputManager.Mouse.Position)))
         {
-            _direction.Y = 0;
-        }
-        else if (InputManager.Keyboard.IsKeyDown(Keys.W))
-        {
-            _direction.Y = -1;
-        }
-        else if (InputManager.Keyboard.IsKeyDown(Keys.S))
-        {
-            _direction.Y = 1;
+            _spriteRenderer.Color = Color.Red;
         }
         else
         {
-            _direction.Y = 0;
+            _spriteRenderer.Color = Color.White;
         }
 
-        if (InputManager.Keyboard.IsKeyDown(Keys.A) && InputManager.Keyboard.IsKeyDown(Keys.D))
+        if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left)
+            && Collisions.PointInCollider(_collider, Camera.PixelToUnit(InputManager.Mouse.Position)))
         {
-            _direction.X = 0;
-        }
-        else if (InputManager.Keyboard.IsKeyDown(Keys.A))
-        {
-            _direction.X = -1;
-        }
-        else if (InputManager.Keyboard.IsKeyDown(Keys.D))
-        {
-            _direction.X = 1;
-        }
-        else
-        {
-            _direction.X = 0;
+            _canDash = true;
         }
 
-        // move player
-        if (!_direction.Equals(Vector2.Zero))
-            _direction = Vector2.Normalize(_direction);
 
-        _transform.position += _direction * speed;
+        if (InputManager.Mouse.WasButtonJustReleased(MouseButton.Left) && _canDash)
+        {
+            _transform.position = Camera.PixelToUnit(InputManager.Mouse.Position);
+            _canDash = false;
+        }
     }
 
     public void OnCollisionEnter(ICollider other)

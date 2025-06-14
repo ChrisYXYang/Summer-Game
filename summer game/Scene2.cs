@@ -29,7 +29,7 @@ public class Scene2 : Scene
             new Transform(),
             new BoxCollider(6, 9),
             new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "player_0")),
-            new PlayerController(4)
+            new PlayerController()
             ]
         );
 

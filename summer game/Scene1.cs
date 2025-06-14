@@ -29,7 +29,7 @@ public class Scene1 : Scene
             new Transform(),
             new CircleCollider(6),
             new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "player_0")),
-            new PlayerController(4)
+            new PlayerController()
             ]
         );
 
@@ -79,7 +79,7 @@ public class Scene1 : Scene
             ]
         );
 
-        AddBehavior(new CameraBehavior(GetGameObject("player")));
+        //AddBehavior(new CameraBehavior(GetGameObject("player")));
 
 
         base.LoadContent();
