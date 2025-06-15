@@ -8,66 +8,69 @@ using MyMonoGameLibrary.Scenes;
 
 namespace summer_game;
 
-// controller for the player
-public class PlayerController : Component, IGameBehavior
+// movement controller for the player
+public class PlayerController : BehaviorComponent
 {
-    // variables and properties
+    // range of teleport
     public float Range { get; set; }
 
-    private int _collisions = 0;
-    private Transform _transform;
-    private Transform _guideTransform;
+    // player components
     private SpriteRenderer _spriteRenderer;
-    private SpriteRenderer _guideRenderer;
+    private Transform _transform;
     private CircleCollider _collider;
-    private bool _canDash = false;
+
+    // guide components
+    private Transform _guideTransform;
+    private SpriteRenderer _guideRenderer;
+
+    // can move or no
+    private bool _canMove = false;
 
 
     // constructor
     //
-    // param: range - dash range
+    // param: range - teleport range
     public PlayerController(float range)
     {
         Range = range;
     }
 
-    public void Start()
+    public override void Start()
     {
         _transform = GetComponent<Transform>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<CircleCollider>();
+
         GameObject guide = SceneTools.GetGameObject("guide");
         _guideTransform = guide.GetComponent<Transform>();
         _guideRenderer = guide.GetComponent<SpriteRenderer>();
     }
 
-    // update
-    //
-    // param: gameTime - get the game time
-    public void Update(GameTime gameTime)
+    public override void Update(GameTime gameTime)
     {
+        // get mouse position in game units
         Vector2 mousePos = Camera.PixelToUnit(InputManager.Mouse.Position);
 
-
+        // indicate if mouse is over player
         if (Collisions.PointInCollider(_collider, mousePos))
         {
-            _spriteRenderer.Color = Color.Red;
+            _spriteRenderer.Color = Color.Blue;
         }
         else
         {
             _spriteRenderer.Color = Color.White;
         }
 
-
-
+        // move the player
         if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left)
             && Collisions.PointInCollider(_collider, mousePos))
         {
-            _canDash = true;
+            _canMove = true;
         }
 
-        if (_canDash)
+        if (_canMove)
         {
+            // move the guide
             _guideRenderer.IsVisible = true;
 
             if (Range * Range >= Vector2.DistanceSquared(mousePos, _transform.position))
@@ -86,36 +89,12 @@ public class PlayerController : Component, IGameBehavior
         }
 
 
-        if (InputManager.Mouse.WasButtonJustReleased(MouseButton.Left) && _canDash)
+        if (InputManager.Mouse.WasButtonJustReleased(MouseButton.Left) && _canMove)
         {
             _transform.position = _guideTransform.position;
-            _canDash = false;
+            _canMove = false;
         }
 
 
-    }
-
-    public void OnCollisionEnter(ICollider other)
-    {
-        _spriteRenderer.Color = Color.Red;
-        _collisions++;
-    }
-
-    public void OnCollisionExit(ICollider other)
-    {
-        _collisions--;
-
-        if (_collisions == 0)
-        {
-            _spriteRenderer.Color = Color.White;
-        }
-    }
-
-    public void OnCollisionStay(ICollider other)
-    {
-    }
-
-    public void LateUpdate(GameTime gameTime)
-    {
     }
 }

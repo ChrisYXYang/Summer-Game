@@ -18,10 +18,10 @@ public class Scene1 : Scene
     public override void LoadContent()
     {
         // load assets
-        SceneSpriteLibrary.AddTileset(this.Content, "overworld tileset");
+        SceneSpriteLibrary.AddTileset(this.Content, "lab tileset");
 
         // create objects   
-        Instantiate("overworld", SceneSpriteLibrary.GetTileset("overworld tileset"));
+        Instantiate("level1", SceneSpriteLibrary.GetTileset("lab tileset"));
 
         Instantiate
         (
@@ -104,7 +104,7 @@ public class Scene1 : Scene
     }
     public override void Draw(GameTime gameTime)
     {
-        Core.GraphicsDevice.Clear(Color.CornflowerBlue);
+        Core.GraphicsDevice.Clear(Color.MediumPurple);
 
         // set render modes
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);

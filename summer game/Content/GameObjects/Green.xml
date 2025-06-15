@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<GameObject>
-	<Components>
-		<Transform position="1.5, 3"/>
-		<BoxCollider width="6" height="6"/>
-		<SpriteRenderer spriteSheet="characters" sprite="green_1" flipX="true" layerDepth="0.2"/>
-		<MyMonoGameLibrary.Behavior.Slime/>
-	</Components>
-</GameObject>

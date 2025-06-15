@@ -6,28 +6,28 @@ using MyMonoGameLibrary;
 
 namespace summer_game;
 
-public class Slime : Component, IGameBehavior
+public class Slime : BehaviorComponent
 {
     private SpriteRenderer _spriteRenderer;
     private int _collisions = 0;
-    public void Start()
+    public override void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
     }
 
-    public void Update(GameTime gameTime)
+    public override void Update(GameTime gameTime)
     {
         
     }
 
-    public void OnCollisionEnter(ICollider other)
+    public override void OnCollisionEnter(ICollider other)
     {
         _spriteRenderer.Color = Color.Red;
         _collisions++;
     }
 
-    public void OnCollisionExit(ICollider other)
+    public override void OnCollisionExit(ICollider other)
     {
         _collisions--;
 
@@ -35,14 +35,5 @@ public class Slime : Component, IGameBehavior
         {
             _spriteRenderer.Color = Color.White;
         }
-    }
-
-    public void OnCollisionStay(ICollider other)
-    {
-
-    }
-
-    public void LateUpdate(GameTime gameTime)
-    {
     }
 }
