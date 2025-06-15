@@ -9,6 +9,7 @@ using MyMonoGameLibrary.Tilemap;
 using MyMonoGameLibrary.Tools;
 using MyMonoGameLibrary;
 using MyMonoGameLibrary.Input;
+using System.Diagnostics;
 
 namespace summer_game;
 
@@ -27,9 +28,18 @@ public class Scene1 : Scene
             "player",
             [
             new Transform(),
-            new CircleCollider(6),
+            new CircleCollider(8),
             new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "player_0")),
-            new PlayerController()
+            new PlayerController(3)
+            ]
+        );
+
+        Instantiate
+        (
+            "guide",
+            [
+            new Transform(),
+            new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "player_0"), Color.White * 0.3f),
             ]
         );
 
@@ -79,17 +89,17 @@ public class Scene1 : Scene
             ]
         );
 
-        //AddBehavior(new CameraBehavior(GetGameObject("player")));
-
-
         base.LoadContent();
     }
 
     public override void Update(GameTime gameTime)
     {
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.Enter))
+        {
             Core.ChangeScene(new Scene2());
-        
+            Debug.WriteLine("changing scenes");
+        }
+
         base.Update(gameTime);
     }
     public override void Draw(GameTime gameTime)

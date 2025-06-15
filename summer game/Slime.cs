@@ -10,15 +10,9 @@ public class Slime : Component, IGameBehavior
 {
     private SpriteRenderer _spriteRenderer;
     private int _collisions = 0;
-
-    public override void Initialize(GameObject parent)
-    {
-        base.Initialize(parent);
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
     public void Start()
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
 
     }
 

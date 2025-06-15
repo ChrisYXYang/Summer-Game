@@ -1,5 +1,7 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/chris/Games/Summer-Game/summer game/Content/images/characters.png","C:/Users/chris/Games/Summer-Game/summer game/Content/bin/DesktopGL/Content/images/characters.xnb","TextureProcessor","Texture2DContent",567,6229,0.0635937
+"C:/Users/chris/Games/Summer-Game/summer game/Content/images/characters.png","C:/Users/chris/Games/Summer-Game/summer game/Content/bin/DesktopGL/Content/images/characters.xnb","TextureProcessor","Texture2DContent",530,6229,0.0711052
+"C:/Users/chris/Games/Summer-Game/summer game/Content/images/characters.xml","C:\Users\chris\Games\Summer-Game\summer game\Content\bin\DesktopGL\Content\images/characters.xml","CopyItem","File",558,558,0.0011563
 "C:/Users/chris/Games/Summer-Game/summer game/Content/images/debug.png","C:/Users/chris/Games/Summer-Game/summer game/Content/bin/DesktopGL/Content/images/debug.xnb","TextureProcessor","Texture2DContent",256,3157,0.0627469
 "C:/Users/chris/Games/Summer-Game/summer game/Content/images/debug.xml","C:\Users\chris\Games\Summer-Game\summer game\Content\bin\DesktopGL\Content\images/debug.xml","CopyItem","File",288,288,0.0007758
 "C:/Users/chris/Games/Summer-Game/summer game/Content/images/overworld tileset.png","C:/Users/chris/Games/Summer-Game/summer game/Content/bin/DesktopGL/Content/images/overworld tileset.xnb","TextureProcessor","Texture2DContent",804,16469,0.0016973
+"C:/Users/chris/Games/Summer-Game/summer game/Content/Tilemaps/overworld.xml","C:\Users\chris\Games\Summer-Game\summer game\Content\bin\DesktopGL\Content\Tilemaps/overworld.xml","CopyItem","File",10284,10284,0.0007992
