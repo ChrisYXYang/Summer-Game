@@ -9,6 +9,7 @@ using MyMonoGameLibrary.Tools;
 using MyMonoGameLibrary;
 using Microsoft.Xna.Framework.Input;
 using MyMonoGameLibrary.Input;
+using System.Diagnostics;
 
 namespace summer_game;
 
@@ -17,19 +18,20 @@ public class Scene2 : Scene
     public override void LoadContent()
     {
         // load assets
-        SceneSpriteLibrary.AddTileset(this.Content, "overworld tileset");
+        SceneSpriteLibrary.AddTileset(this.Content, "lab tileset");
 
         // create objects   
-        Instantiate("overworld", SceneSpriteLibrary.GetTileset("overworld tileset"));
+        Instantiate("level1", SceneSpriteLibrary.GetTileset("lab tileset"));
+
+        Instantiate(Prefabs.Player());
+
 
         Instantiate
         (
-            "player",
+            "guide",
             [
             new Transform(),
-            new BoxCollider(6, 9),
-            new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "player_0")),
-            new PlayerController(3)
+            new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "player_0"), Color.White * 0.3f),
             ]
         );
 

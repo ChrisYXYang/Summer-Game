@@ -23,16 +23,14 @@ public class Scene1 : Scene
         // create objects   
         Instantiate("level1", SceneSpriteLibrary.GetTileset("lab tileset"));
 
-        Instantiate
-        (
-            "player",
-            [
-            new Transform(),
-            new CircleCollider(8),
-            new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "player_0")),
-            new PlayerController(3)
-            ]
-        );
+        Instantiate(Prefabs.Player());
+        Instantiate(Prefabs.Player());
+
+        Instantiate(Prefabs.Player());
+        Instantiate(Prefabs.Player());
+        Instantiate(Prefabs.Player());
+
+
 
         Instantiate
         (
@@ -56,18 +54,7 @@ public class Scene1 : Scene
 
         Instantiate
         (
-            "blue",
-            [
-            new Transform(new Vector2(7f, -3f)),
-                        new CircleCollider(6),
-            new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "blue_1"), Color.White, true, false, 0.2f),
-            new Slime(),
-            ]
-        );
-
-        Instantiate
-        (
-            "animated green",
+            "green_45",
             [
             new Transform(new Vector2(2f, 3f)),
                         new CircleCollider(6),
@@ -79,7 +66,29 @@ public class Scene1 : Scene
 
         Instantiate
         (
-            "animated blue",
+            "blue_10",
+            [
+            new Transform(new Vector2(7f, -3f)),
+                        new CircleCollider(6),
+            new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "blue_1"), Color.White, true, false, 0.2f),
+            new Slime(),
+            ]
+        );
+
+        Instantiate
+        (
+            "blue_10",
+            [
+            new Transform(new Vector2(7f, -3f)),
+                                new CircleCollider(6),
+                    new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "blue_1"), Color.White, true, false, 0.2f),
+                    new Slime(),
+            ]
+        );
+
+        Instantiate
+        (
+            "blue1",
             [
             new Transform(new Vector2(-2f, 3f)),
             new CircleCollider (6),
