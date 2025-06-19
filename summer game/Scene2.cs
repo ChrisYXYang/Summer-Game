@@ -26,15 +26,6 @@ public class Scene2 : Scene
         Instantiate(Prefabs.Player());
 
 
-        Instantiate
-        (
-            "guide",
-            [
-            new Transform(),
-            new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "player_0"), Color.White * 0.3f),
-            ]
-        );
-
         base.LoadContent();
     }
 

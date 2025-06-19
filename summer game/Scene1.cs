@@ -17,6 +17,8 @@ public class Scene1 : Scene
 {
     public override void LoadContent()
     {
+        Gravity = 20f;
+        
         // load assets
         SceneSpriteLibrary.AddTileset(this.Content, "lab tileset");
 
@@ -24,22 +26,8 @@ public class Scene1 : Scene
         Instantiate("level1", SceneSpriteLibrary.GetTileset("lab tileset"));
 
         Instantiate(Prefabs.Player());
-        Instantiate(Prefabs.Player());
-
-        Instantiate(Prefabs.Player());
-        Instantiate(Prefabs.Player());
-        Instantiate(Prefabs.Player());
 
 
-
-        Instantiate
-        (
-            "guide",
-            [
-            new Transform(),
-            new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "player_0"), Color.White * 0.3f),
-            ]
-        );
 
         Instantiate
         (
@@ -56,8 +44,8 @@ public class Scene1 : Scene
         (
             "green_45",
             [
-            new Transform(new Vector2(2f, 3f)),
-                        new CircleCollider(6),
+            new Transform(new Vector2(2f, 2f)),
+            new CircleCollider(6),
             new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "green_0"), 0.2f),
             new Animator(Core.GlobalSpriteLibrary.GetAnimation("characters", "green_slime")),
             new Slime(),
@@ -69,29 +57,19 @@ public class Scene1 : Scene
             "blue_10",
             [
             new Transform(new Vector2(7f, -3f)),
-                        new CircleCollider(6),
+            new CircleCollider(6),
             new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "blue_1"), Color.White, true, false, 0.2f),
             new Slime(),
             ]
         );
 
-        Instantiate
-        (
-            "blue_10",
-            [
-            new Transform(new Vector2(7f, -3f)),
-                                new CircleCollider(6),
-                    new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "blue_1"), Color.White, true, false, 0.2f),
-                    new Slime(),
-            ]
-        );
 
         Instantiate
         (
             "blue1",
             [
-            new Transform(new Vector2(-2f, 3f)),
-            new CircleCollider (6),
+            new Transform(new Vector2(-2f, 2f)),
+            new CircleCollider(6),
             new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "blue_0"), 0.2f),
             new Animator(Core.GlobalSpriteLibrary.GetAnimation("characters", "blue_slime")),
             new Slime(),

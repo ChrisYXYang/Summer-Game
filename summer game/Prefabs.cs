@@ -17,9 +17,10 @@ public static class Prefabs
         Component[] components =
             [
             new Transform(),
-            new CircleCollider(8),
+            new BoxCollider(8, 8),
+            new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "player_0")),
-            new PlayerController(3)
+            new PlayerController(4, 10)
             ];
 
         return ("player", components);

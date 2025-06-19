@@ -11,90 +11,64 @@ namespace summer_game;
 // movement controller for the player
 public class PlayerController : BehaviorComponent
 {
-    // range of teleport
-    public float Range { get; set; }
+    // variables and properties
+    public float JumpPower { get; set; }
+    public float MoveSpeed { get; set; }
+    private int _collisions = 0;
 
-    // player components
+    private Rigidbody _rb;
     private SpriteRenderer _spriteRenderer;
-    private Transform _transform;
-    private CircleCollider _collider;
-
-    // guide components
-    private Transform _guideTransform;
-    private SpriteRenderer _guideRenderer;
-
-    // can move or no
-    private bool _canMove = false;
-
 
     // constructor
     //
-    // param: range - teleport range
-    public PlayerController(float range)
+    // param: speed - movement speed
+    public PlayerController(float speed, float jumpPower)
     {
-        Range = range;
+        MoveSpeed = speed;
+        JumpPower = jumpPower;
     }
+
 
     public override void Start()
     {
-        _transform = GetComponent<Transform>();
+        _rb = GetComponent<Rigidbody>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _collider = GetComponent<CircleCollider>();
-
-        GameObject guide = SceneTools.GetGameObject("guide");
-        _guideTransform = guide.GetComponent<Transform>();
-        _guideRenderer = guide.GetComponent<SpriteRenderer>();
     }
 
+    // update
+    //
+    // param: gameTime - get the game time
     public override void Update(GameTime gameTime)
     {
-        // get mouse position in game units
-        Vector2 mousePos = Camera.PixelToUnit(InputManager.Mouse.Position);
-
-        // indicate if mouse is over player
-        if (Collisions.PointInCollider(_collider, mousePos))
+        // left and right movement
+        if (InputManager.Keyboard.IsKeyDown(Keys.A))
         {
-            _spriteRenderer.Color = Color.Blue;
+            _rb.movePosition.X -= MoveSpeed;
         }
-        else
+        if (InputManager.Keyboard.IsKeyDown(Keys.D))
+        {
+            _rb.movePosition.X += MoveSpeed;
+        }
+
+        if (InputManager.Keyboard.IsKeyDown(Keys.W) && _rb.TouchingBottom)
+        {
+            _rb.YVelocity -= JumpPower;
+        }
+    }
+
+    public override void OnCollisionEnter(ICollider other)
+    {
+        _spriteRenderer.Color = Color.Red;
+        _collisions++;
+    }
+
+    public override void OnCollisionExit(ICollider other)
+    {
+        _collisions--;
+
+        if (_collisions == 0)
         {
             _spriteRenderer.Color = Color.White;
         }
-
-        // move the player
-        if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left)
-            && Collisions.PointInCollider(_collider, mousePos))
-        {
-            _canMove = true;
-        }
-
-        if (_canMove)
-        {
-            // move the guide
-            _guideRenderer.IsVisible = true;
-
-            if (Range * Range >= Vector2.DistanceSquared(mousePos, _transform.position))
-                    _guideTransform.position = mousePos;
-            else
-            {
-                float xDist = mousePos.X - _transform.position.X;
-                float yDist = mousePos.Y - _transform.position.Y;
-                float ratio = Vector2.Distance(mousePos, _transform.position) / Range;
-                _guideTransform.position = _transform.position + new Vector2(xDist / ratio, yDist / ratio);
-            }
-        }
-        else
-        {
-            _guideRenderer.IsVisible = false;
-        }
-
-
-        if (InputManager.Mouse.WasButtonJustReleased(MouseButton.Left) && _canMove)
-        {
-            _transform.position = _guideTransform.position;
-            _canMove = false;
-        }
-
-
     }
 }
