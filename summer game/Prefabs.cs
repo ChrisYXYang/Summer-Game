@@ -19,7 +19,7 @@ public static class Prefabs
             new Transform(),
             new BoxCollider(8, 8),
             new Rigidbody(true, true),
-            new SpriteRenderer(Core.GlobalSpriteLibrary.GetSprite("characters", "player_0")),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player_0")),
             new PlayerController(4, 10)
             ];
 

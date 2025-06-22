@@ -14,6 +14,7 @@ using MyMonoGameLibrary.Input;
 using MyMonoGameLibrary.Tools;
 using MyMonoGameLibrary.Tilemap;
 using MyMonoGameLibrary.Scenes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace summer_game;
 
@@ -31,9 +32,9 @@ public class Game1 : DebugMode
 
     protected override void LoadContent()
     {
-        GlobalSpriteLibrary.AddSpriteSheet(Core.Content, "characters");
-        
+        GlobalLibrary.AddSpriteSheet("characters");
+
         base.LoadContent();
     }
-    
+
 }

@@ -43,11 +43,11 @@ public class PlayerController : BehaviorComponent
         // left and right movement
         if (InputManager.Keyboard.IsKeyDown(Keys.A))
         {
-            _rb.movePosition.X -= MoveSpeed;
+            _rb.MovePosition(-MoveSpeed, 0);
         }
         if (InputManager.Keyboard.IsKeyDown(Keys.D))
         {
-            _rb.movePosition.X += MoveSpeed;
+            _rb.MovePosition(MoveSpeed, 0);
         }
 
         if (InputManager.Keyboard.IsKeyDown(Keys.W) && _rb.TouchingBottom)

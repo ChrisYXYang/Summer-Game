@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/chris/Games/Summer-Game/summer game/Content/fonts/04B_30.spritefont","C:/Users/chris/Games/Summer-Game/summer game/Content/bin/DesktopGL/Content/fonts/04B_30.xnb","FontDescriptionProcessor","SpriteFontContent",2073,136217,0.1016482
 "C:/Users/chris/Games/Summer-Game/summer game/Content/images/characters.png","C:/Users/chris/Games/Summer-Game/summer game/Content/bin/DesktopGL/Content/images/characters.xnb","TextureProcessor","Texture2DContent",530,6229,0.0711052
 "C:/Users/chris/Games/Summer-Game/summer game/Content/images/characters.xml","C:\Users\chris\Games\Summer-Game\summer game\Content\bin\DesktopGL\Content\images/characters.xml","CopyItem","File",558,558,0.0011563
 "C:/Users/chris/Games/Summer-Game/summer game/Content/images/debug.png","C:/Users/chris/Games/Summer-Game/summer game/Content/bin/DesktopGL/Content/images/debug.xnb","TextureProcessor","Texture2DContent",256,3157,0.0627469

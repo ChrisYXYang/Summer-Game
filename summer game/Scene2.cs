@@ -18,10 +18,10 @@ public class Scene2 : Scene
     public override void LoadContent()
     {
         // load assets
-        SceneSpriteLibrary.AddTileset(this.Content, "lab tileset");
+        SceneLibrary.AddTileset("lab tileset");
 
         // create objects   
-        Instantiate("level1", SceneSpriteLibrary.GetTileset("lab tileset"));
+        Instantiate("level1", SceneLibrary.GetTileset("lab tileset"));
 
         Instantiate(Prefabs.Player());
 

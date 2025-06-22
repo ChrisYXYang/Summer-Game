@@ -13,20 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin GameObjects/AnimatedBlue.xml
-/copy:GameObjects/AnimatedBlue.xml
-
-#begin GameObjects/AnimatedGreen.xml
-/copy:GameObjects/AnimatedGreen.xml
-
-#begin GameObjects/Blue.xml
-/copy:GameObjects/Blue.xml
-
-#begin GameObjects/Green.xml
-/copy:GameObjects/Green.xml
-
-#begin GameObjects/Player.xml
-/copy:GameObjects/Player.xml
+#begin fonts/04B_30.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:fonts/04B_30.spritefont
 
 #begin images/characters.png
 /importer:TextureImporter
