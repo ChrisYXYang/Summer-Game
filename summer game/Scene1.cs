@@ -11,6 +11,7 @@ using MyMonoGameLibrary;
 using MyMonoGameLibrary.Input;
 using System.Diagnostics;
 using static System.Net.Mime.MediaTypeNames;
+using MyMonoGameLibrary.UI;
 
 namespace summer_game;
 
@@ -28,8 +29,8 @@ public class Scene1 : Scene
 
         SceneLibrary.AddTileset("lab tileset");
 
-        // create objects   
-        Instantiate("level1", SceneLibrary.GetTileset("lab tileset"));
+        // set up scene
+        SetTilemap("level1", SceneLibrary.GetTileset("lab tileset"));
         Instantiate(Prefabs.Player());
 
         Instantiate
@@ -87,6 +88,13 @@ public class Scene1 : Scene
                 ]
             );
 
+        Vector2 position = new Vector2(
+            Core.GraphicsDevice.PresentationParameters.BackBufferWidth,
+            Core.GraphicsDevice.PresentationParameters.BackBufferHeight
+        ) * 0.5f;
+        Canvas.AddChild(new TextUI(_font, "Hello Monogame!", AnchorMode.MiddleCenter, position));
+        Canvas.AddChild(new SpriteUI(Core.GlobalLibrary.GetSprite("characters", "green_0"), Vector2.Zero, Vector2.Zero));
+
         base.LoadContent();
     }
 
@@ -107,34 +115,6 @@ public class Scene1 : Scene
         // set render modes
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);
 
-        // The text to draw.
-        string message = "Hello, MonoGame!";
-
-        // Measure the size of the message to get the text dimensions.
-        Vector2 textSize = _font.MeasureString(message);
-
-        // Set the origin to the center of the text dimensions
-        Vector2 origin = textSize * 0.5f;
-
-        // Position will be the center of the screen
-        Vector2 position = new Vector2(
-            Core.GraphicsDevice.PresentationParameters.BackBufferWidth,
-            Core.GraphicsDevice.PresentationParameters.BackBufferHeight
-        ) * 0.5f;
-
-        // Draw centered text
-        Core.SpriteBatch.DrawString(
-            _font,                   // font
-            message,                // text
-            position,               // position
-            Color.White,            // color
-            0.0f,                   // rotation
-            origin,                 // origin
-            1f,                   // scale
-            SpriteEffects.None,     // effects
-            0.0f                    // layerDepth
-        );
-
         // debugging
         foreach (GameObject gameObject in GetGameObjects())
         {
@@ -142,10 +122,7 @@ public class Scene1 : Scene
             DebugMode.DrawGameObjectCollider(gameObject);
         }
 
-        foreach (TileMap tileMap in GetTileMaps())
-        {
-            DebugMode.DrawTilemapCollider(tileMap);
-        }
+        DebugMode.DrawTilemapCollider(Tilemap);
 
         base.Draw(gameTime);
     }
