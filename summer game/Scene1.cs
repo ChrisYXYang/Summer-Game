@@ -17,34 +17,47 @@ namespace summer_game;
 
 public class Scene1 : Scene
 {
-    private SpriteFont _font;
-
+    private SpriteFont _big;
+    private SpriteFont _small;
+    
     public override void LoadContent()
     {
         Gravity = 20f;
 
         // load assets
         SceneLibrary.AddFont("04B_30");
-        _font = SceneLibrary.GetFont("04B_30");
-
+        SceneLibrary.AddFont("04B_30_small");
+        _big = SceneLibrary.GetFont("04B_30");
+        _small = SceneLibrary.GetFont("04B_30_small");
         SceneLibrary.AddTileset("lab tileset");
 
         // set up scene
         SetTilemap("level1", SceneLibrary.GetTileset("lab tileset"));
-        Instantiate(Prefabs.Player());
+        Setup(Prefabs.Player());
 
-        Instantiate
+        Setup
         (
             "green",
             [
             new Transform(new Vector2(-7f, -3)),
             new CircleCollider(6),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "green_1"), Color.White, true, false, 0.2f),
-            new Slime(),
+            new Animator(Core.GlobalLibrary.GetAnimation("characters", "green_slime")),
+            new Slime("green"),
             ]
         );
 
-        Instantiate
+        Setup
+        (
+            "label",
+            [
+            new Transform(),
+            new TextRenderer(_small, "", AnchorMode.MiddleCenter, Color.LightGreen, 0.2f)
+            ]
+        );
+        GetGameObject("green").AddChild(GetGameObject("label"));
+
+        Setup
         (
             "green_45",
             [
@@ -52,23 +65,43 @@ public class Scene1 : Scene
             new CircleCollider(6),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "green_0"), 0.2f),
             new Animator(Core.GlobalLibrary.GetAnimation("characters", "green_slime")),
-            new Slime(),
+            new Slime("green"),
             ]
         );
 
-        Instantiate
+        Setup
+        (
+            "label",
+            [
+            new Transform(),
+                    new TextRenderer(_small, "", AnchorMode.MiddleCenter, Color.LightGreen, 0.2f)
+            ]
+        );
+        GetGameObject("green_1").AddChild(GetGameObject("label_1"));
+
+        Setup
         (
             "blue_10",
             [
             new Transform(new Vector2(7f, -3f)),
             new CircleCollider(6),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "blue_1"), Color.White, true, false, 0.2f),
-            new Slime(),
+                        new Animator(Core.GlobalLibrary.GetAnimation("characters", "blue_slime")),
+            new Slime("blue"),
             ]
         );
 
+        Setup
+        (
+            "label",
+            [
+            new Transform(),
+                            new TextRenderer(_small, "", AnchorMode.MiddleCenter, Color.LightBlue, 0.2f)
+            ]
+        );
+        GetGameObject("blue").AddChild(GetGameObject("label_2"));
 
-        Instantiate
+        Setup
         (
             "blue1",
             [
@@ -76,24 +109,34 @@ public class Scene1 : Scene
             new CircleCollider(6),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "blue_0"), 0.2f),
             new Animator(Core.GlobalLibrary.GetAnimation("characters", "blue_slime")),
-            new Slime(),
+            new Slime("blue"),
             ]
         );
 
-        Instantiate
-            (
-                "Camera Manager",
-                [
-                    new CameraBehavior()
-                ]
-            );
+        Setup
+        (
+            "label",
+            [
+            new Transform(),
+            new TextRenderer(_small, "", AnchorMode.MiddleCenter, Color.LightBlue, 0.2f)
+            ]
+        );
+        GetGameObject("blue1").AddChild(GetGameObject("label_3"));
 
-        Vector2 position = new Vector2(
-            Core.GraphicsDevice.PresentationParameters.BackBufferWidth,
-            Core.GraphicsDevice.PresentationParameters.BackBufferHeight
-        ) * 0.5f;
-        Canvas.AddChild(new TextUI(_font, "Hello Monogame!", AnchorMode.MiddleCenter, position));
+        Setup
+        (
+            "Camera Manager",
+            [
+                new CameraBehavior()
+            ]
+        );
+
+        Canvas.AddChild(new TextUI(_big, "Slimes Collected:", AnchorMode.MiddleLeft, new Vector2(160, 80)));
         Canvas.AddChild(new SpriteUI(Core.GlobalLibrary.GetSprite("characters", "green_0"), Vector2.Zero, Vector2.Zero));
+        ((TextUI)Canvas.GetChild(0)).AddTextCollider();
+        ((SpriteUI)Canvas.GetChild(1)).AddAnimator(Core.GlobalLibrary.GetAnimation("characters", "green_slime"));
+        ((SpriteUI)Canvas.GetChild(1)).AddBoxCollider(60,60, 80, 80);
+        ((SpriteUI)Canvas.GetChild(1)).SetBehavior(new SlimeUIBehavior());
 
         base.LoadContent();
     }
@@ -119,10 +162,11 @@ public class Scene1 : Scene
         foreach (GameObject gameObject in GetGameObjects())
         {
             DebugMode.DrawOrigin(gameObject);
-            DebugMode.DrawGameObjectCollider(gameObject);
+            //DebugMode.DrawGameObjectCollider(gameObject);
         }
 
         DebugMode.DrawTilemapCollider(Tilemap);
+        DebugMode.DrawCanvasColliders(Canvas);
 
         base.Draw(gameTime);
     }

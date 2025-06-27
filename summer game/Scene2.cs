@@ -23,7 +23,7 @@ public class Scene2 : Scene
         // create objects   
         SetTilemap("level1", SceneLibrary.GetTileset("lab tileset"));
 
-        Instantiate(Prefabs.Player());
+        Setup(Prefabs.Player());
 
 
         base.LoadContent();
