@@ -40,7 +40,7 @@ public class Scene1 : Scene
             "green",
             [
             new Transform(new Vector2(-7f, -3)),
-            new CircleCollider(6),
+            new CircleCollider(6, "slime"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "green_1"), Color.White, true, false, 0.2f),
             new Animator(Core.GlobalLibrary.GetAnimation("characters", "green_slime")),
             new Slime("green"),
@@ -62,7 +62,7 @@ public class Scene1 : Scene
             "green_45",
             [
             new Transform(new Vector2(2f, 2f)),
-            new CircleCollider(6),
+            new CircleCollider(6, "slime"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "green_0"), 0.2f),
             new Animator(Core.GlobalLibrary.GetAnimation("characters", "green_slime")),
             new Slime("green"),
@@ -84,7 +84,7 @@ public class Scene1 : Scene
             "blue_10",
             [
             new Transform(new Vector2(7f, -3f)),
-            new CircleCollider(6),
+            new CircleCollider(6, "slime"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "blue_1"), Color.White, true, false, 0.2f),
                         new Animator(Core.GlobalLibrary.GetAnimation("characters", "blue_slime")),
             new Slime("blue"),
@@ -106,7 +106,7 @@ public class Scene1 : Scene
             "blue1",
             [
             new Transform(new Vector2(-2f, 2f)),
-            new CircleCollider(6),
+            new CircleCollider(6, "slime"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "blue_0"), 0.2f),
             new Animator(Core.GlobalLibrary.GetAnimation("characters", "blue_slime")),
             new Slime("blue"),
@@ -131,12 +131,20 @@ public class Scene1 : Scene
             ]
         );
 
-        Canvas.AddChild(new TextUI(_big, "Slimes Collected:", AnchorMode.MiddleLeft, new Vector2(160, 80)));
+        Setup
+        (
+            "Game Manager",
+            [
+                new GameManager()
+            ]
+        );
+
+        Canvas.AddChild(new TextUI(_big, "", AnchorMode.MiddleLeft, new Vector2(160, 80)));
         Canvas.AddChild(new SpriteUI(Core.GlobalLibrary.GetSprite("characters", "green_0"), Vector2.Zero, Vector2.Zero));
-        ((TextUI)Canvas.GetChild(0)).AddTextCollider();
         ((SpriteUI)Canvas.GetChild(1)).AddAnimator(Core.GlobalLibrary.GetAnimation("characters", "green_slime"));
-        ((SpriteUI)Canvas.GetChild(1)).AddBoxCollider(60,60, 80, 80);
-        ((SpriteUI)Canvas.GetChild(1)).SetBehavior(new SlimeUIBehavior());
+        Canvas.GetChild(1).AddBoxCollider(60,60, 80, 80);
+        Canvas.GetChild(1).AddBehavior(new SlimeUIBehavior());
+        Canvas.GetChild(0).AddBehavior(new SlimeText());
 
         base.LoadContent();
     }
@@ -162,7 +170,7 @@ public class Scene1 : Scene
         foreach (GameObject gameObject in GetGameObjects())
         {
             DebugMode.DrawOrigin(gameObject);
-            //DebugMode.DrawGameObjectCollider(gameObject);
+            DebugMode.DrawGameObjectCollider(gameObject);
         }
 
         DebugMode.DrawTilemapCollider(Tilemap);

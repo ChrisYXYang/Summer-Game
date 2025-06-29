@@ -63,6 +63,11 @@ public class Slime : BehaviorComponent
     {
         _spriteRenderer.Color = Color.Red;
         _collisions++;
+
+        if (other.Layer == "spark")
+        {
+            SceneTools.Destroy(this.Parent);
+        }
     }
 
     public override void OnCollisionExit(ICollider other)

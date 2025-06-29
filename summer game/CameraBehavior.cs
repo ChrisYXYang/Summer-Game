@@ -13,7 +13,7 @@ public class CameraBehavior : BehaviorComponent
 
     public override void Start()
     {
-        _playerTransform = SceneTools.GetGameObject("player").GetComponent<Transform>();
+        _playerTransform = SceneTools.GetGameObject("player").Transform;
     }
 
     public override void LateUpdate(GameTime gameTime)

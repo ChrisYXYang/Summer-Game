@@ -8,8 +8,8 @@ using MyMonoGameLibrary.Scenes;
 
 namespace summer_game;
 
-// movement controller for the player
-public class PlayerController : BehaviorComponent
+// movement for the player
+public class PlayerMovement : BehaviorComponent
 {
     // variables and properties
     public float JumpPower { get; set; }
@@ -22,7 +22,7 @@ public class PlayerController : BehaviorComponent
     // constructor
     //
     // param: speed - movement speed
-    public PlayerController(float speed, float jumpPower)
+    public PlayerMovement(float speed, float jumpPower)
     {
         MoveSpeed = speed;
         JumpPower = jumpPower;
