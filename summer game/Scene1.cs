@@ -157,6 +157,11 @@ public class Scene1 : Scene
             Debug.WriteLine("changing scenes");
         }
 
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.NumPad0))
+        {
+            DebugMode.PrintScene();
+        }
+
         base.Update(gameTime);
     }
     public override void Draw(GameTime gameTime)
