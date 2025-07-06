@@ -33,6 +33,8 @@ public class Game1 : DebugMode
     protected override void LoadContent()
     {
         GlobalLibrary.AddSpriteSheet("characters");
+        GlobalLibrary.AddFont("04B_30");
+        GlobalLibrary.AddFont("04B_30_small");
 
         base.LoadContent();
     }

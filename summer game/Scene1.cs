@@ -25,10 +25,8 @@ public class Scene1 : Scene
         Gravity = 20f;
 
         // load assets
-        SceneLibrary.AddFont("04B_30");
-        SceneLibrary.AddFont("04B_30_small");
-        _big = SceneLibrary.GetFont("04B_30");
-        _small = SceneLibrary.GetFont("04B_30_small");
+        _big = Core.GlobalLibrary.GetFont("04B_30");
+        _small = Core.GlobalLibrary.GetFont("04B_30_small");
         SceneLibrary.AddTileset("lab tileset");
 
         // set up scene
@@ -139,12 +137,12 @@ public class Scene1 : Scene
             ]
         );
 
-        Canvas.AddChild(new TextUI(_big, "", AnchorMode.MiddleLeft, new Vector2(160, 80)));
-        Canvas.AddChild(new SpriteUI(Core.GlobalLibrary.GetSprite("characters", "green_0"), Vector2.Zero, Vector2.Zero));
-        ((SpriteUI)Canvas.GetChild(1)).AddAnimator(Core.GlobalLibrary.GetAnimation("characters", "green_slime"));
-        Canvas.GetChild(1).AddBoxCollider(60,60, 80, 80);
-        Canvas.GetChild(1).AddBehavior(new SlimeUIBehavior());
-        Canvas.GetChild(0).AddBehavior(new SlimeText());
+        Setup("text", new TextUI(_big, "", AnchorMode.MiddleLeft, new Vector2(160, 80)));
+        Setup("icon", new SpriteUI(Core.GlobalLibrary.GetSprite("characters", "green_0"), Vector2.Zero, Vector2.Zero));
+        SceneTools.GetSprite("icon").AddAnimator(Core.GlobalLibrary.GetAnimation("characters", "green_slime"));
+        SceneTools.GetSprite("icon").AddBoxCollider(60,60, 80, 80);
+        SceneTools.GetSprite("icon").AddBehavior(new SlimeUIBehavior());
+        SceneTools.GetText("text").AddBehavior(new SlimeText());
 
         base.LoadContent();
     }
@@ -160,6 +158,11 @@ public class Scene1 : Scene
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.NumPad0))
         {
             DebugMode.PrintScene();
+        }
+
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.NumPad1))
+        {
+            DebugMode.PrintUI();
         }
 
         base.Update(gameTime);
