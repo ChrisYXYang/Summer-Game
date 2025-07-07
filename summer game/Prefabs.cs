@@ -34,9 +34,9 @@ public static class Prefabs
             [
             new Transform(),
             new CircleCollider(4, "spark"),
-            new Rigidbody(true, false),
+            new Rigidbody(false, false),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "spark")),
-            new Spark()
+            new PortalProj()
             ];
 
         return ("spark", components);

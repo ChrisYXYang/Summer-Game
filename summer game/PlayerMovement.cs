@@ -14,10 +14,8 @@ public class PlayerMovement : BehaviorComponent
     // variables and properties
     public float JumpPower { get; set; }
     public float MoveSpeed { get; set; }
-    private int _collisions = 0;
 
     private Rigidbody _rb;
-    private SpriteRenderer _spriteRenderer;
 
     // constructor
     //
@@ -32,7 +30,6 @@ public class PlayerMovement : BehaviorComponent
     public override void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // update
@@ -58,17 +55,10 @@ public class PlayerMovement : BehaviorComponent
 
     public override void OnCollisionEnter(ICollider other)
     {
-        _spriteRenderer.Color = Color.Red;
-        _collisions++;
+
     }
 
     public override void OnCollisionExit(ICollider other)
     {
-        _collisions--;
-
-        if (_collisions == 0)
-        {
-            _spriteRenderer.Color = Color.White;
-        }
     }
 }

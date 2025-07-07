@@ -25,7 +25,7 @@ public class Game1 : DebugMode
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
-        ChangeScene(new Scene1());
+        ChangeScene(new Level1());
 
         base.Initialize();
     }
@@ -35,6 +35,7 @@ public class Game1 : DebugMode
         GlobalLibrary.AddSpriteSheet("characters");
         GlobalLibrary.AddFont("04B_30");
         GlobalLibrary.AddFont("04B_30_small");
+        GlobalLibrary.AddTileset("lab tileset");
 
         base.LoadContent();
     }
