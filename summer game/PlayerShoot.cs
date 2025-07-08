@@ -23,11 +23,21 @@ public class PlayerShoot : BehaviorComponent
     {
         if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left))
         {
-            Vector2 mouseDist = Vector2.Normalize(Camera.PixelToUnit(InputManager.Mouse.Position) - Transform.position);
-            float rotation = MathF.Atan2(mouseDist.Y, mouseDist.X);
-            GameObject projectile = SceneTools.Instantiate(Prefabs.Spark(), Transform.position, rotation);
-            projectile.Rigidbody.XVelocity = mouseDist.X * ProjectileSpeed;
-            projectile.Rigidbody.YVelocity = mouseDist.Y * ProjectileSpeed;
+            Shoot(Prefabs.Orange());
         }
+
+        if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Right))
+        {
+            Shoot(Prefabs.Blue());
+        }
+    }
+
+    private void Shoot((string, Component[]) prefab)
+    {
+        Vector2 mouseDist = Vector2.Normalize(Camera.PixelToUnit(InputManager.Mouse.Position) - Transform.position);
+        float rotation = MathF.Atan2(mouseDist.Y, mouseDist.X);
+        GameObject projectile = SceneTools.Instantiate(prefab, Transform.position, rotation);
+        projectile.Rigidbody.XVelocity = mouseDist.X * ProjectileSpeed;
+        projectile.Rigidbody.YVelocity = mouseDist.Y * ProjectileSpeed;
     }
 }

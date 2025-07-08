@@ -21,24 +21,39 @@ public static class Prefabs
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player_0")),
             new PlayerMovement(4, 10),
-            new PlayerShoot(10)
+            new PlayerShoot(15)
             ];
 
         return ("player", components);
     }
 
-    // spark
-    public static (string, Component[]) Spark()
+    // orange
+    public static (string, Component[]) Orange()
     {
         Component[] components =
             [
             new Transform(),
-            new CircleCollider(4, "spark"),
+            new CircleCollider(4, "player proj"),
             new Rigidbody(false, false),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "spark")),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "orange")),
             new PortalProj()
             ];
 
-        return ("spark", components);
+        return ("orange", components);
+    }
+
+    // blue
+    public static (string, Component[]) Blue()
+    {
+        Component[] components =
+            [
+            new Transform(),
+            new CircleCollider(4, "player proj"),
+            new Rigidbody(false, false),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "blue")),
+            new PortalProj()
+            ];
+
+        return ("blue", components);
     }
 }

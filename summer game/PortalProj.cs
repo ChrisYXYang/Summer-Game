@@ -10,7 +10,7 @@ public class PortalProj : BehaviorComponent
 {
     public override void OnCollisionEnter(ICollider other)
     {
-        if (other.Layer == "wall")
+        if (other.Layer == "wall" || other.Layer == "portal")
         {
             SceneTools.Destroy(this.Parent);
         }

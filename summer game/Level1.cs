@@ -71,7 +71,7 @@ public class Level1 : Scene
             DebugMode.DrawGameObjectCollider(gameObject);
         }
 
-        DebugMode.DrawTilemapCollider(Tilemap);
+        //DebugMode.DrawTilemapCollider(Tilemap);
         DebugMode.DrawCanvasColliders(Canvas);
 
         base.Draw(gameTime);
