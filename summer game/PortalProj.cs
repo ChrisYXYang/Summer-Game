@@ -1,0 +1,18 @@
+﻿using System;
+using System.ComponentModel;
+using Microsoft.Xna.Framework;
+using MyMonoGameLibrary.Scenes;
+
+
+namespace summer_game;
+
+public class PortalProj : BehaviorComponent
+{
+    public override void OnCollisionEnter(ICollider other)
+    {
+        if (other.Layer == "wall")
+        {
+            SceneTools.Destroy(this.Parent);
+        }
+    }
+}

@@ -7,11 +7,7 @@
 		<Sprite name="blue_1"/>
 		<Sprite name="green_0"/>
 		<Sprite name="green_1"/>
-		<Sprite name="orange"/>
-		<Sprite name="blue"/>
-		<Sprite name="orange portal"/>
-		<Sprite name="blue portal"/>
-		
+		<Sprite name="spark"/>
 	</Sprites>
 	<Animations>
 		<Animation name="blue_slime" delay="500">

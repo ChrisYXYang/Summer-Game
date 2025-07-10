@@ -52,13 +52,4 @@ public class PlayerMovement : BehaviorComponent
             _rb.YVelocity -= JumpPower;
         }
     }
-
-    public override void OnCollisionEnter(ICollider other)
-    {
-
-    }
-
-    public override void OnCollisionExit(ICollider other)
-    {
-    }
 }

@@ -31,7 +31,6 @@ public class Level1 : Scene
         // set up scene
         SetTilemap("level1", Core.GlobalLibrary.GetTileset("lab tileset"));
         Setup(Prefabs.Player());
-        Setup(Prefabs.OrangePortal());
 
         Setup
         (
@@ -72,7 +71,7 @@ public class Level1 : Scene
             DebugMode.DrawGameObjectCollider(gameObject);
         }
 
-        //DebugMode.DrawTilemapCollider(Tilemap);
+        DebugMode.DrawTilemapCollider(Tilemap);
         DebugMode.DrawCanvasColliders(Canvas);
 
         base.Draw(gameTime);
