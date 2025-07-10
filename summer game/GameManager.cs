@@ -6,28 +6,33 @@ using MyMonoGameLibrary.Scenes;
 using MyMonoGameLibrary.UI;
 using MyMonoGameLibrary;
 using System.Diagnostics;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace summer_game;
 
 public class GameManager : BehaviorComponent
 {
     public static GameManager Instance { get; private set; }
+    public int SlimesCollected { get; set; } = 0;
 
     public GameManager()
-    {
-
-    }
-
-    public override void Start()
     {
         if (Instance == null)
         {
             Instance = this;
         }
-        else
+    }
+    private TextUI _test;
+    public override void Update(GameTime gameTime)
+    {
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D1))
         {
-            SceneTools.Destroy(this.Parent);
+            _test = new TextUI(Core.GlobalLibrary.GetFont("04B_30"), "appear!", AnchorMode.MiddleCenter, new Vector2(960, 540));
+            SceneTools.Instantiate("test", _test, SceneTools.GetCanvas().GetChild(0));
+        }
+
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D2))
+        {
+            SceneTools.Destroy(SceneTools.GetCanvas().GetChild(0));
         }
     }
 }
