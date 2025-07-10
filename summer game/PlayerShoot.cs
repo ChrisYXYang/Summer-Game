@@ -13,31 +13,39 @@ namespace summer_game;
 public class PlayerShoot : BehaviorComponent
 {
     public float ProjectileSpeed { get; set; }
+    private GameObject _orangePortal;
 
     public PlayerShoot(float speed)
     {
         ProjectileSpeed = speed;
     }
 
+    public override void Start()
+    {
+        _orangePortal = SceneTools.GetGameObject("orange portal");
+    }
+
     public override void Update(GameTime gameTime)
     {
         if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left))
         {
-            Shoot(Prefabs.Orange());
+            GameObject orange = Shoot(Prefabs.OrangeProjectile());
+            orange.GetComponent<PlayerProjectile>().Portal = _orangePortal;
         }
 
         if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Right))
         {
-            Shoot(Prefabs.Blue());
+            Shoot(Prefabs.BlueProjectile());
         }
     }
 
-    private void Shoot((string, Component[]) prefab)
+    private GameObject Shoot((string, Component[]) prefab)
     {
         Vector2 mouseDist = Vector2.Normalize(Camera.PixelToUnit(InputManager.Mouse.Position) - Transform.position);
         float rotation = MathF.Atan2(mouseDist.Y, mouseDist.X);
         GameObject projectile = SceneTools.Instantiate(prefab, Transform.position, rotation);
         projectile.Rigidbody.XVelocity = mouseDist.X * ProjectileSpeed;
         projectile.Rigidbody.YVelocity = mouseDist.Y * ProjectileSpeed;
+        return projectile;
     }
 }

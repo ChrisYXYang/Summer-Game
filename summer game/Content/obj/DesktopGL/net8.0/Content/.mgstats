@@ -1,8 +1,8 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 "C:/Users/chris/Games/Summer-Game/summer game/Content/fonts/04B_30_small.spritefont","C:/Users/chris/Games/Summer-Game/summer game/Content/bin/DesktopGL/Content/fonts/04B_30_small.xnb","FontDescriptionProcessor","SpriteFontContent",2073,70681,0.0986403
 "C:/Users/chris/Games/Summer-Game/summer game/Content/fonts/04B_30.spritefont","C:/Users/chris/Games/Summer-Game/summer game/Content/bin/DesktopGL/Content/fonts/04B_30.xnb","FontDescriptionProcessor","SpriteFontContent",2073,136217,0.1016482
-"C:/Users/chris/Games/Summer-Game/summer game/Content/images/characters.png","C:/Users/chris/Games/Summer-Game/summer game/Content/bin/DesktopGL/Content/images/characters.xnb","TextureProcessor","Texture2DContent",609,9301,0.0770939
-"C:/Users/chris/Games/Summer-Game/summer game/Content/images/characters.xml","C:\Users\chris\Games\Summer-Game\summer game\Content\bin\DesktopGL\Content\images/characters.xml","CopyItem","File",610,610,0.0007361
+"C:/Users/chris/Games/Summer-Game/summer game/Content/images/characters.png","C:/Users/chris/Games/Summer-Game/summer game/Content/bin/DesktopGL/Content/images/characters.xnb","TextureProcessor","Texture2DContent",629,9301,0.080324
+"C:/Users/chris/Games/Summer-Game/summer game/Content/images/characters.xml","C:\Users\chris\Games\Summer-Game\summer game\Content\bin\DesktopGL\Content\images/characters.xml","CopyItem","File",680,680,0.0007955
 "C:/Users/chris/Games/Summer-Game/summer game/Content/images/debug.png","C:/Users/chris/Games/Summer-Game/summer game/Content/bin/DesktopGL/Content/images/debug.xnb","TextureProcessor","Texture2DContent",256,3157,0.0627469
 "C:/Users/chris/Games/Summer-Game/summer game/Content/images/debug.xml","C:\Users\chris\Games\Summer-Game\summer game\Content\bin\DesktopGL\Content\images/debug.xml","CopyItem","File",288,288,0.0007758
 "C:/Users/chris/Games/Summer-Game/summer game/Content/images/lab tileset.png","C:/Users/chris/Games/Summer-Game/summer game/Content/bin/DesktopGL/Content/images/lab tileset.xnb","TextureProcessor","Texture2DContent",143,1109,0.0556831

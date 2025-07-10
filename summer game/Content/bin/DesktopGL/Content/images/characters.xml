@@ -9,6 +9,9 @@
 		<Sprite name="green_1"/>
 		<Sprite name="orange"/>
 		<Sprite name="blue"/>
+		<Sprite name="orange portal"/>
+		<Sprite name="blue portal"/>
+		
 	</Sprites>
 	<Animations>
 		<Animation name="blue_slime" delay="500">

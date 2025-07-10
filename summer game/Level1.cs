@@ -31,6 +31,7 @@ public class Level1 : Scene
         // set up scene
         SetTilemap("level1", Core.GlobalLibrary.GetTileset("lab tileset"));
         Setup(Prefabs.Player());
+        Setup(Prefabs.OrangePortal());
 
         Setup
         (

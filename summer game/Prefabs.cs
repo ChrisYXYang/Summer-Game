@@ -21,39 +21,53 @@ public static class Prefabs
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player_0")),
             new PlayerMovement(4, 10),
-            new PlayerShoot(15)
+            new PlayerShoot(25)
             ];
 
         return ("player", components);
     }
 
-    // orange
-    public static (string, Component[]) Orange()
+    // orange portal
+    // orange projectile
+    public static (string, Component[]) OrangePortal()
     {
         Component[] components =
             [
             new Transform(),
-            new CircleCollider(4, "player proj"),
-            new Rigidbody(false, false),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "orange")),
-            new PortalProj()
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "orange portal")),
+            new Portal(),
             ];
 
-        return ("orange", components);
+        return ("orange portal", components);
     }
 
-    // blue
-    public static (string, Component[]) Blue()
+    // orange projectile
+    public static (string, Component[]) OrangeProjectile()
     {
         Component[] components =
             [
             new Transform(),
-            new CircleCollider(4, "player proj"),
+            new CircleCollider(4, "player projectile"),
             new Rigidbody(false, false),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "blue")),
-            new PortalProj()
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "orange")),
+            new PlayerProjectile()
             ];
 
-        return ("blue", components);
+        return ("orange projectile", components);
+    }
+
+    // blue projectile
+    public static (string, Component[]) BlueProjectile()
+    {
+        Component[] components =
+            [
+            new Transform(),
+            new CircleCollider(4, "player projectile"),
+            new Rigidbody(false, false),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "blue")),
+            new PlayerProjectile()
+            ];
+
+        return ("blue projectile", components);
     }
 }
