@@ -56,4 +56,16 @@ public static class Prefabs
 
         return ("appear", components);
     }
+
+    // label
+    public static (string, Component[]) Label()
+    {
+        Component[] components =
+            [
+            new Transform(new Vector2(0, -0.75f)),
+            new TextRenderer(Core.GlobalLibrary.GetFont("04B_30_small"), "", AnchorMode.MiddleCenter, Color.Lavender, 0.2f)
+            ];
+
+        return ("label", components);
+    }
 }

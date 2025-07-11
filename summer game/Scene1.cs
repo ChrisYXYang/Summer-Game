@@ -45,15 +45,7 @@ public class Scene1 : Scene
             ]
         );
 
-        Setup
-        (
-            "label",
-            [
-            new Transform(),
-            new TextRenderer(_small, "", AnchorMode.MiddleCenter, Color.LightGreen, 0.2f)
-            ],
-            GetGameObject("green")
-        );
+        Setup(Prefabs.Label(), GetGameObject("green"));
 
         Setup
         (
@@ -67,15 +59,7 @@ public class Scene1 : Scene
             ]
         );
 
-        Setup
-        (
-            "label",
-            [
-            new Transform(),
-                    new TextRenderer(_small, "", AnchorMode.MiddleCenter, Color.LightGreen, 0.2f)
-            ],
-            GetGameObject("green_1")
-        );
+        Setup(Prefabs.Label(), GetGameObject("green_1"));
 
         Setup
         (
@@ -89,15 +73,7 @@ public class Scene1 : Scene
             ]
         );
 
-        Setup
-        (
-            "label",
-            [
-            new Transform(),
-                            new TextRenderer(_small, "", AnchorMode.MiddleCenter, Color.LightBlue, 0.2f)
-            ],
-            GetGameObject("blue")
-        );
+        Setup(Prefabs.Label(), GetGameObject("blue"));
 
         Setup
         (
@@ -111,15 +87,9 @@ public class Scene1 : Scene
             ]
         );
 
-        Setup
-        (
-            "label",
-            [
-            new Transform(),
-            new TextRenderer(_small, "", AnchorMode.MiddleCenter, Color.LightBlue, 0.2f)
-            ],
-            GetGameObject("blue1")
-        );
+        Setup(Prefabs.Label(), GetGameObject("blue1"));
+        Setup(Prefabs.Label(), GetGameObject("player"));
+        GetGameObject("label_4").GetComponent<TextRenderer>().Text = "Player";
 
         Setup
         (

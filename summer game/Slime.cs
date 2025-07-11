@@ -32,11 +32,6 @@ public class Slime : BehaviorComponent
             tr.Text = "green";
         if (_color == "blue")
             tr.Text = "blue";
-
-        Transform transform = Parent.GetChild(0).Transform;
-
-        transform.position = new Vector2(Transform.position.X, Transform.position.Y - 0.75f);
-
     }
 
     public override void Update(GameTime gameTime)
