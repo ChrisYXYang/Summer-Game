@@ -21,18 +21,17 @@ public class GameManager : BehaviorComponent
             Instance = this;
         }
     }
-    private TextUI _test;
+    private GameObject _test;
     public override void Update(GameTime gameTime)
     {
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.D1))
         {
-            _test = new TextUI(Core.GlobalLibrary.GetFont("04B_30"), "appear!", AnchorMode.MiddleCenter, new Vector2(960, 540));
-            SceneTools.Instantiate("test", _test, SceneTools.GetCanvas().GetChild(0));
+            _test = SceneTools.Instantiate(Prefabs.Appear(), SceneTools.GetGameObject("text"));
         }
 
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.D2))
         {
-            SceneTools.Destroy(SceneTools.GetCanvas().GetChild(0));
+            SceneTools.Destroy(_test.Parent);
         }
     }
 }

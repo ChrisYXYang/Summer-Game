@@ -11,7 +11,7 @@ using MyMonoGameLibrary.UI;
 
 namespace summer_game;
 
-public class SlimeUIBehavior : UIBehavior
+public class SlimeUIBehavior : BehaviorComponent
 {
     private bool _justPointed = true;
 
@@ -24,13 +24,13 @@ public class SlimeUIBehavior : UIBehavior
         {
             if (!_justPointed)
             {
-                ((SpriteUI)Parent).Animator.Animation = Core.GlobalLibrary.GetAnimation("characters", "green_slime");
+                Parent.Animator.Animation = Core.GlobalLibrary.GetAnimation("characters", "green_slime");
                 _justPointed = true;
             }
         }
         else
         {
-            ((SpriteUI)Parent).Animator.Animation = null;
+            Parent.Animator.Animation = null;
             _justPointed = false;
 
         }

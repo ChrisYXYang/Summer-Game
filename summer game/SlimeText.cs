@@ -10,12 +10,12 @@ using MyMonoGameLibrary.UI;
 
 namespace summer_game;
 
-public class SlimeText : UIBehavior
+public class SlimeText : BehaviorComponent
 {
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
 
-        ((TextUI)Parent).Text = "Slimes Collected: " + GameManager.Instance.SlimesCollected;
+        ((UIText)Parent.Renderer).Text = "Slimes Collected: " + GameManager.Instance.SlimesCollected;
     }
 }

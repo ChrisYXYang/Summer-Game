@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using MyMonoGameLibrary.Scenes;
 using MyMonoGameLibrary;
+using MyMonoGameLibrary.UI;
+using static System.Net.Mime.MediaTypeNames;
+using Microsoft.Xna.Framework;
 
 namespace summer_game;
 
@@ -34,11 +37,23 @@ public static class Prefabs
             [
             new Transform(),
             new CircleCollider(4, "spark"),
-            new Rigidbody(true, false),
+            new Rigidbody(false, false),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "spark")),
             new Spark()
             ];
 
         return ("spark", components);
+    }
+
+    // appear!
+    public static (string, Component[]) Appear()
+    {
+        Component[] components =
+            [
+                new Transform(new Vector2(960, 540)),
+                new UIText(Core.GlobalLibrary.GetFont("04B_30"), "appear!", AnchorMode.MiddleCenter)
+            ];
+
+        return ("appear", components);
     }
 }

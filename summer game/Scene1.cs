@@ -51,9 +51,9 @@ public class Scene1 : Scene
             [
             new Transform(),
             new TextRenderer(_small, "", AnchorMode.MiddleCenter, Color.LightGreen, 0.2f)
-            ]
+            ],
+            GetGameObject("green")
         );
-        GetGameObject("green").AddChild(GetGameObject("label"));
 
         Setup
         (
@@ -73,9 +73,9 @@ public class Scene1 : Scene
             [
             new Transform(),
                     new TextRenderer(_small, "", AnchorMode.MiddleCenter, Color.LightGreen, 0.2f)
-            ]
+            ],
+            GetGameObject("green_1")
         );
-        GetGameObject("green_1").AddChild(GetGameObject("label_1"));
 
         Setup
         (
@@ -95,9 +95,9 @@ public class Scene1 : Scene
             [
             new Transform(),
                             new TextRenderer(_small, "", AnchorMode.MiddleCenter, Color.LightBlue, 0.2f)
-            ]
+            ],
+            GetGameObject("blue")
         );
-        GetGameObject("blue").AddChild(GetGameObject("label_2"));
 
         Setup
         (
@@ -117,9 +117,9 @@ public class Scene1 : Scene
             [
             new Transform(),
             new TextRenderer(_small, "", AnchorMode.MiddleCenter, Color.LightBlue, 0.2f)
-            ]
+            ],
+            GetGameObject("blue1")
         );
-        GetGameObject("blue1").AddChild(GetGameObject("label_3"));
 
         Setup
         (
@@ -137,12 +137,27 @@ public class Scene1 : Scene
             ]
         );
 
-        Setup("text", new TextUI(_big, "", AnchorMode.MiddleLeft, new Vector2(160, 80)));
-        Setup("icon", new SpriteUI(Core.GlobalLibrary.GetSprite("characters", "green_0"), Vector2.Zero, Vector2.Zero));
-        SceneTools.GetSprite("icon").AddAnimator(Core.GlobalLibrary.GetAnimation("characters", "green_slime"));
-        SceneTools.GetSprite("icon").AddBoxCollider(60,60, 80, 80);
-        SceneTools.GetSprite("icon").AddBehavior(new SlimeUIBehavior());
-        SceneTools.GetText("text").AddBehavior(new SlimeText());
+        Setup
+        (
+            "text",
+            [
+                new Transform(new Vector2(160, 80)),
+                new UIText(_big, "", AnchorMode.MiddleLeft),
+                new SlimeText(),
+            ]
+        );
+
+        Setup
+        (
+            "icon",
+            [
+                new Transform(Vector2.Zero),
+                new UISprite(Core.GlobalLibrary.GetSprite("characters", "green_0"), Vector2.Zero),
+                new UIAnimator(Core.GlobalLibrary.GetAnimation("characters", "green_slime")),
+                new SlimeUIBehavior(),
+                new UIBoxCollider(60, 60, 80, 80)
+            ]
+        );
 
         base.LoadContent();
     }
@@ -160,11 +175,6 @@ public class Scene1 : Scene
             DebugMode.PrintScene();
         }
 
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.NumPad1))
-        {
-            DebugMode.PrintUI();
-        }
-
         base.Update(gameTime);
     }
     public override void Draw(GameTime gameTime)
@@ -175,14 +185,18 @@ public class Scene1 : Scene
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);
 
         // debugging
-        foreach (GameObject gameObject in GetGameObjects())
+        foreach (GameObject gameObject in GetGameDrawObjects())
         {
             DebugMode.DrawOrigin(gameObject);
-            DebugMode.DrawGameObjectCollider(gameObject);
+            DebugMode.DrawCollider(gameObject);
+        }
+
+        foreach (GameObject gameObject in GetUIDrawObjects())
+        {
+            DebugMode.DrawCollider(gameObject);
         }
 
         DebugMode.DrawTilemapCollider(Tilemap);
-        DebugMode.DrawCanvasColliders(Canvas);
 
         base.Draw(gameTime);
     }

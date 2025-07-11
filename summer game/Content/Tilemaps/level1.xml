@@ -2,7 +2,7 @@
 
 <map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="10" tilewidth="8" tileheight="8" infinite="0" nextlayerid="2" nextobjectid="1">
 	<tileset firstgid="1" source="lab.tsx"/>
-	<layer id="1" name="test_col_sol" width="20" height="10">
+	<layer id="1" name="test_col_sol" layer="wall" width="20" height="10">
 		<data encoding="csv">
 			0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 			0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
