@@ -8,6 +8,7 @@ using MyMonoGameLibrary;
 using MyMonoGameLibrary.UI;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.Xna.Framework;
+using MyMonoGameLibrary.Tools;
 
 namespace summer_game;
 
@@ -20,7 +21,7 @@ public static class Prefabs
         Component[] components =
             [
             new Transform(),
-            new BoxCollider(8, 8, "player"),
+            new BoxCollider(Converter.PixelToUnit(8), Converter.PixelToUnit(8), "player"),
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player_0")),
             new PlayerMovement(4, 10),
@@ -36,7 +37,7 @@ public static class Prefabs
         Component[] components =
             [
             new Transform(),
-            new CircleCollider(4, "spark"),
+            new CircleCollider(Converter.PixelToUnit(4), "spark"),
             new Rigidbody(false, false),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "spark")),
             new Spark()
@@ -63,7 +64,9 @@ public static class Prefabs
         Component[] components =
             [
             new Transform(new Vector2(0, -0.75f)),
-            new TextRenderer(Core.GlobalLibrary.GetFont("04B_30_small"), "", AnchorMode.MiddleCenter, Color.Lavender, 0.2f)
+            new TextRenderer(Core.GlobalLibrary.GetFont("04B_30_small"), "", AnchorMode.MiddleCenter, Color.Lavender, 0.2f),
+            new TextCollider(1, 0),
+            new BoxCollider(0,0)
             ];
 
         return ("label", components);

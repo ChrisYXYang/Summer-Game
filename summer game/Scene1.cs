@@ -38,7 +38,7 @@ public class Scene1 : Scene
             "green",
             [
             new Transform(new Vector2(-7f, -3)),
-            new CircleCollider(6, "slime"),
+            new CircleCollider(Converter.PixelToUnit(6), "slime"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "green_1"), Color.White, true, false, 0.2f),
             new Animator(Core.GlobalLibrary.GetAnimation("characters", "green_slime")),
             new Slime("green"),
@@ -52,7 +52,7 @@ public class Scene1 : Scene
             "green_45",
             [
             new Transform(new Vector2(2f, 2f)),
-            new CircleCollider(6, "slime"),
+            new CircleCollider(Converter.PixelToUnit(6), "slime"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "green_0"), 0.2f),
             new Animator(Core.GlobalLibrary.GetAnimation("characters", "green_slime")),
             new Slime("green"),
@@ -66,9 +66,9 @@ public class Scene1 : Scene
             "blue_10",
             [
             new Transform(new Vector2(7f, -3f)),
-            new CircleCollider(6, "slime"),
+            new CircleCollider(Converter.PixelToUnit(6), "slime"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "blue_1"), Color.White, true, false, 0.2f),
-                        new Animator(Core.GlobalLibrary.GetAnimation("characters", "blue_slime")),
+            new Animator(Core.GlobalLibrary.GetAnimation("characters", "blue_slime")),
             new Slime("blue"),
             ]
         );
@@ -80,7 +80,7 @@ public class Scene1 : Scene
             "blue1",
             [
             new Transform(new Vector2(-2f, 2f)),
-            new CircleCollider(6, "slime"),
+            new CircleCollider(Converter.PixelToUnit(6), "slime"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "blue_0"), 0.2f),
             new Animator(Core.GlobalLibrary.GetAnimation("characters", "blue_slime")),
             new Slime("blue"),
@@ -114,6 +114,8 @@ public class Scene1 : Scene
                 new Transform(new Vector2(160, 80)),
                 new UIText(_big, "", AnchorMode.MiddleLeft),
                 new SlimeText(),
+                new TextCollider(20,10),
+                new BoxCollider(0,0)
             ]
         );
 
@@ -125,7 +127,7 @@ public class Scene1 : Scene
                 new UISprite(Core.GlobalLibrary.GetSprite("characters", "green_0"), Vector2.Zero),
                 new UIAnimator(Core.GlobalLibrary.GetAnimation("characters", "green_slime")),
                 new SlimeUIBehavior(),
-                new UIBoxCollider(60, 60, 80, 80)
+                new BoxCollider(60, 60, 80, 80, "ui")
             ]
         );
 
@@ -134,16 +136,11 @@ public class Scene1 : Scene
 
     public override void Update(GameTime gameTime)
     {
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.Enter))
-        {
-            Core.ChangeScene(new Scene2());
-            Debug.WriteLine("changing scenes");
-        }
-
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.NumPad0))
-        {
-            DebugMode.PrintScene();
-        }
+        //if (InputManager.Keyboard.WasKeyJustPressed(Keys.Enter))
+        //{
+        //    Core.ChangeScene(new Scene2());
+        //    Debug.WriteLine("changing scenes");
+        //}
 
         base.Update(gameTime);
     }
@@ -163,7 +160,7 @@ public class Scene1 : Scene
 
         foreach (GameObject gameObject in GetUIDrawObjects())
         {
-            DebugMode.DrawCollider(gameObject);
+            DebugMode.DrawUICollider(gameObject);
         }
 
         DebugMode.DrawTilemapCollider(Tilemap);

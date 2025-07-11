@@ -26,12 +26,12 @@ public class GameManager : BehaviorComponent
     {
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.D1))
         {
-            _test = SceneTools.Instantiate(Prefabs.Appear(), SceneTools.GetGameObject("text"));
+            _test = SceneTools.Instantiate(Prefabs.Appear());
         }
 
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.D2))
         {
-            SceneTools.Destroy(_test.Parent);
+            SceneTools.Destroy(_test);
         }
     }
 }
