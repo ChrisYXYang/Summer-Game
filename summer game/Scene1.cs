@@ -88,8 +88,9 @@ public class Scene1 : Scene
         );
 
         Setup(Prefabs.Label(), GetGameObject("blue1"));
-        Setup(Prefabs.Label(), GetGameObject("player"));
-        GetGameObject("label_4").GetComponent<TextRenderer>().Text = "Player";
+
+        GameObject playerLabel = Setup(Rename("player label", Prefabs.Label()), GetGameObject("player"));
+        ((TextRenderer)playerLabel.Renderer).Text = "Player!";
 
         Setup
         (
@@ -115,7 +116,7 @@ public class Scene1 : Scene
                 new UIText(_big, "", AnchorMode.MiddleLeft),
                 new SlimeText(),
                 new TextCollider(20,10),
-                new BoxCollider(0,0)
+                new BoxCollider()
             ]
         );
 

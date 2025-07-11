@@ -17,5 +17,15 @@ public class SlimeText : BehaviorComponent
         base.Update(gameTime);
 
         ((UIText)Parent.Renderer).Text = "Slimes Collected: " + GameManager.Instance.SlimesCollected;
+
+        if (Collisions.MouseInUICollider(Parent.Collider))
+        {
+            ((UIText)Parent.Renderer).Color = Color.RoyalBlue;
+        }
+        else
+        {
+            ((UIText)Parent.Renderer).Color = Color.White;
+
+        }
     }
 }

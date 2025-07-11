@@ -65,8 +65,8 @@ public static class Prefabs
             [
             new Transform(new Vector2(0, -0.75f)),
             new TextRenderer(Core.GlobalLibrary.GetFont("04B_30_small"), "", AnchorMode.MiddleCenter, Color.Lavender, 0.2f),
-            new TextCollider(1, 0),
-            new BoxCollider(0,0)
+            new TextCollider(),
+            new BoxCollider()
             ];
 
         return ("label", components);
