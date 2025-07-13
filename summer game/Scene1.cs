@@ -19,11 +19,15 @@ public class Scene1 : Scene
 {
     private SpriteFont _big;
     private SpriteFont _small;
+
+    public override void Initialize()
+    {
+        Gravity = 20f;
+        base.Initialize();
+    }
     
     public override void LoadContent()
     {
-        Gravity = 20f;
-
         // load assets
         _big = Core.GlobalLibrary.GetFont("04B_30");
         _small = Core.GlobalLibrary.GetFont("04B_30_small");
