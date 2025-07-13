@@ -4,6 +4,9 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/chris/Games/Summer-Game/summer game/Content/audio/bounce.wav</File>
+    <File>C:/Users/chris/Games/Summer-Game/summer game/Content/audio/collect.wav</File>
+    <File>C:/Users/chris/Games/Summer-Game/summer game/Content/audio/theme.ogg</File>
     <File>C:/Users/chris/Games/Summer-Game/summer game/Content/fonts/04B_30_small.spritefont</File>
     <File>C:/Users/chris/Games/Summer-Game/summer game/Content/fonts/04B_30.spritefont</File>
     <File>C:/Users/chris/Games/Summer-Game/summer game/Content/images/characters.png</File>
@@ -11,6 +14,9 @@
     <File>C:/Users/chris/Games/Summer-Game/summer game/Content/images/lab tileset.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

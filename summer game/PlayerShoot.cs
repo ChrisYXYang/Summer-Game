@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using MyMonoGameLibrary;
 using MyMonoGameLibrary.Input;
 using MyMonoGameLibrary.Scenes;
 
@@ -28,6 +29,7 @@ public class PlayerShoot : BehaviorComponent
             GameObject projectile = SceneTools.Instantiate(Prefabs.Spark(), Transform.position, rotation);
             projectile.Rigidbody.XVelocity = mouseDist.X * ProjectileSpeed;
             projectile.Rigidbody.YVelocity = mouseDist.Y * ProjectileSpeed;
+            Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("bounce"));
         }
     }
 }

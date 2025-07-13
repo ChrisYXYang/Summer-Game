@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System.Diagnostics;
 using MyMonoGameLibrary.Input;
 using MyMonoGameLibrary.Scenes;
+using MyMonoGameLibrary;
 
 namespace summer_game;
 
@@ -53,6 +54,7 @@ public class PlayerMovement : BehaviorComponent
         if (InputManager.Keyboard.IsKeyDown(Keys.W) && _rb.TouchingBottom)
         {
             _rb.YVelocity -= JumpPower;
+            Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("collect"));
         }
     }
 
