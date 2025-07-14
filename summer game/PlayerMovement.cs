@@ -56,6 +56,15 @@ public class PlayerMovement : BehaviorComponent
             _rb.YVelocity -= JumpPower;
             Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("collect"));
         }
+
+        if (InputManager.Keyboard.IsKeyDown(Keys.S))
+        {
+            Parent.Rigidbody.DescendPlatform = true;
+        }
+        else
+        {
+            Parent.Rigidbody.DescendPlatform = false;
+        }
     }
 
     public override void OnCollisionEnter(ICollider other)
