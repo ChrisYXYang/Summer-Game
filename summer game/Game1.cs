@@ -20,7 +20,7 @@ namespace summer_game;
 
 public class Game1 : DebugMode
 {
-    public Game1() : base("Summer Game", 1920, 1080, false) {}
+    public Game1() : base("Summer Game", 1920, 1080, true) {}
 
     protected override void Initialize()
     {
@@ -40,7 +40,7 @@ public class Game1 : DebugMode
         GlobalLibrary.AddSoundEffect("collect");
 
 
-        Audio.PlaySong(GlobalLibrary.GetSong("theme"));
+        //Audio.PlaySong(GlobalLibrary.GetSong("theme"));
 
         base.LoadContent();
     }

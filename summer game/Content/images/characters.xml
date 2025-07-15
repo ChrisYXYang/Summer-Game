@@ -2,21 +2,11 @@
 <SpriteSheet>
 	<Settings texture="images/characters" size="16" centered="true"/>
 	<Sprites>
-		<Sprite name="player_0"/>
-		<Sprite name="blue_0"/>
-		<Sprite name="blue_1"/>
-		<Sprite name="green_0"/>
-		<Sprite name="green_1"/>
-		<Sprite name="spark"/>
+		<Sprite name="player"/>
+		<Sprite name="snowman"/>
+		<Sprite name="snowball"/>
+		<Sprite name="icecycle"/>
 	</Sprites>
 	<Animations>
-		<Animation name="blue_slime" delay="500">
-			<Frame name="blue_0"/>
-			<Frame name="blue_1"/>
-		</Animation>
-		<Animation name="green_slime">
-			<Frame name="green_0"/>
-			<Frame name="green_1"/>
-		</Animation>
 	</Animations>
 </SpriteSheet>

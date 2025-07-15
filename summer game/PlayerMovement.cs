@@ -15,10 +15,10 @@ public class PlayerMovement : BehaviorComponent
     // variables and properties
     public float JumpPower { get; set; }
     public float MoveSpeed { get; set; }
-    private int _collisions = 0;
 
     private Rigidbody _rb;
     private SpriteRenderer _spriteRenderer;
+    private float _jumpBuffer;
 
     // constructor
     //
@@ -51,10 +51,21 @@ public class PlayerMovement : BehaviorComponent
             _rb.MovePosition(MoveSpeed, 0);
         }
 
-        if (InputManager.Keyboard.IsKeyDown(Keys.W) && _rb.TouchingBottom)
+        float time = (float)gameTime.TotalGameTime.TotalSeconds;
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.W))
+        {
+            _jumpBuffer = 0.1f + time;
+        }
+
+        if (_jumpBuffer >= time && _rb.TouchingBottom)
         {
             _rb.YVelocity -= JumpPower;
             Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("collect"));
+        }
+
+        if (_rb.YVelocity < 0  && !InputManager.Keyboard.IsKeyDown(Keys.W))
+        {
+            _rb.YVelocity += SceneTools.Gravity * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         if (InputManager.Keyboard.IsKeyDown(Keys.S))
@@ -64,22 +75,6 @@ public class PlayerMovement : BehaviorComponent
         else
         {
             Parent.Rigidbody.DescendPlatform = false;
-        }
-    }
-
-    public override void OnCollisionEnter(ICollider other)
-    {
-        _spriteRenderer.Color = Color.Red;
-        _collisions++;
-    }
-
-    public override void OnCollisionExit(ICollider other)
-    {
-        _collisions--;
-
-        if (_collisions == 0)
-        {
-            _spriteRenderer.Color = Color.White;
         }
     }
 }

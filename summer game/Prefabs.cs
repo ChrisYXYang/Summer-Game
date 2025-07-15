@@ -15,60 +15,32 @@ namespace summer_game;
 // this class contains static methods corresponding to prefabs to use in scenes.
 public static class Prefabs
 {
-    // player
     public static (string, Component[]) Player()
     {
         Component[] components =
             [
             new Transform(),
-            new BoxCollider(Converter.PixelToUnit(8), Converter.PixelToUnit(8), "player"),
+            new BoxCollider(Converter.PixelToUnit(8), Converter.PixelToUnit(10), "player"),
             new Rigidbody(true, true),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player_0")),
-            new PlayerMovement(4, 10),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player")),
+            new PlayerMovement(4, 13),
             new PlayerShoot(10)
             ];
 
         return ("player", components);
     }
 
-    // spark
-    public static (string, Component[]) Spark()
+    public static (string, Component[]) Snowball()
     {
         Component[] components =
             [
             new Transform(),
-            new CircleCollider(Converter.PixelToUnit(4), "spark"),
-            new Rigidbody(false, false),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "spark")),
-            new Spark()
+            new CircleCollider(Converter.PixelToUnit(4), "snowball"),
+            new Rigidbody(true, false),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowball")),
+            new Snowball()
             ];
 
-        return ("spark", components);
-    }
-
-    // appear!
-    public static (string, Component[]) Appear()
-    {
-        Component[] components =
-            [
-                new Transform(new Vector2(960, 540)),
-                new UIText(Core.GlobalLibrary.GetFont("04B_30"), "appear!", AnchorMode.MiddleCenter)
-            ];
-
-        return ("appear", components);
-    }
-
-    // label
-    public static (string, Component[]) Label()
-    {
-        Component[] components =
-            [
-            new Transform(new Vector2(0, -0.75f)),
-            new TextRenderer(Core.GlobalLibrary.GetFont("04B_30_small"), "", AnchorMode.MiddleCenter, Color.Lavender, 0.2f),
-            new TextCollider(),
-            new BoxCollider()
-            ];
-
-        return ("label", components);
+        return ("snowball", components);
     }
 }

@@ -12,26 +12,21 @@ namespace summer_game;
 public class GameManager : BehaviorComponent
 {
     public static GameManager Instance { get; private set; }
-    public int SlimesCollected { get; set; } = 0;
 
     public GameManager()
+    {
+
+    }
+
+    public override void Start()
     {
         if (Instance == null)
         {
             Instance = this;
         }
-    }
-    private GameObject _test;
-    public override void Update(GameTime gameTime)
-    {
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D1))
+        else
         {
-            _test = SceneTools.Instantiate(Prefabs.Appear());
-        }
-
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D2))
-        {
-            SceneTools.Destroy(_test);
+            SceneTools.Destroy(this.Parent);
         }
     }
 }

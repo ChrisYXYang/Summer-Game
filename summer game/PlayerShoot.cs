@@ -25,8 +25,7 @@ public class PlayerShoot : BehaviorComponent
         if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left))
         {
             Vector2 mouseDist = Vector2.Normalize(Camera.PixelToUnit(InputManager.Mouse.Position) - Transform.position);
-            float rotation = MathHelper.ToDegrees(MathF.Atan2(mouseDist.Y, mouseDist.X));
-            GameObject projectile = SceneTools.Instantiate(Prefabs.Spark(), Transform.position, rotation);
+            GameObject projectile = SceneTools.Instantiate(Prefabs.Snowball(), Transform.position, 0f);
             projectile.Rigidbody.XVelocity = mouseDist.X * ProjectileSpeed;
             projectile.Rigidbody.YVelocity = mouseDist.Y * ProjectileSpeed;
             Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("bounce"));

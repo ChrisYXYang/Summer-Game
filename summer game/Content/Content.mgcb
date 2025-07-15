@@ -90,6 +90,21 @@
 #begin images/lab tileset.xml
 /copy:images/lab tileset.xml
 
+#begin images/snowy tileset.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:images/snowy tileset.png
+
+#begin images/snowy tileset.xml
+/copy:images/snowy tileset.xml
+
 #begin Tilemaps/level1.xml
 /copy:Tilemaps/level1.xml
 
