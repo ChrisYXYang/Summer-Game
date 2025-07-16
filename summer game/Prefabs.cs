@@ -20,7 +20,7 @@ public static class Prefabs
         Component[] components =
             [
             new Transform(),
-            new BoxCollider(Converter.PixelToUnit(8), Converter.PixelToUnit(10), "player"),
+            new BoxCollider(Converter.PixelToUnit(6), Converter.PixelToUnit(8), "player"),
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player")),
             new PlayerMovement(4, 13),

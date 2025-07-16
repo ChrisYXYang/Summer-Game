@@ -58,11 +58,7 @@ public class Scene1 : Scene
 
     public override void Update(GameTime gameTime)
     {
-        //if (InputManager.Keyboard.WasKeyJustPressed(Keys.Enter))
-        //{
-        //    Core.ChangeScene(new Scene2());
-        //    Debug.WriteLine("changing scenes");
-        //}
+
 
         base.Update(gameTime);
     }

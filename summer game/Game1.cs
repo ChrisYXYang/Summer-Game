@@ -20,7 +20,7 @@ namespace summer_game;
 
 public class Game1 : DebugMode
 {
-    public Game1() : base("Summer Game", 1920, 1080, true) {}
+    public Game1() : base("Summer Game", 1920, 1080, false) {}
 
     protected override void Initialize()
     {

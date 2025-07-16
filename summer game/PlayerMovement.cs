@@ -63,7 +63,7 @@ public class PlayerMovement : BehaviorComponent
             Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("collect"));
         }
 
-        if (_rb.YVelocity < 0  && !InputManager.Keyboard.IsKeyDown(Keys.W))
+        if (_rb.YVelocity < 0 && !InputManager.Keyboard.IsKeyDown(Keys.W))
         {
             _rb.YVelocity += SceneTools.Gravity * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
