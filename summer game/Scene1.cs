@@ -36,14 +36,15 @@ public class Scene1 : Scene
         // set up scene
         SetTilemap("level1", SceneLibrary.GetTileset("snowy tileset"));
         Setup(Prefabs.Player());
+        Setup(Prefabs.Snowman());
 
-        //Setup
-        //(
-        //    "Camera Manager",
-        //    [
-        //        new CameraBehavior()
-        //    ]
-        //);
+        Setup
+        (
+            "Camera Manager",
+            [
+                new CameraBehavior()
+            ]
+        );
 
         Setup
         (
@@ -64,12 +65,12 @@ public class Scene1 : Scene
     }
     public override void Draw(GameTime gameTime)
     {
-        Core.GraphicsDevice.Clear(Color.LightSkyBlue);
+        Core.GraphicsDevice.Clear(Color.PaleVioletRed);
 
         // set render modes
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);
 
-        // debugging
+        //debugging
         foreach (GameObject gameObject in GetGameDrawObjects())
         {
             DebugMode.DrawOrigin(gameObject);

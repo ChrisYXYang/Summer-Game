@@ -82,6 +82,9 @@ public class Game1 : DebugMode
 
             Debug.WriteLine("");
         }
+        float fps = 1f / (float)gameTime.ElapsedGameTime.TotalSeconds;
+        if (fps < 59.99988f)
+            Debug.WriteLine(1f / (float)gameTime.ElapsedGameTime.TotalSeconds);
 
         base.Update(gameTime);
     }

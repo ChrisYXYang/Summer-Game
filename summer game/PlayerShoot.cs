@@ -15,9 +15,16 @@ public class PlayerShoot : BehaviorComponent
 {
     public float ProjectileSpeed { get; set; }
 
+    private SpriteRenderer _sr;
+
     public PlayerShoot(float speed)
     {
         ProjectileSpeed = speed;
+    }
+
+    public override void Start()
+    {
+        _sr = GetComponent<SpriteRenderer>();
     }
 
     public override void Update(GameTime gameTime)
@@ -29,6 +36,15 @@ public class PlayerShoot : BehaviorComponent
             projectile.Rigidbody.XVelocity = mouseDist.X * ProjectileSpeed;
             projectile.Rigidbody.YVelocity = mouseDist.Y * ProjectileSpeed;
             Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("bounce"));
+        }
+
+        if (Camera.PixelToUnit(InputManager.Mouse.Position).X > Transform.position.X)
+        {
+            _sr.FlipX = true;
+        }
+        else
+        {
+            _sr.FlipX = false;
         }
     }
 }

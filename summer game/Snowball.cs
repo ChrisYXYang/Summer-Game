@@ -10,7 +10,7 @@ public class Snowball : BehaviorComponent
 {
     public override void OnCollisionEnter(ICollider other)
     {
-        if (other.Layer == "wall")
+        if (other.Layer == "wall" || other.Layer == "enemy")
         {
             SceneTools.Destroy(this.Parent);
         }

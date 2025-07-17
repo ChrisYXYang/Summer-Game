@@ -23,7 +23,7 @@ public static class Prefabs
             new BoxCollider(Converter.PixelToUnit(6), Converter.PixelToUnit(8), "player"),
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player")),
-            new PlayerMovement(4, 13),
+            new PlayerMovement(5, 13),
             new PlayerShoot(10)
             ];
 
@@ -42,5 +42,19 @@ public static class Prefabs
             ];
 
         return ("snowball", components);
+    }
+
+    public static (string, Component[]) Snowman()
+    {
+        Component[] components =
+            [
+            new Transform(),
+            new BoxCollider(Converter.PixelToUnit(8), Converter.PixelToUnit(9), Converter.PixelToUnit(0), Converter.PixelToUnit(-0.5f), "enemy"),
+            new Rigidbody(true, true),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowman")),
+            new EnemyMovement(3)
+            ];
+
+        return ("snowman", components);
     }
 }

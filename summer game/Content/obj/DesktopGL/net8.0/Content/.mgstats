@@ -10,4 +10,4 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/chris/Games/Summer-Game/summer game/Content/images/debug.xml","C:\Users\chris\Games\Summer-Game\summer game\Content\bin\DesktopGL\Content\images/debug.xml","CopyItem","File",288,288,0.0007758
 "C:/Users/chris/Games/Summer-Game/summer game/Content/images/snowy tileset.png","C:/Users/chris/Games/Summer-Game/summer game/Content/bin/DesktopGL/Content/images/snowy tileset.xnb","TextureProcessor","Texture2DContent",400,4181,0.0703215
 "C:/Users/chris/Games/Summer-Game/summer game/Content/images/snowy tileset.xml","C:\Users\chris\Games\Summer-Game\summer game\Content\bin\DesktopGL\Content\images/snowy tileset.xml","CopyItem","File",120,120,0.000912
-"C:/Users/chris/Games/Summer-Game/summer game/Content/Tilemaps/level1.xml","C:\Users\chris\Games\Summer-Game\summer game\Content\bin\DesktopGL\Content\Tilemaps/level1.xml","CopyItem","File",4580,4580,0.000895
+"C:/Users/chris/Games/Summer-Game/summer game/Content/Tilemaps/level1.xml","C:\Users\chris\Games\Summer-Game\summer game\Content\bin\DesktopGL\Content\Tilemaps/level1.xml","CopyItem","File",24044,24044,0.0008525
