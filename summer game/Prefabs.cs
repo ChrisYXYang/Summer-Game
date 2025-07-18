@@ -15,7 +15,7 @@ namespace summer_game;
 // this class contains static methods corresponding to prefabs to use in scenes.
 public static class Prefabs
 {
-    public static (string, Component[]) Player()
+    public static Prefab Player()
     {
         Component[] components =
             [
@@ -24,13 +24,13 @@ public static class Prefabs
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player")),
             new PlayerMovement(5, 13),
-            new PlayerShoot(10)
+            new PlayerShoot(10, 4, 0.5f, 0.5f)
             ];
 
-        return ("player", components);
+        return new Prefab("player", components, [SnowballIndicator()]);
     }
 
-    public static (string, Component[]) Snowball()
+    public static Prefab Snowball()
     {
         Component[] components =
             [
@@ -41,10 +41,10 @@ public static class Prefabs
             new Snowball()
             ];
 
-        return ("snowball", components);
+        return new Prefab("snowball", components, []);
     }
 
-    public static (string, Component[]) Snowman()
+    public static Prefab Snowman()
     {
         Component[] components =
             [
@@ -52,9 +52,21 @@ public static class Prefabs
             new BoxCollider(Converter.PixelToUnit(8), Converter.PixelToUnit(9), Converter.PixelToUnit(0), Converter.PixelToUnit(-0.5f), "enemy"),
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowman")),
-            new EnemyMovement(3)
+            new EnemyBehavior("snowman", 3, 3),
+            new EnemyHealth(10)
             ];
 
-        return ("snowman", components);
+        return new Prefab("snowman", components, []);
+    }
+
+    public static Prefab SnowballIndicator()
+    {
+        Component[] components =
+            [
+            new Transform(),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowball"), 0.6f)
+            ];
+
+        return new Prefab("snowball indicator", components, []);
     }
 }

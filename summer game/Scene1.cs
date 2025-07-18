@@ -36,7 +36,9 @@ public class Scene1 : Scene
         // set up scene
         SetTilemap("level1", SceneLibrary.GetTileset("snowy tileset"));
         Setup(Prefabs.Player());
-        Setup(Prefabs.Snowman());
+        Setup(Prefabs.Snowman(), new Vector2(-3, 0));
+        Setup(Prefabs.Snowman(), new Vector2(0, 0));
+        Setup(Prefabs.Snowman(), new Vector2(3, 0));
 
         Setup
         (
@@ -71,9 +73,13 @@ public class Scene1 : Scene
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);
 
         //debugging
-        foreach (GameObject gameObject in GetGameDrawObjects())
+        foreach (GameObject gameObject in GetGameObjects())
         {
             DebugMode.DrawOrigin(gameObject);
+        }
+
+        foreach (GameObject gameObject in GetGameDrawObjects())
+        {
             DebugMode.DrawCollider(gameObject);
         }
 
