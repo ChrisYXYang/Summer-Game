@@ -4,8 +4,11 @@
 	<Sprites>
 		<Sprite name="player"/>
 		<Sprite name="snowman"/>
+		<Sprite name="snowball icon"/>
 		<Sprite name="snowball"/>
-		<Sprite name="icecycle"/>
+		<Sprite name="icicle"/>
+		<Sprite name="carrot"/>
+
 	</Sprites>
 	<Animations>
 	</Animations>

@@ -29,4 +29,9 @@ public class Health : BehaviorComponent
     {
         CurrentHealth -= damage;
     }
+
+    public virtual void Heal(int heal)
+    {
+        CurrentHealth += heal;
+    }
 }

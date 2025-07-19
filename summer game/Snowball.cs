@@ -9,8 +9,14 @@ namespace summer_game;
 public class Snowball : BehaviorComponent
 {
     public int Damage { get; set; }
+    public float Knockback { get; set; }
     private bool _used = false;
-    
+
+    public override void Update(GameTime gameTime)
+    {
+        Transform.Rotation = MathHelper.ToDegrees(MathF.Atan2(Parent.Rigidbody.YVelocity, Parent.Rigidbody.XVelocity));
+    }
+
     public override void OnCollisionEnter(ICollider other)
     {
         if (other.Layer == "wall" || other.Layer == "enemy")
@@ -19,7 +25,15 @@ public class Snowball : BehaviorComponent
             {
                 if (!_used)
                 {
-                    ((ColliderComponent)other).Parent.GetComponent<EnemyHealth>().TakeDamage(Damage);
+                    if (Parent.Rigidbody.XVelocity > 0)
+                    {
+                        ((ColliderComponent)other).Parent.GetComponent<EnemyHealth>().TakeDamage(Damage, Knockback, true);
+                    }
+                    else
+                    {
+                        ((ColliderComponent)other).Parent.GetComponent<EnemyHealth>().TakeDamage(Damage, Knockback, false);
+                    }
+
                     _used = true;
                 }
             }

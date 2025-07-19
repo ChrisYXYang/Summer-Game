@@ -24,7 +24,7 @@ public static class Prefabs
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player")),
             new PlayerMovement(5, 13),
-            new PlayerShoot(10, 4, 0.5f, 0.5f)
+            new PlayerShoot(10, 4, 4, 0.5f, 0.5f)
             ];
 
         return new Prefab("player", components, [SnowballIndicator()]);
@@ -64,7 +64,7 @@ public static class Prefabs
         Component[] components =
             [
             new Transform(),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowball"), 0.6f)
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowball icon"), 0.6f)
             ];
 
         return new Prefab("snowball indicator", components, []);

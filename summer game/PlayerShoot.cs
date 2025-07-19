@@ -16,6 +16,7 @@ public class PlayerShoot : BehaviorComponent
 {
     public float ProjectileSpeed { get; set; }
     public int Damage { get; set; }
+    public float Knockback { get; set; }
     public float ThrowRate { get; set; }
     public float HandRange { get; set; }
 
@@ -24,10 +25,11 @@ public class PlayerShoot : BehaviorComponent
     private GameObject _indicator;
     private float _timeToNextThrow = 0;
 
-    public PlayerShoot(float speed, int damage, float throwRate, float handRange)
+    public PlayerShoot(float speed, int damage, float knockback, float throwRate, float handRange)
     {
         ProjectileSpeed = speed;
-        Damage = damage;   
+        Damage = damage;
+        Knockback = knockback;
         ThrowRate = throwRate;
         HandRange = handRange;
     }
@@ -51,6 +53,7 @@ public class PlayerShoot : BehaviorComponent
         {
             GameObject projectile = SceneTools.Instantiate(Prefabs.Snowball(), Transform.position + (mouseDist * HandRange), 0f);
             projectile.GetComponent<Snowball>().Damage = Damage;
+            projectile.GetComponent<Snowball>().Knockback = Knockback;
             projectile.Rigidbody.XVelocity = mouseDist.X * ProjectileSpeed;
             projectile.Rigidbody.YVelocity = mouseDist.Y * ProjectileSpeed;
             Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("bounce"));
@@ -59,11 +62,11 @@ public class PlayerShoot : BehaviorComponent
 
         if (Camera.PixelToUnit(InputManager.Mouse.Position).X > Transform.position.X)
         {
-            _sr.FlipX = true;
+            _sr.FlipX = false;
         }
         else
         {
-            _sr.FlipX = false;
+            _sr.FlipX = true;
         }
     }
 }

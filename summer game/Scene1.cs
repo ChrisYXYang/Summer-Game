@@ -40,6 +40,15 @@ public class Scene1 : Scene
         Setup(Prefabs.Snowman(), new Vector2(0, 0));
         Setup(Prefabs.Snowman(), new Vector2(3, 0));
 
+        //Setup
+        //(
+        //    "North Pole",
+        //    [
+        //        new Transform(new Vector2(0, 10)),
+        //        new 
+        //    ]
+        //);
+
         Setup
         (
             "Camera Manager",

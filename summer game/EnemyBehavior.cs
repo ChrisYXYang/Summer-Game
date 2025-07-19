@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
@@ -19,7 +20,9 @@ public class EnemyBehavior : BehaviorComponent
     private Transform _player;
     private SpriteRenderer _sr;
     private Health _health;
+    public bool CanMove { get; set; } = true;
 
+    // movement speed
     private float _speed;
     public float Speed
     {
@@ -32,7 +35,8 @@ public class EnemyBehavior : BehaviorComponent
             _speed = value * (1 + (float)Core.Random.NextDouble() * 0.1f);
         }
     }
-
+    
+    // x distance from player until stopping movement
     private float _range;
     public float Range
     {
@@ -62,33 +66,36 @@ public class EnemyBehavior : BehaviorComponent
 
     public override void Update(GameTime gameTime)
     {
-        bool outRange = MathF.Abs(_player.Transform.position.X - Transform.position.X) > Range;
-        
-        if (_player.position.X > Transform.position.X)
+        if (CanMove)
         {
-            if (outRange)
+            bool outRange = MathF.Abs(_player.Transform.position.X - Transform.position.X) > Range;
+
+            if (_player.position.X > Transform.position.X)
             {
-                Parent.Rigidbody.XVelocity = Speed;
-            }
-            else
-            {
-                Parent.Rigidbody.XVelocity = 0;
-            }
+                if (outRange)
+                {
+                    Parent.Rigidbody.XVelocity = Speed;
+                }
+                else
+                {
+                    Parent.Rigidbody.XVelocity = 0;
+                }
                 _sr.FlipX = false;
-        }
-        else
-        {
-            if (outRange)
-            {
-                Parent.Rigidbody.XVelocity = -Speed;
             }
             else
             {
-                Parent.Rigidbody.XVelocity = 0;
+                if (outRange)
+                {
+                    Parent.Rigidbody.XVelocity = -Speed;
+                }
+                else
+                {
+                    Parent.Rigidbody.XVelocity = 0;
+                }
+
+                _sr.FlipX = true;
+
             }
-
-            _sr.FlipX = true;
-
         }
     }
 }
