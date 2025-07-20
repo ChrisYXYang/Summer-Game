@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using MyMonoGameLibrary;
+using MyMonoGameLibrary.Graphics;
 using MyMonoGameLibrary.Input;
 using MyMonoGameLibrary.Scenes;
 using MyMonoGameLibrary.UI;
@@ -15,11 +16,10 @@ namespace summer_game;
 
 public class EnemyBehavior : BehaviorComponent
 {
-    public string Name { get; private set; }
-    
-    private Transform _player;
-    private SpriteRenderer _sr;
-    private Health _health;
+    public float ProjectileSpeed { get; set; }
+    public bool DoubleDamage { get; set; }
+    public float AttackRate { get; set; }
+    public float HandRange { get; set; }
     public bool CanMove { get; set; } = true;
 
     // movement speed
@@ -46,15 +46,20 @@ public class EnemyBehavior : BehaviorComponent
         }
         set
         {
-            _range = value * (1 + (float)Core.Random.NextDouble() * 0.2f);
+            _range = value * (1 + (float)Core.Random.NextDouble() * 0.25f);
         }
     }
 
-    public EnemyBehavior(string name, float speed, float range)
+    private Transform _player;
+    private SpriteRenderer _sr;
+    private Health _health;
+    private readonly Animation _run;
+
+    public EnemyBehavior(float speed, float range, Animation run)
     {
-        Name = name;
         Speed = speed;
         Range = range;
+        _run = run;
     }
 
     public override void Start()
@@ -75,10 +80,12 @@ public class EnemyBehavior : BehaviorComponent
                 if (outRange)
                 {
                     Parent.Rigidbody.XVelocity = Speed;
+                    Parent.Animator.Animation = _run;
                 }
                 else
                 {
                     Parent.Rigidbody.XVelocity = 0;
+                    Parent.Animator.Animation = null;
                 }
                 _sr.FlipX = false;
             }
@@ -87,15 +94,21 @@ public class EnemyBehavior : BehaviorComponent
                 if (outRange)
                 {
                     Parent.Rigidbody.XVelocity = -Speed;
+                    Parent.Animator.Animation = _run;
                 }
                 else
                 {
                     Parent.Rigidbody.XVelocity = 0;
+                    Parent.Animator.Animation = null;
                 }
 
                 _sr.FlipX = true;
 
             }
+        }
+        else
+        {
+            Parent.Animator.Animation = null;
         }
     }
 }

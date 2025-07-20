@@ -3,13 +3,84 @@
 	<Settings texture="images/characters" size="16" centered="true"/>
 	<Sprites>
 		<Sprite name="player"/>
+		<Sprite name="player_jump"/>
+		<Sprite name="player_fall"/>
+		<Sprite name="player_idle_0"/>
+		<Sprite name="player_idle_1"/>
+		<Sprite name="player_run_0"/>
+		<Sprite name="player_run_1"/>
+		<Sprite name="player_run_2"/>
+		<Sprite name="player_run_3"/>
 		<Sprite name="snowman"/>
-		<Sprite name="snowball icon"/>
+		<Sprite name="snowman_run_0"/>
+		<Sprite name="snowman_run_1"/>
+		<Sprite name="snowman_run_2"/>
+		<Sprite name="snowman_run_3"/>
 		<Sprite name="snowball"/>
+		<Sprite name="snowball_0"/>
+		<Sprite name="snowball_1"/>
+		<Sprite name="snowball_2"/>
+		<Sprite name="snowball_3"/>
 		<Sprite name="icicle"/>
+		<Sprite name="icicle_0"/>
+		<Sprite name="icicle_1"/>
+		<Sprite name="icicle_2"/>
+		<Sprite name="icicle_3"/>
 		<Sprite name="carrot"/>
+		<Sprite name="carrot_0"/>
+		<Sprite name="carrot_1"/>
+		<Sprite name="carrot_2"/>
+		<Sprite name="carrot_3"/>
 
 	</Sprites>
 	<Animations>
+		<Animation name="player_jump" delay="1000">
+			<Sprite name="player_jump"/>
+		</Animation>
+
+		<Animation name="player_fall" delay="1000">
+			<Sprite name="player_fall"/>
+		</Animation>
+		
+		<Animation name="player_idle" delay="400">
+			<Sprite name="player_idle_0"/>
+			<Sprite name="player_idle_1"/>
+		</Animation>
+		
+		<Animation name="player_run" delay="200">
+			<Sprite name="player_run_0"/>
+			<Sprite name="player_run_1"/>
+			<Sprite name="player_run_2"/>
+			<Sprite name="player_run_3"/>
+		</Animation>
+
+		<Animation name="snowman_run">
+			<Sprite name="snowman_run_0"/>
+			<Sprite name="snowman_run_1"/>
+			<Sprite name="snowman_run_2"/>
+			<Sprite name="snowman_run_3"/>
+		</Animation>
+
+		<Animation name="snowball">
+			<Sprite name="snowball_0"/>
+			<Sprite name="snowball_1"/>
+			<Sprite name="snowball_2"/>
+			<Sprite name="snowball_3"/>
+		</Animation>
+
+		<Animation name="icicle">
+			<Sprite name="icicle_0"/>
+			<Sprite name="icicle_1"/>
+			<Sprite name="icicle_2"/>
+			<Sprite name="icicle_3"/>
+		</Animation>
+
+		<Animation name="carrot">
+			<Sprite name="carrot_0"/>
+			<Sprite name="carrot_1"/>
+			<Sprite name="carrot_2"/>
+			<Sprite name="carrot_3"/>
+		</Animation>
+		
 	</Animations>
 </SpriteSheet>

@@ -48,6 +48,7 @@ public class PlayerShoot : BehaviorComponent
         _indicator.Transform.position = mouseDist * HandRange;
         float readyScale = MathF.Min(1, (time + ThrowRate - _timeToNextThrow) / ThrowRate);
         _indicator.Transform.Scale = new Vector2(readyScale, readyScale);
+        _indicator.Transform.Rotation = MathHelper.ToDegrees(MathF.Atan2(mouseDist.Y, mouseDist.X));
 
         if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left) && time >= _timeToNextThrow)
         {

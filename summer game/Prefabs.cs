@@ -23,6 +23,7 @@ public static class Prefabs
             new BoxCollider(Converter.PixelToUnit(6), Converter.PixelToUnit(8), "player"),
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player")),
+            new Animator(),
             new PlayerMovement(5, 13),
             new PlayerShoot(10, 4, 4, 0.5f, 0.5f)
             ];
@@ -38,10 +39,11 @@ public static class Prefabs
             new CircleCollider(Converter.PixelToUnit(4), "snowball"),
             new Rigidbody(true, false),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowball")),
-            new Snowball()
+            new Animator(Core.GlobalLibrary.GetAnimation("characters", "snowball")),
+            new Snowball(),
             ];
 
-        return new Prefab("snowball", components, []);
+        return new Prefab("snowball", components);
     }
 
     public static Prefab Snowman()
@@ -52,11 +54,12 @@ public static class Prefabs
             new BoxCollider(Converter.PixelToUnit(8), Converter.PixelToUnit(9), Converter.PixelToUnit(0), Converter.PixelToUnit(-0.5f), "enemy"),
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowman")),
-            new EnemyBehavior("snowman", 3, 3),
+            new Animator(),
+            new EnemyBehavior(3, 3, Core.GlobalLibrary.GetAnimation("characters", "snowman_run")),
             new EnemyHealth(10)
             ];
 
-        return new Prefab("snowman", components, []);
+        return new Prefab("snowman", components);
     }
 
     public static Prefab SnowballIndicator()
@@ -64,9 +67,9 @@ public static class Prefabs
         Component[] components =
             [
             new Transform(),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowball icon"), 0.6f)
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowball"), 0.6f)
             ];
 
-        return new Prefab("snowball indicator", components, []);
+        return new Prefab("snowball indicator", components);
     }
 }
