@@ -23,6 +23,7 @@ public class Scene1 : Scene
     public override void Initialize()
     {
         Gravity = 25f;
+        //Camera.PixelScale = 10;
         base.Initialize();
     }
     
@@ -36,18 +37,9 @@ public class Scene1 : Scene
         // set up scene
         SetTilemap("level1", SceneLibrary.GetTileset("snowy tileset"));
         Setup(Prefabs.Player());
-        Setup(Prefabs.Snowman(), new Vector2(-3, 0));
-        Setup(Prefabs.Snowman(), new Vector2(0, 0));
-        Setup(Prefabs.Snowman(), new Vector2(3, 0));
+        Setup(Prefabs.TestDummy(), new Vector2(7, 0));
+        //Setup(Prefabs.TestDummy(), new Vector2(-7, 0));
 
-        //Setup
-        //(
-        //    "North Pole",
-        //    [
-        //        new Transform(new Vector2(0, 10)),
-        //        new 
-        //    ]
-        //);
 
         Setup
         (
@@ -82,10 +74,10 @@ public class Scene1 : Scene
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);
 
         //debugging
-        //foreach (GameObject gameObject in GetGameObjects())
-        //{
-        //    DebugMode.DrawOrigin(gameObject);
-        //}
+        foreach (GameObject gameObject in GetGameObjects())
+        {
+            DebugMode.DrawOrigin(gameObject);
+        }
 
         //foreach (GameObject gameObject in GetGameDrawObjects())
         //{

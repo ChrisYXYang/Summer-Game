@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,6 @@ public class EnemyHealth : Health
     private float _damageColorTime = 0.1f;
     private float _knockbackReducer = 20f;
     private bool _damaged = false;
-    private bool _knockbacked = false;
     private bool _knockRight = false;
     private float _whenWhite;
     
@@ -34,8 +34,7 @@ public class EnemyHealth : Health
 
         _damaged = true;
         _sr.Color = Color.Pink;
-        _behavior.CanMove = false;
-        _knockbacked = true;
+        _behavior.Knockbacked = true;
         _knockRight = knockRight;
         Parent.Rigidbody.XVelocity = knockRight ? knockback : -knockback;
 
@@ -71,7 +70,7 @@ public class EnemyHealth : Health
             _sr.Color = Color.White;
         }
 
-        if (_knockbacked)
+        if (_behavior.Knockbacked)
         {
             if (_knockRight)
             {
@@ -79,19 +78,16 @@ public class EnemyHealth : Health
 
                 if (Parent.Rigidbody.XVelocity <= 0)
                 {
-                    _knockbacked = false;
-                    _behavior.CanMove = true;
+                    _behavior.Knockbacked = false;
                 }
             }
-
-            if (!_knockRight)
+            else 
             {
                 Parent.Rigidbody.XVelocity = MathF.Min(0, Parent.Rigidbody.XVelocity + (_knockbackReducer * (float)gameTime.ElapsedGameTime.TotalSeconds));
 
                 if (Parent.Rigidbody.XVelocity >= 0)
                 {
-                    _knockbacked = false;
-                    _behavior.CanMove = true;
+                    _behavior.Knockbacked = false;
                 }
             }
         }
