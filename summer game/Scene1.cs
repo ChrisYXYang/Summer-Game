@@ -37,7 +37,7 @@ public class Scene1 : Scene
         // set up scene
         SetTilemap("level1", SceneLibrary.GetTileset("snowy tileset"));
         Setup(Prefabs.Player());
-        Setup(Prefabs.TestDummy(), new Vector2(7, 0));
+        Setup(Prefabs.Snowman(), new Vector2(7, 0));
         //Setup(Prefabs.TestDummy(), new Vector2(-7, 0));
 
 

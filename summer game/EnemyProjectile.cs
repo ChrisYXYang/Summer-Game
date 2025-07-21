@@ -10,7 +10,7 @@ namespace summer_game;
 
 public class EnemyProjectile : BehaviorComponent
 {
-    public bool DoubleDamage { get; set; }
+    public int Damage { get; set; }
 
     public override void Start()
     {

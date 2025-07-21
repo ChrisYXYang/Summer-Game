@@ -49,7 +49,7 @@ public class EnemyBehavior : BehaviorComponent
     private Health _health;
     private readonly Animation _run;
     private readonly Func<PrefabInstance> _projectile;
-    private GameObject _indicator;
+    //private GameObject _indicator;
     private float _timeToNextThrow = 0;
 
     public EnemyBehavior(float projectileSpeed, bool doubleDmg, float attackRate, float handRange, 
@@ -70,7 +70,7 @@ public class EnemyBehavior : BehaviorComponent
         _player = SceneTools.GetGameObject("player").Transform;
         _sr = GetComponent<SpriteRenderer>();
         _health = GetComponent<Health>();
-        _indicator = Parent.GetChild(0);
+        //_indicator = Parent.GetChild(0);
     }
 
     public override void Update(GameTime gameTime)
@@ -81,12 +81,12 @@ public class EnemyBehavior : BehaviorComponent
             float time = (float)gameTime.TotalGameTime.TotalSeconds;
             Vector2 playerDist = Vector2.Normalize(_player.position - Transform.position);
 
-            _indicator.Transform.position = playerDist * HandRange;
+            //_indicator.Transform.position = playerDist * HandRange;
 
             if (time >= _timeToNextThrow)
             {
                 GameObject projectile = SceneTools.Instantiate(_projectile.Invoke(), Transform.position + (playerDist * HandRange), 0f);
-                projectile.GetComponent<EnemyProjectile>().DoubleDamage = DoubleDamage;
+                projectile.GetComponent<EnemyProjectile>().Damage = DoubleDamage ? 2 : 1;
                 projectile.Rigidbody.XVelocity = playerDist.X * ProjectileSpeed;
                 projectile.Rigidbody.YVelocity = playerDist.Y * ProjectileSpeed;
                 _timeToNextThrow = time + AttackRate;

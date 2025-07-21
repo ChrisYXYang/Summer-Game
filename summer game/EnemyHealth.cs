@@ -58,6 +58,7 @@ public class EnemyHealth : Health
 
     public override void Update(GameTime gameTime)
     {
+        // handle if damaged.
         float time = (float)gameTime.TotalGameTime.TotalSeconds;
         if (_damaged)
         {
@@ -65,11 +66,13 @@ public class EnemyHealth : Health
             _damaged = false;
         }
 
+        // handle when to turn color back to normal
         if (_whenWhite <= time)
         {
             _sr.Color = Color.White;
         }
 
+        // handle knockback
         if (_behavior.Knockbacked)
         {
             if (_knockRight)

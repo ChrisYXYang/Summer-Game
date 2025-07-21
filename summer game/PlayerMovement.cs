@@ -16,6 +16,9 @@ public class PlayerMovement : BehaviorComponent
     // variables and properties
     public float JumpPower { get; set; }
     public float MoveSpeed { get; set; }
+    public float DashVelocity { get; set; }
+    public float DashTime { get; set; }
+    public bool Dashing { get; private set; } = false;
 
     private Rigidbody _rb;
     private SpriteRenderer _spriteRenderer;
@@ -23,16 +26,21 @@ public class PlayerMovement : BehaviorComponent
     private Animation _run;
     private Animation _jump;
     private Animation _fall;
+    private Animation _dash;
     private float _jumpBuffer;
+    private float _stopDashTime;
+    private bool _canDash = true;
     private bool _running;
 
     // constructor
     //
     // param: speed - movement speed
-    public PlayerMovement(float speed, float jumpPower)
+    public PlayerMovement(float speed, float jumpPower, float dashVelocity, float dashTime)
     {
         MoveSpeed = speed;
         JumpPower = jumpPower;
+        DashVelocity = dashVelocity;
+        DashTime = dashTime;
     }
 
 
@@ -44,6 +52,7 @@ public class PlayerMovement : BehaviorComponent
         _run = Core.GlobalLibrary.GetAnimation("characters", "player_run");
         _jump = Core.GlobalLibrary.GetAnimation("characters", "player_jump");
         _fall = Core.GlobalLibrary.GetAnimation("characters", "player_fall");
+        _dash = Core.GlobalLibrary.GetAnimation("characters", "player_dash");
     }
 
     // update
@@ -51,72 +60,127 @@ public class PlayerMovement : BehaviorComponent
     // param: gameTime - get the game time
     public override void Update(GameTime gameTime)
     {
-        // left and right movement
-        if (InputManager.Keyboard.IsKeyDown(Keys.A) || InputManager.Keyboard.IsKeyDown(Keys.D))
+        // get game time
+        float time = (float)gameTime.TotalGameTime.TotalSeconds;
+
+        // dash
+        if (!Dashing && Parent.Rigidbody.TouchingBottom)
         {
-            _running = true;
+            _canDash = true;
+        }
+
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.LeftShift) &&
+            (InputManager.Keyboard.IsKeyDown(Keys.A) || InputManager.Keyboard.IsKeyDown(Keys.D))
+            && _canDash && !Dashing)
+        {
+            Dashing = true;
+            _canDash = false;
+            _stopDashTime = time + DashTime;
+            Parent.Animator.Animation = _dash;
 
             if (InputManager.Keyboard.IsKeyDown(Keys.A))
             {
-                _rb.MovePosition(-MoveSpeed, 0);
+                Parent.Rigidbody.XVelocity = -DashVelocity;
+                _spriteRenderer.FlipX = true;
             }
-            if (InputManager.Keyboard.IsKeyDown(Keys.D))
+            else if (InputManager.Keyboard.IsKeyDown(Keys.D))
             {
-                _rb.MovePosition(MoveSpeed, 0);
+                Parent.Rigidbody.XVelocity = DashVelocity;
+                _spriteRenderer.FlipX = false;
+
             }
+        }
+        
+        if (Dashing && time >= _stopDashTime)
+        {
+            Dashing = false;
+            Parent.Rigidbody.XVelocity = 0;
+        }
+
+        if (!Dashing && Parent.Rigidbody.TouchingBottom)
+        {
+            _canDash = true;
+        }
+
+        if (_canDash)
+        {
+            _spriteRenderer.Color = Color.White;
+
         }
         else
         {
-            _running = false;
+            _spriteRenderer.Color = Color.Blue;
+
         }
 
-
-            float time = (float)gameTime.TotalGameTime.TotalSeconds;
+        // jump input handling
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.W))
         {
             _jumpBuffer = 0.1f + time;
         }
 
-        if (_jumpBuffer >= time && _rb.TouchingBottom)
+        if (!Dashing)
         {
-            _rb.YVelocity -= JumpPower;
-            Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("collect"));
-        }
-
-        if (_rb.YVelocity < 0 && !InputManager.Keyboard.IsKeyDown(Keys.W))
-        {
-            _rb.YVelocity += SceneTools.Gravity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-        }
-
-        if (InputManager.Keyboard.IsKeyDown(Keys.S))
-        {
-            Parent.Rigidbody.DescendPlatform = true;
-        }
-        else
-        {
-            Parent.Rigidbody.DescendPlatform = false;
-        }
-
-        // handle animation
-        if (_rb.YVelocity < 0)
-        {
-            Parent.Animator.Animation = _jump;
-        }
-        else if (_rb.YVelocity > 0)
-        {
-            Parent.Animator.Animation = _fall;
-        }
-        else
-        {
-            if (_running)
+            // left and right movement
+            if (InputManager.Keyboard.IsKeyDown(Keys.A) || InputManager.Keyboard.IsKeyDown(Keys.D))
             {
-                Parent.Animator.Animation = _run;
+                _running = true;
+
+                if (InputManager.Keyboard.IsKeyDown(Keys.A))
+                {
+                    _rb.MovePosition(-MoveSpeed, 0);
+                }
+                if (InputManager.Keyboard.IsKeyDown(Keys.D))
+                {
+                    _rb.MovePosition(MoveSpeed, 0);
+                }
             }
             else
             {
-                Parent.Animator.Animation = _idle;
+                _running = false;
+            }
+
+            if (_jumpBuffer >= time && _rb.TouchingBottom)
+            {
+                _rb.YVelocity -= JumpPower;
+                Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("collect"));
+            }
+
+            if (_rb.YVelocity < 0 && !InputManager.Keyboard.IsKeyDown(Keys.W))
+            {
+                _rb.YVelocity += SceneTools.Gravity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+            // descending platform
+            if (InputManager.Keyboard.IsKeyDown(Keys.S))
+            {
+                Parent.Rigidbody.DescendPlatform = true;
+            }
+            else
+            {
+                Parent.Rigidbody.DescendPlatform = false;
+            }
+
+            // handle animation
+            if (_rb.YVelocity < 0)
+            {
+                Parent.Animator.Animation = _jump;
+            }
+            else if (_rb.YVelocity > 0)
+            {
+                Parent.Animator.Animation = _fall;
+            }
+            else
+            {
+                if (_running)
+                {
+                    Parent.Animator.Animation = _run;
+                }
+                else
+                {
+                    Parent.Animator.Animation = _idle;
+                }
             }
         }
-
     }
 }

@@ -24,8 +24,8 @@ public static class Prefabs
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player"), 0.6f),
             new Animator(),
-            new PlayerMovement(5, 13),
-            new PlayerShoot(10, 4, 4, 0.5f, 0.5f)
+            new PlayerMovement(5, 13, 9, 0.2f),
+            new PlayerShoot(10, false, 4, 0.5f, 0.5f)
             ];
 
         return new PrefabInstance("player", components, [SnowballIndicator()]);
@@ -67,7 +67,7 @@ public static class Prefabs
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowman"), 0.4f),
             new Animator(),
             new EnemyBehavior(7.5f, false, 1, 0.5f, 3, 3, Prefabs.Carrot, Core.GlobalLibrary.GetAnimation("characters", "snowman_run")),
-            new EnemyHealth(10)
+            new EnemyHealth(3)
             ];
 
         return new PrefabInstance("snowman", components);
@@ -96,7 +96,7 @@ public static class Prefabs
             new Transform(),
             new CircleCollider(Converter.PixelToUnit(4), "hurt"),
             new Rigidbody(false, false),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "carrot"), 0.8f),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "carrot"), 0.5f),
             new Animator(Core.GlobalLibrary.GetAnimation("characters", "carrot")),
             new EnemyProjectile(),
             ];

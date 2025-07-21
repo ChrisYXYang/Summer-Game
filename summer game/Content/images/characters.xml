@@ -3,6 +3,7 @@
 	<Settings texture="images/characters" size="16" centered="true"/>
 	<Sprites>
 		<Sprite name="player"/>
+		<Sprite name="player_dash"/>
 		<Sprite name="player_jump"/>
 		<Sprite name="player_fall"/>
 		<Sprite name="player_idle_0"/>
@@ -31,9 +32,17 @@
 		<Sprite name="carrot_1"/>
 		<Sprite name="carrot_2"/>
 		<Sprite name="carrot_3"/>
+		<Sprite name="heart ui"/>
+		<Sprite name="half heart ui"/>
+		<Sprite name="heart"/>
+		<Sprite name="half heart"/>
 
 	</Sprites>
 	<Animations>
+		<Animation name="player_dash" delay="1000">
+			<Sprite name="player_dash"/>
+		</Animation>
+		
 		<Animation name="player_jump" delay="1000">
 			<Sprite name="player_jump"/>
 		</Animation>
