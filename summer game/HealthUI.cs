@@ -10,8 +10,8 @@ public class HealthUI : BehaviorComponent
 
     private Func<PrefabInstance> _heart;
     private List<HeartIcon> _hearts = [];
-    private int _currentHealth;
     private int _maxHealth;
+    private int _currentHealth;
 
     public HealthUI(Func<PrefabInstance> heart)
     {
@@ -30,10 +30,10 @@ public class HealthUI : BehaviorComponent
         }
     }
 
-    public void SetHealth(int health, int maxHealth)
+    public void Setup(int health, int maxHealth)
     {
-        _currentHealth = health;
         _maxHealth = maxHealth;
+        _currentHealth = health;
         
         int hearts = (int)MathF.Max(0, (health + 1) / 2);
         int maxHearts = (int)MathF.Max(0, maxHealth / 2);
@@ -51,33 +51,72 @@ public class HealthUI : BehaviorComponent
         }
     }
 
-    public void AddHealth(int add, int maxHealth)
+    public void SetHealth(int health)
+    {
+        int diff = health - _currentHealth;
+
+        if (diff > 0)
+        {
+            AddHealth(diff);
+        }
+        else if (diff < 0)
+        {
+            RemoveHealth(diff);
+        }
+    }
+
+    public void SetMaxHealth(int maxHealth)
+    {
+        int diff = maxHealth - _maxHealth;
+
+        if (diff > 0)
+        {
+            AddMaxHealth(diff);
+        }
+        else if (diff < 0)
+        {
+            RemoveMaxHealth(diff);
+        }
+    }
+
+    public void AddMaxHealth(int add)
+    {
+        if (add < 0)
+        {
+            throw new Exception("need to add max health");
+        }
+
+        _maxHealth += add;
+    }
+
+    public void RemoveMaxHealth(int remove)
+    {
+        if (remove > 0)
+        {
+            throw new Exception("neeed to remove max health");
+        }
+
+        _maxHealth -= remove;
+    }
+
+
+    public void AddHealth(int add)
     {
         if (add < 0)
         {
             throw new Exception("need to add health");
         }
-        
+
         _currentHealth += add;
-        
-        if (maxHealth != _maxHealth)
-        {
-            SetHealth(_currentHealth, maxHealth);
-        }
     }
 
-    public void RemoveHealth(int remove, int maxHealth)
+    public void RemoveHealth(int remove)
     {
         if (remove > 0)
         {
             throw new Exception("neeed to remove health");
         }
-        
+
         _currentHealth -= remove;
-        
-        if (maxHealth != _maxHealth)
-        {
-            SetHealth(_currentHealth, maxHealth);
-        }
     }
 }

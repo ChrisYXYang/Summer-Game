@@ -14,7 +14,7 @@ public class PlayerHealth : Health
         set
         {
             base.MaxHealth = value;
-            HealthUI.Instance.SetHealth(CurrentHealth, value);
+            HealthUI.Instance.SetMaxHealth(value);
         } 
     }
     public override int CurrentHealth 
@@ -23,7 +23,7 @@ public class PlayerHealth : Health
         set
         {
             base.CurrentHealth = value;
-            HealthUI.Instance.SetHealth(value, MaxHealth);
+            HealthUI.Instance.SetHealth(value);
 
         }
     }
@@ -38,18 +38,18 @@ public class PlayerHealth : Health
 
     public override void Start()
     {
-        HealthUI.Instance.SetHealth(CurrentHealth, MaxHealth);
+        HealthUI.Instance.Setup(CurrentHealth, MaxHealth);
     }
 
     public override void Heal(int heal)
     {
         base.Heal(heal);
-        HealthUI.Instance.AddHealth(heal, MaxHealth);
+        HealthUI.Instance.AddHealth(heal);
     }
 
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        HealthUI.Instance.RemoveHealth(damage, MaxHealth);
+        HealthUI.Instance.RemoveHealth(damage);
     }
 }
