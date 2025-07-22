@@ -9,9 +9,9 @@ namespace summer_game;
 
 public class Health : BehaviorComponent
 {
-    public int MaxHealth { get; set; }
-    public int CurrentHealth { get; set; }
-    public bool Dead => CurrentHealth <= 0;
+    public virtual int MaxHealth { get; set; }
+    public virtual int CurrentHealth { get; set; }
+    public virtual bool Dead => CurrentHealth <= 0;
 
     public Health(int health)
     {

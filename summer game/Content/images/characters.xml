@@ -34,8 +34,13 @@
 		<Sprite name="carrot_3"/>
 		<Sprite name="heart ui"/>
 		<Sprite name="half heart ui"/>
+		<Sprite name="empty heart ui"/>
+		<Sprite name="ice heart ui"/>
+		<Sprite name="half ice heart ui"/>
 		<Sprite name="heart"/>
 		<Sprite name="half heart"/>
+		<Sprite name="ice heart"/>
+		<Sprite name="half ice heart"/>
 
 	</Sprites>
 	<Animations>

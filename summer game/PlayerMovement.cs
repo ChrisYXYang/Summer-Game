@@ -69,7 +69,7 @@ public class PlayerMovement : BehaviorComponent
             _canDash = true;
         }
 
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.LeftShift) &&
+        if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Right) &&
             (InputManager.Keyboard.IsKeyDown(Keys.A) || InputManager.Keyboard.IsKeyDown(Keys.D))
             && _canDash && !Dashing)
         {

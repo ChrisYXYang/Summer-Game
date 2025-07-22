@@ -45,7 +45,7 @@ public class Scene1 : Scene
         (
             "Camera Manager",
             [
-                new CameraBehavior()
+                new CameraManager()
             ]
         );
 
