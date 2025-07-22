@@ -18,7 +18,7 @@ public class GameManager : BehaviorComponent
 
     }
 
-    public override void Start()
+    public override void Awake()
     {
         if (Instance == null)
         {

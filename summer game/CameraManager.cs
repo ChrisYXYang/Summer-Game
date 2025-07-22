@@ -14,7 +14,7 @@ public class CameraManager : BehaviorComponent
     private Transform _player;
     private float _speed = 50f; 
 
-    public override void Start()
+    public override void Awake()
     {
         if (Instance == null)
         {
@@ -25,7 +25,7 @@ public class CameraManager : BehaviorComponent
             SceneTools.Destroy(Parent);
         }
 
-            _player = SceneTools.GetGameObject("player").Transform;
+        _player = SceneTools.GetGameObject("player").Transform;
     }
 
     public override void LateUpdate(GameTime gameTime)

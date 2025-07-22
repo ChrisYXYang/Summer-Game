@@ -15,6 +15,18 @@ namespace summer_game;
 // this class contains static methods corresponding to prefabs to use in scenes.
 public static class Prefabs
 {
+    public static PrefabInstance HeartIcon()
+    {
+        Component[] components =
+            [
+                new Transform(),
+                new UISprite(),
+                new HeartIcon()
+            ];
+
+        return new PrefabInstance("heart icon", components);
+    }
+
     public static PrefabInstance Player()
     {
         Component[] components =
@@ -25,10 +37,34 @@ public static class Prefabs
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player"), 0.6f),
             new Animator(),
             new PlayerMovement(5, 13, 9, 0.2f),
-            new PlayerShoot(10, false, 4, 0.5f, 0.5f)
+            new PlayerShoot(10, false, 4, 0.5f, 0.5f),
+            new PlayerHealth(6)
             ];
 
-        return new PrefabInstance("player", components, [SnowballIndicator()]);
+        return new PrefabInstance("player", components, [SnowballIndicator(), Hat()]);
+    }
+
+    public static PrefabInstance Hat()
+    {
+        Component[] components =
+        [
+            new Transform(new Vector2(0, Converter.PixelToUnit(-4))),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player hat"), 0.65f),
+        ];
+
+        return new PrefabInstance("hat", components);
+    }
+
+    public static PrefabInstance DiscardedHat()
+    {
+        Component[] components =
+        [
+            new Transform(),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player hat"), 0.65f),
+            new Rigidbody(false, false)
+        ];
+
+        return new PrefabInstance("discarded hat", components);
     }
 
     public static PrefabInstance Snowball()

@@ -3,6 +3,7 @@
 	<Settings texture="images/characters" size="16" centered="true"/>
 	<Sprites>
 		<Sprite name="player"/>
+		<Sprite name="player hat"/>
 		<Sprite name="player_dash"/>
 		<Sprite name="player_jump"/>
 		<Sprite name="player_fall"/>

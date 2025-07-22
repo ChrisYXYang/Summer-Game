@@ -89,6 +89,7 @@ public class EnemyBehavior : BehaviorComponent
                 projectile.GetComponent<EnemyProjectile>().Damage = DoubleDamage ? 2 : 1;
                 projectile.Rigidbody.XVelocity = playerDist.X * ProjectileSpeed;
                 projectile.Rigidbody.YVelocity = playerDist.Y * ProjectileSpeed;
+                projectile.Transform.Rotation = MathHelper.ToDegrees(MathF.Atan2(projectile.Rigidbody.YVelocity, projectile.Rigidbody.XVelocity));
                 _timeToNextThrow = time + AttackRate;
             }
 

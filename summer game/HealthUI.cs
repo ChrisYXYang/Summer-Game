@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using Microsoft.Xna.Framework;
 using MyMonoGameLibrary.Scenes;
 
 namespace summer_game;
@@ -8,20 +11,22 @@ public class HealthUI : BehaviorComponent
 {
     public static HealthUI Instance { get; private set; }
 
+    private float _y = 80;
+    private float _x = 80;
+    private float _spacing = 80;
     private Func<PrefabInstance> _heart;
     private List<HeartIcon> _hearts = [];
-    private int _maxHealth;
-    private int _currentHealth;
 
     public HealthUI(Func<PrefabInstance> heart)
     {
         _heart = heart;
     }
 
-    public override void Start()
+    public override void Awake()
     {
         if (Instance == null)
         {
+
             Instance = this;
         }
         else
@@ -30,93 +35,65 @@ public class HealthUI : BehaviorComponent
         }
     }
 
-    public void Setup(int health, int maxHealth)
+    public void Update(int health, int maxHealth)
     {
-        _maxHealth = maxHealth;
-        _currentHealth = health;
-        
+        // calculate number of hearts and number of heart containers
         int hearts = (int)MathF.Max(0, (health + 1) / 2);
         int maxHearts = (int)MathF.Max(0, maxHealth / 2);
 
-        for (int i = 0; i < MathF.Max(hearts, maxHearts); i++)
+        // create/update/destroy all relevant heart icons
+        for (int i = 0; i < MathF.Max(hearts, MathF.Max(maxHearts, _hearts.Count)); i++)
         {
-            if (_hearts.Count <= i)
+            // in this case there are still heart icons to update/create
+            if (i < hearts || i < maxHearts)
             {
-                _hearts.Add(SceneTools.Instantiate(_heart.Invoke()).GetComponent<HeartIcon>());
+                // create heart icons if needed
+                while (_hearts.Count <= i)
+                {
+                    _hearts.Add(SceneTools.Instantiate(_heart.Invoke()).GetComponent<HeartIcon>());
+                    _hearts.Last().Transform.position = new Vector2(_x + ((_hearts.Count - 1) * _spacing), _y);
+                }
+
+                // update regular heart icons
+                int iconHealth = 2 * (i + 1);
+                if (i < maxHearts)
+                {
+                    if (health >= iconHealth)
+                    {
+                        _hearts[i].Full();
+                    }
+                    else if (health == iconHealth - 1)
+                    {
+                        _hearts[i].Half();
+                    }
+                    else
+                    {
+                        _hearts[i].Empty();
+                    }
+                }
+                else // update ice heart icons
+                {
+                    if (health >= iconHealth)
+                    {
+                        _hearts[i].IceFull();
+                    }
+                    else
+                    {
+                        _hearts[i].IceHalf();
+                    }
+                }
             }
-            else
+            else // in this case there are none left so remaining must be destroyed
             {
+                int heartCount = _hearts.Count;
+                for (int j = i; j < heartCount; j++)
+                {
+                    SceneTools.Destroy(_hearts[i].Parent);
+                    _hearts.RemoveAt(i);
+                }
 
+                break;
             }
         }
-    }
-
-    public void SetHealth(int health)
-    {
-        int diff = health - _currentHealth;
-
-        if (diff > 0)
-        {
-            AddHealth(diff);
-        }
-        else if (diff < 0)
-        {
-            RemoveHealth(diff);
-        }
-    }
-
-    public void SetMaxHealth(int maxHealth)
-    {
-        int diff = maxHealth - _maxHealth;
-
-        if (diff > 0)
-        {
-            AddMaxHealth(diff);
-        }
-        else if (diff < 0)
-        {
-            RemoveMaxHealth(diff);
-        }
-    }
-
-    public void AddMaxHealth(int add)
-    {
-        if (add < 0)
-        {
-            throw new Exception("need to add max health");
-        }
-
-        _maxHealth += add;
-    }
-
-    public void RemoveMaxHealth(int remove)
-    {
-        if (remove > 0)
-        {
-            throw new Exception("neeed to remove max health");
-        }
-
-        _maxHealth -= remove;
-    }
-
-
-    public void AddHealth(int add)
-    {
-        if (add < 0)
-        {
-            throw new Exception("need to add health");
-        }
-
-        _currentHealth += add;
-    }
-
-    public void RemoveHealth(int remove)
-    {
-        if (remove > 0)
-        {
-            throw new Exception("neeed to remove health");
-        }
-
-        _currentHealth -= remove;
     }
 }

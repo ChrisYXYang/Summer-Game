@@ -23,7 +23,7 @@ public class Scene1 : Scene
     public override void Initialize()
     {
         Gravity = 25f;
-        //Camera.PixelScale = 10;
+        UICamera.Scale = 10;
         base.Initialize();
     }
     
@@ -54,6 +54,14 @@ public class Scene1 : Scene
             "Game Manager",
             [
                 new GameManager()
+            ]
+        );
+
+        Setup
+        (
+            "UI Manager",
+            [
+                new HealthUI(Prefabs.HeartIcon)
             ]
         );
 

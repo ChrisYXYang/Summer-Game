@@ -7,6 +7,7 @@ using MyMonoGameLibrary.Input;
 using MyMonoGameLibrary.Scenes;
 using MyMonoGameLibrary;
 using MyMonoGameLibrary.Graphics;
+using MyMonoGameLibrary.Tools;
 
 namespace summer_game;
 
@@ -27,6 +28,7 @@ public class PlayerMovement : BehaviorComponent
     private Animation _jump;
     private Animation _fall;
     private Animation _dash;
+    private SpriteRenderer _hat;
     private float _jumpBuffer;
     private float _stopDashTime;
     private bool _canDash = true;
@@ -53,6 +55,7 @@ public class PlayerMovement : BehaviorComponent
         _jump = Core.GlobalLibrary.GetAnimation("characters", "player_jump");
         _fall = Core.GlobalLibrary.GetAnimation("characters", "player_fall");
         _dash = Core.GlobalLibrary.GetAnimation("characters", "player_dash");
+        _hat = Parent.GetChild(1).GetComponent<SpriteRenderer>();
     }
 
     // update
@@ -67,6 +70,7 @@ public class PlayerMovement : BehaviorComponent
         if (!Dashing && Parent.Rigidbody.TouchingBottom)
         {
             _canDash = true;
+            _hat.IsVisible = true;
         }
 
         if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Right) &&
@@ -77,6 +81,7 @@ public class PlayerMovement : BehaviorComponent
             _canDash = false;
             _stopDashTime = time + DashTime;
             Parent.Animator.Animation = _dash;
+            _hat.IsVisible = false;
 
             if (InputManager.Keyboard.IsKeyDown(Keys.A))
             {
@@ -100,17 +105,7 @@ public class PlayerMovement : BehaviorComponent
         if (!Dashing && Parent.Rigidbody.TouchingBottom)
         {
             _canDash = true;
-        }
-
-        if (_canDash)
-        {
-            _spriteRenderer.Color = Color.White;
-
-        }
-        else
-        {
-            _spriteRenderer.Color = Color.Blue;
-
+            _hat.IsVisible = true;
         }
 
         // jump input handling
@@ -165,13 +160,17 @@ public class PlayerMovement : BehaviorComponent
             if (_rb.YVelocity < 0)
             {
                 Parent.Animator.Animation = _jump;
+                _hat.Transform.position.Y = Converter.PixelToUnit(-5);
+
             }
             else if (_rb.YVelocity > 0)
             {
                 Parent.Animator.Animation = _fall;
+                _hat.Transform.position.Y = Converter.PixelToUnit(-4);
             }
             else
             {
+                _hat.Transform.position.Y = Converter.PixelToUnit(-4);
                 if (_running)
                 {
                     Parent.Animator.Animation = _run;

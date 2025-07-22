@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using MyMonoGameLibrary.Input;
 
 namespace summer_game;
 
@@ -13,8 +16,13 @@ public class PlayerHealth : Health
         get => base.MaxHealth;
         set
         {
+            if (value % 2 == 1)
+            {
+                throw new Exception("max health must be even");
+            }
+            
             base.MaxHealth = value;
-            HealthUI.Instance.SetMaxHealth(value);
+            HealthUI.Instance?.Update(CurrentHealth, MaxHealth);
         } 
     }
     public override int CurrentHealth 
@@ -23,7 +31,7 @@ public class PlayerHealth : Health
         set
         {
             base.CurrentHealth = value;
-            HealthUI.Instance.SetHealth(value);
+            HealthUI.Instance?.Update(CurrentHealth, MaxHealth);
 
         }
     }
@@ -38,18 +46,61 @@ public class PlayerHealth : Health
 
     public override void Start()
     {
-        HealthUI.Instance.Setup(CurrentHealth, MaxHealth);
+        HealthUI.Instance.Update(CurrentHealth, MaxHealth);
     }
 
     public override void Heal(int heal)
     {
         base.Heal(heal);
-        HealthUI.Instance.AddHealth(heal);
+        HealthUI.Instance.Update(CurrentHealth, MaxHealth);
     }
 
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        HealthUI.Instance.RemoveHealth(damage);
+        HealthUI.Instance.Update(CurrentHealth, MaxHealth);
+    }
+
+    public override void Update(GameTime gameTime)
+    {
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D1))
+        {
+            MaxHealth -= 2;
+        }
+
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D2))
+        {
+            MaxHealth += 2;
+        }
+
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D3))
+        {
+            MaxHealth -= 6;
+        }
+
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D4))
+        {
+            MaxHealth += 6;
+        }
+
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D5))
+        {
+            CurrentHealth -= 1;
+        }
+
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D6))
+        {
+            CurrentHealth += 1;
+        }
+
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D7))
+        {
+            CurrentHealth -= 2;
+        }
+
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D8))
+        {
+            CurrentHealth += 2;
+        }
     }
 }
