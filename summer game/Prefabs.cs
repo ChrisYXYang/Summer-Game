@@ -49,7 +49,7 @@ public static class Prefabs
         Component[] components =
         [
             new Transform(new Vector2(0, Converter.PixelToUnit(-4))),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player hat"), 0.65f),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player hat"), 0.63f),
         ];
 
         return new PrefabInstance("hat", components);
@@ -61,7 +61,8 @@ public static class Prefabs
         [
             new Transform(),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player hat"), 0.65f),
-            new Rigidbody(false, false)
+            new Rigidbody(true, false),
+            new Hat()
         ];
 
         return new PrefabInstance("discarded hat", components);

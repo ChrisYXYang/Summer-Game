@@ -75,12 +75,12 @@ public class PlayerHealth : Health
 
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.D3))
         {
-            MaxHealth -= 6;
+            MaxHealth -= 4;
         }
 
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.D4))
         {
-            MaxHealth += 6;
+            MaxHealth += 4;
         }
 
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.D5))
@@ -95,12 +95,12 @@ public class PlayerHealth : Health
 
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.D7))
         {
-            CurrentHealth -= 2;
+            CurrentHealth -= 3;
         }
 
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.D8))
         {
-            CurrentHealth += 2;
+            CurrentHealth += 3;
         }
     }
 }

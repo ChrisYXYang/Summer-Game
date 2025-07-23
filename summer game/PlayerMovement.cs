@@ -66,6 +66,12 @@ public class PlayerMovement : BehaviorComponent
         // get game time
         float time = (float)gameTime.TotalGameTime.TotalSeconds;
 
+        // jump input handling
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.W))
+        {
+            _jumpBuffer = 0.1f + time;
+        }
+
         // dash
         if (!Dashing && Parent.Rigidbody.TouchingBottom)
         {
@@ -82,6 +88,14 @@ public class PlayerMovement : BehaviorComponent
             _stopDashTime = time + DashTime;
             Parent.Animator.Animation = _dash;
             _hat.IsVisible = false;
+            SceneTools.Instantiate(Prefabs.DiscardedHat(), new Vector2(Transform.position.X, Transform.position.Y + Converter.PixelToUnit(-4)));
+
+            // jump if needed
+            if (_jumpBuffer >= time && _rb.TouchingBottom)
+            {
+                _rb.YVelocity -= JumpPower;
+                Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("collect"));
+            }
 
             if (InputManager.Keyboard.IsKeyDown(Keys.A))
             {
@@ -108,12 +122,6 @@ public class PlayerMovement : BehaviorComponent
             _hat.IsVisible = true;
         }
 
-        // jump input handling
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.W))
-        {
-            _jumpBuffer = 0.1f + time;
-        }
-
         if (!Dashing)
         {
             // left and right movement
@@ -135,9 +143,10 @@ public class PlayerMovement : BehaviorComponent
                 _running = false;
             }
 
+            // jump
             if (_jumpBuffer >= time && _rb.TouchingBottom)
             {
-                _rb.YVelocity -= JumpPower;
+                _rb.YVelocity = -JumpPower;
                 Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("collect"));
             }
 
