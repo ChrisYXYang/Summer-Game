@@ -39,7 +39,14 @@ public class Scene1 : Scene
         Setup(Prefabs.Player());
         Setup(Prefabs.Snowman(), new Vector2(7, 0));
         Setup(Prefabs.Heart(), new Vector2(10, 0));
+        Setup(Prefabs.Heart(), new Vector2(10, 0));
+        Setup(Prefabs.Heart(), new Vector2(10, 0));
+
+
         Setup(Prefabs.HalfHeart(), new Vector2(9, 0));
+        Setup(Prefabs.HalfHeart(), new Vector2(9, 0));
+        Setup(Prefabs.HalfHeart(), new Vector2(9, 0));
+
         //Setup(Prefabs.TestDummy(), new Vector2(-7, 0));
 
 

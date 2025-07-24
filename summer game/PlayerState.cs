@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using MyMonoGameLibrary.Scenes;
+using MyMonoGameLibrary.Tools;
 
 namespace summer_game;
 
@@ -13,7 +14,7 @@ public class PlayerState : BehaviorComponent
 {
     public Queue<string> _buffStatements = [];
 
-    private float _statementRate = 01f;
+    private float _statementRate = 0.3f;
     private float _nextStatementTime = 0;
 
     public void QueueStatement(string statement)
@@ -30,8 +31,9 @@ public class PlayerState : BehaviorComponent
             if (_nextStatementTime <= time)
             {
                 string statement = _buffStatements.Dequeue();
+                GameObject text = SceneTools.Instantiate(Prefabs.BuffStatement(), Transform.position - (Vector2.UnitY * Converter.PixelToUnit(4)));
+                ((TextRenderer)text.Renderer).Text = statement;
                 _nextStatementTime = time + _statementRate;
-                Debug.WriteLine(statement);
             }
         }
     }

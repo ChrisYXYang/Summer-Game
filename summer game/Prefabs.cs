@@ -168,4 +168,16 @@ public static class Prefabs
 
         return new PrefabInstance("half heart", components);
     }
+
+    public static PrefabInstance BuffStatement()
+    {
+        Component[] components =
+            [
+            new Transform(),
+            new TextRenderer(Core.GlobalLibrary.GetFont("04B_30_small"), "", AnchorMode.MiddleCenter),
+            new BuffStatement(),
+            ];
+
+        return new PrefabInstance("half heart", components);
+    }
 }
