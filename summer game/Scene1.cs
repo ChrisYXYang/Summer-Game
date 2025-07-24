@@ -38,6 +38,8 @@ public class Scene1 : Scene
         SetTilemap("level1", SceneLibrary.GetTileset("snowy tileset"));
         Setup(Prefabs.Player());
         Setup(Prefabs.Snowman(), new Vector2(7, 0));
+        Setup(Prefabs.Heart(), new Vector2(10, 0));
+        Setup(Prefabs.HalfHeart(), new Vector2(9, 0));
         //Setup(Prefabs.TestDummy(), new Vector2(-7, 0));
 
 
@@ -87,17 +89,17 @@ public class Scene1 : Scene
             DebugMode.DrawOrigin(gameObject);
         }
 
-        //foreach (GameObject gameObject in GetGameDrawObjects())
-        //{
-        //    DebugMode.DrawCollider(gameObject);
-        //}
+        foreach (GameObject gameObject in GetGameDrawObjects())
+        {
+            DebugMode.DrawCollider(gameObject);
+        }
 
-        //foreach (GameObject gameObject in GetUIDrawObjects())
-        //{
-        //    DebugMode.DrawUICollider(gameObject);
-        //}
+        foreach (GameObject gameObject in GetUIDrawObjects())
+        {
+            DebugMode.DrawUICollider(gameObject);
+        }
 
-        //DebugMode.DrawTilemapCollider(Tilemap);
+        DebugMode.DrawTilemapCollider(Tilemap);
 
         base.Draw(gameTime);
     }

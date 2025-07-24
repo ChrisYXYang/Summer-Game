@@ -17,7 +17,6 @@ public class HeartIcon : BehaviorComponent
     public override void Start()
     {
         _sprite = GetComponent<UISprite>();
-        Debug.WriteLine("gub");
     }
     
     public void Full()
@@ -35,13 +34,13 @@ public class HeartIcon : BehaviorComponent
         _sprite.Sprite = Core.GlobalLibrary.GetSprite("characters", "empty heart ui");
     }
 
-    public void IceFull()
-    {
-        _sprite.Sprite = Core.GlobalLibrary.GetSprite("characters", "ice heart ui");
-    }
+    //public void IceFull()
+    //{
+    //    _sprite.Sprite = Core.GlobalLibrary.GetSprite("characters", "ice heart ui");
+    //}
 
-    public void IceHalf()
-    {
-        _sprite.Sprite = Core.GlobalLibrary.GetSprite("characters", "half ice heart ui");
-    }
+    //public void IceHalf()
+    //{
+    //    _sprite.Sprite = Core.GlobalLibrary.GetSprite("characters", "half ice heart ui");
+    //}
 }

@@ -36,6 +36,19 @@ public class PlayerHealth : Health
         }
     }
 
+    //private int _extraHealth;
+    //public int ExtraHealth
+    //{
+    //    get => _extraHealth;
+    //    set
+    //    {
+    //        _extraHealth = (int)MathF.Min(0, value);
+
+    //    }
+    //}
+
+
+
     public PlayerHealth(int health) : base(health)
     {
     }

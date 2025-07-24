@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using MyMonoGameLibrary.Scenes;
@@ -9,9 +10,38 @@ namespace summer_game;
 
 public class Health : BehaviorComponent
 {
-    public virtual int MaxHealth { get; set; }
-    public virtual int CurrentHealth { get; set; }
+
+    private int _maxHealth;
+    public virtual int MaxHealth
+    {
+        get => _maxHealth;
+        set
+        {
+            _maxHealth = (int)MathF.Max(0, value);
+
+            if (_maxHealth < CurrentHealth)
+            {
+                CurrentHealth = _maxHealth;
+            }
+        }
+    }
+
+    private int _currHealth;
+    public virtual int CurrentHealth
+    {
+        get => _currHealth;
+        set
+        {
+            _currHealth = (int)MathF.Max(0, value);
+
+            if (_currHealth > MaxHealth)
+            {
+                _currHealth = MaxHealth;
+            }
+        }
+    }
     public virtual bool Dead => CurrentHealth <= 0;
+    public virtual bool Full => CurrentHealth == MaxHealth;
 
     public Health(int health)
     {

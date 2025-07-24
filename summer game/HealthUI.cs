@@ -37,15 +37,14 @@ public class HealthUI : BehaviorComponent
 
     public void Update(int health, int maxHealth)
     {
-        // calculate number of hearts and number of heart containers
-        int hearts = (int)MathF.Max(0, (health + 1) / 2);
-        int maxHearts = (int)MathF.Max(0, maxHealth / 2);
+        // calculate number of heart icons needed
+        int heartIcons = (int)MathF.Max(0, maxHealth / 2);
 
         // create/update/destroy all relevant heart icons
-        for (int i = 0; i < MathF.Max(hearts, MathF.Max(maxHearts, _hearts.Count)); i++)
+        for (int i = 0; i < MathF.Max(heartIcons, _hearts.Count); i++)
         {
             // in this case there are still heart icons to update/create
-            if (i < hearts || i < maxHearts)
+            if (i < heartIcons)
             {
                 // create heart icons if needed
                 while (_hearts.Count <= i)
@@ -56,31 +55,17 @@ public class HealthUI : BehaviorComponent
 
                 // update regular heart icons
                 int iconHealth = 2 * (i + 1);
-                if (i < maxHearts)
+                if (health >= iconHealth)
                 {
-                    if (health >= iconHealth)
-                    {
-                        _hearts[i].Full();
-                    }
-                    else if (health == iconHealth - 1)
-                    {
-                        _hearts[i].Half();
-                    }
-                    else
-                    {
-                        _hearts[i].Empty();
-                    }
+                    _hearts[i].Full();
                 }
-                else // update ice heart icons
+                else if (health == iconHealth - 1)
                 {
-                    if (health >= iconHealth)
-                    {
-                        _hearts[i].IceFull();
-                    }
-                    else
-                    {
-                        _hearts[i].IceHalf();
-                    }
+                    _hearts[i].Half();
+                }
+                else
+                {
+                    _hearts[i].Empty();
                 }
             }
             else // in this case there are none left so remaining must be destroyed

@@ -38,7 +38,8 @@ public static class Prefabs
             new Animator(),
             new PlayerMovement(5, 13, 9, 0.2f),
             new PlayerShoot(10, false, 4, 0.5f, 0.5f),
-            new PlayerHealth(6)
+            new PlayerHealth(6),
+            new PlayerState(),
             ];
 
         return new PrefabInstance("player", components, [SnowballIndicator(), Hat()]);
@@ -139,5 +140,32 @@ public static class Prefabs
             ];
 
         return new PrefabInstance("carrot", components);
+    }
+
+    // buffs
+    public static PrefabInstance Heart()
+    {
+        Component[] components =
+            [
+            new Transform(),
+            new BoxCollider(Converter.PixelToUnit(6), Converter.PixelToUnit(6), "buff"),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "heart"), 0.35f),
+            new Heal(2),
+            ];
+
+        return new PrefabInstance("heart", components);
+    }
+
+    public static PrefabInstance HalfHeart()
+    {
+        Component[] components =
+            [
+            new Transform(),
+            new BoxCollider(Converter.PixelToUnit(6), Converter.PixelToUnit(6), "buff"),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "half heart"), 0.35f),
+            new Heal(1),
+            ];
+
+        return new PrefabInstance("half heart", components);
     }
 }
