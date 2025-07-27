@@ -42,6 +42,14 @@
 		<Sprite name="half heart"/>
 		<Sprite name="ice heart"/>
 		<Sprite name="half ice heart"/>
+		<Sprite name="triple shot ui"/>
+		<Sprite name="triple shot"/>
+		<Sprite name="enhanced throwing ui"/>
+		<Sprite name="enhanced throwing"/>
+		<Sprite name="double damage ui"/>
+		<Sprite name="double damage"/>
+		<Sprite name="speed up ui"/>
+		<Sprite name="speed up"/>
 
 	</Sprites>
 	<Animations>

@@ -14,13 +14,8 @@ public class HealthUI : BehaviorComponent
     private float _y = 80;
     private float _x = 80;
     private float _spacing = 80;
-    private Func<PrefabInstance> _heart;
+    private Func<PrefabInstance> _heart = Prefabs.HeartIcon;
     private List<HeartIcon> _hearts = [];
-
-    public HealthUI(Func<PrefabInstance> heart)
-    {
-        _heart = heart;
-    }
 
     public override void Awake()
     {

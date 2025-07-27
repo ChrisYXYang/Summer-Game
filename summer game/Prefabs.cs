@@ -37,7 +37,7 @@ public static class Prefabs
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player"), 0.6f),
             new Animator(),
             new PlayerMovement(5, 13, 9, 0.2f),
-            new PlayerShoot(10, false, 4, 0.5f, 0.5f),
+            new PlayerShoot(10, false, false, 4, 0.5f, 0.5f),
             new PlayerHealth(6),
             new PlayerState(),
             ];
@@ -105,7 +105,7 @@ public static class Prefabs
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowman"), 0.4f),
             new Animator(),
             new EnemyBehavior(7.5f, false, 1, 0.5f, 3, 3, Prefabs.Carrot, Core.GlobalLibrary.GetAnimation("characters", "snowman_run")),
-            new EnemyHealth(3)
+            new EnemyHealth(4)
             ];
 
         return new PrefabInstance("snowman", components);
@@ -143,6 +143,18 @@ public static class Prefabs
     }
 
     // buffs
+    public static PrefabInstance BuffStatement()
+    {
+        Component[] components =
+            [
+            new Transform(),
+            new TextRenderer(Core.GlobalLibrary.GetFont("04B_30_small"), "", AnchorMode.MiddleCenter),
+            new BuffStatement(),
+            ];
+
+        return new PrefabInstance("buff statement", components);
+    }
+
     public static PrefabInstance Heart()
     {
         Component[] components =
@@ -150,7 +162,7 @@ public static class Prefabs
             new Transform(),
             new BoxCollider(Converter.PixelToUnit(6), Converter.PixelToUnit(6), "buff"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "heart"), 0.35f),
-            new Heal(2),
+            new HealthItem(2),
             ];
 
         return new PrefabInstance("heart", components);
@@ -163,21 +175,60 @@ public static class Prefabs
             new Transform(),
             new BoxCollider(Converter.PixelToUnit(6), Converter.PixelToUnit(6), "buff"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "half heart"), 0.35f),
-            new Heal(1),
+            new HealthItem(1),
             ];
 
         return new PrefabInstance("half heart", components);
     }
 
-    public static PrefabInstance BuffStatement()
+    public static PrefabInstance SpeedUp()
     {
         Component[] components =
             [
             new Transform(),
-            new TextRenderer(Core.GlobalLibrary.GetFont("04B_30_small"), "", AnchorMode.MiddleCenter),
-            new BuffStatement(),
+            new BoxCollider(Converter.PixelToUnit(6), Converter.PixelToUnit(6), "buff"),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "speed up"), 0.35f),
+            new BuffItem(Buffs.SpeedUp, "speed up!", 10),
             ];
 
-        return new PrefabInstance("half heart", components);
+        return new PrefabInstance("speed up", components);
+    }
+
+    public static PrefabInstance EnhancedThrowing()
+    {
+        Component[] components =
+            [
+            new Transform(),
+            new BoxCollider(Converter.PixelToUnit(6), Converter.PixelToUnit(6), "buff"),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "enhanced throwing"), 0.35f),
+            new BuffItem(Buffs.EnhancedThrowing, "enhanced throwing!", 15),
+            ];
+
+        return new PrefabInstance("enhanced throwing", components);
+    }
+    public static PrefabInstance DoubleDamage()
+    {
+        Component[] components =
+            [
+            new Transform(),
+            new BoxCollider(Converter.PixelToUnit(6), Converter.PixelToUnit(6), "buff"),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "double damage"), 0.35f),
+            new BuffItem(Buffs.DoubleDamage, "double damage!", 20),
+            ];
+
+        return new PrefabInstance("double damage", components);
+    }
+
+    public static PrefabInstance TripleShot()
+    {
+        Component[] components =
+            [
+            new Transform(),
+            new BoxCollider(Converter.PixelToUnit(6), Converter.PixelToUnit(6), "buff"),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "triple shot"), 0.35f),
+            new BuffItem(Buffs.TripleShot, "triple shot!", 25),
+            ];
+
+        return new PrefabInstance("triple shot", components);
     }
 }

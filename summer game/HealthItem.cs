@@ -7,11 +7,11 @@ using MyMonoGameLibrary.Scenes;
 
 namespace summer_game;
 
-public class Heal : BehaviorComponent
+public class HealthItem : BehaviorComponent
 {
     public int Amount { get; protected set; }
 
-    public Heal(int amount)
+    public HealthItem(int amount)
     {
         Amount = amount;
     }

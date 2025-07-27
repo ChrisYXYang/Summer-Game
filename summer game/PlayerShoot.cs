@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
@@ -16,6 +17,7 @@ public class PlayerShoot : BehaviorComponent
 {
     public float ProjectileSpeed { get; set; }
     public bool DoubleDamage { get; set; }
+    public bool TripleShot { get; set; }
     public float Knockback { get; set; }
     public float ThrowRate { get; set; }
     public float HandRange { get; set; }
@@ -25,10 +27,11 @@ public class PlayerShoot : BehaviorComponent
     private GameObject _indicator;
     private float _timeToNextThrow = 0;
 
-    public PlayerShoot(float speed, bool doubleDmg, float knockback, float throwRate, float handRange)
+    public PlayerShoot(float speed, bool doubleDmg, bool tripleShot, float knockback, float throwRate, float handRange)
     {
         ProjectileSpeed = speed;
         DoubleDamage = doubleDmg;
+        TripleShot = tripleShot;
         Knockback = knockback;
         ThrowRate = throwRate;
         HandRange = handRange;
@@ -46,24 +49,26 @@ public class PlayerShoot : BehaviorComponent
         // get current game time
         float time = (float)gameTime.TotalGameTime.TotalSeconds;
 
-        // get unit vector from player to mouse
+        // get unit vector from player to mouse and rotation
         Vector2 mouseDist = Vector2.Normalize(Camera.PixelToUnit(InputManager.Mouse.Position) - Transform.position);
+        float rotation = MathF.Atan2(mouseDist.Y, mouseDist.X);
 
         // update snowball indicator
         _indicator.Transform.position = mouseDist * HandRange;
         float readyScale = MathF.Min(1, (time + ThrowRate - _timeToNextThrow) / ThrowRate);
         _indicator.Transform.Scale = new Vector2(readyScale, readyScale);
-        _indicator.Transform.Rotation = MathHelper.ToDegrees(MathF.Atan2(mouseDist.Y, mouseDist.X));
 
         // throw snowball
         if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left) && time >= _timeToNextThrow)
         {
-            GameObject projectile = SceneTools.Instantiate(Prefabs.Snowball(), Transform.position + (mouseDist * HandRange), 0f);
-            projectile.GetComponent<Snowball>().Damage = DoubleDamage ? 2 : 1;
-            projectile.GetComponent<Snowball>().Knockback = Knockback;
-            projectile.Rigidbody.XVelocity = mouseDist.X * ProjectileSpeed;
-            projectile.Rigidbody.YVelocity = mouseDist.Y * ProjectileSpeed;
-            
+            Shoot(mouseDist, rotation, 0);
+
+            if (TripleShot)
+            {
+                Shoot(mouseDist, rotation, -30);
+                Shoot(mouseDist, rotation, 30);
+            }
+
             Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("bounce"));
             _timeToNextThrow = time + ThrowRate;
         }
@@ -80,5 +85,15 @@ public class PlayerShoot : BehaviorComponent
                 _sr.FlipX = true;
             }
         }
+    }
+
+    private void Shoot(Vector2 mouseDist, float rotation, float skew)
+    {
+        GameObject projectile = SceneTools.Instantiate(Prefabs.Snowball(), Transform.position + (mouseDist * HandRange), 0f);
+        projectile.GetComponent<Snowball>().Damage = DoubleDamage ? 2 : 1;
+        projectile.GetComponent<Snowball>().Knockback = Knockback;
+        Vector2 direction = new Vector2((float)MathF.Cos(rotation - MathHelper.ToRadians(skew)), (float)MathF.Sin(rotation - MathHelper.ToRadians(skew)));
+        projectile.Rigidbody.XVelocity = direction.X * ProjectileSpeed;
+        projectile.Rigidbody.YVelocity = direction.Y * ProjectileSpeed;
     }
 }
