@@ -133,4 +133,17 @@ public class EnemyBehavior : BehaviorComponent
             Parent.Animator.Animation = null;
         }
     }
+
+    //public override void OnCollisionEnter(ICollider other)
+    //{
+    //    if (other is ColliderComponent col)
+    //    {
+    //        PlayerHealth playerHealth = col.GetComponent<PlayerHealth>();
+    //        if (playerHealth != null)
+    //        {
+    //            int damage = DoubleDamage ? 2 : 1;
+    //            playerHealth.TakeDamage(damage);
+    //        }
+    //    }
+    //}
 }

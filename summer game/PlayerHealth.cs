@@ -73,47 +73,4 @@ public class PlayerHealth : Health
         base.TakeDamage(damage);
         HealthUI.Instance.Update(CurrentHealth, MaxHealth);
     }
-
-    public override void Update(GameTime gameTime)
-    {
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D1))
-        {
-            MaxHealth -= 2;
-        }
-
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D2))
-        {
-            MaxHealth += 2;
-        }
-
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D3))
-        {
-            MaxHealth -= 4;
-        }
-
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D4))
-        {
-            MaxHealth += 4;
-        }
-
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D5))
-        {
-            CurrentHealth -= 1;
-        }
-
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D6))
-        {
-            CurrentHealth += 1;
-        }
-
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D7))
-        {
-            CurrentHealth -= 3;
-        }
-
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.D8))
-        {
-            CurrentHealth += 3;
-        }
-    }
 }

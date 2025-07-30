@@ -18,6 +18,11 @@
 		<Sprite name="snowman_run_1"/>
 		<Sprite name="snowman_run_2"/>
 		<Sprite name="snowman_run_3"/>
+		<Sprite name="iceman"/>
+		<Sprite name="iceman_run_0"/>
+		<Sprite name="iceman_run_1"/>
+		<Sprite name="iceman_run_2"/>
+		<Sprite name="iceman_run_3"/>
 		<Sprite name="snowball"/>
 		<Sprite name="snowball_0"/>
 		<Sprite name="snowball_1"/>
@@ -82,6 +87,13 @@
 			<Sprite name="snowman_run_1"/>
 			<Sprite name="snowman_run_2"/>
 			<Sprite name="snowman_run_3"/>
+		</Animation>
+
+		<Animation name="iceman_run">
+			<Sprite name="iceman_run_0"/>
+			<Sprite name="iceman_run_1"/>
+			<Sprite name="iceman_run_2"/>
+			<Sprite name="iceman_run_3"/>
 		</Animation>
 
 		<Animation name="snowball">

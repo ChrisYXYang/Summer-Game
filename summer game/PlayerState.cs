@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
@@ -13,7 +14,7 @@ namespace summer_game;
 public class PlayerState : BehaviorComponent
 {
     private Dictionary<Buffs, (bool, float)> _buffTimes = [];
-    private List<Buffs> _activeBuffs = [];
+    private List<(Buffs, float)> _activeBuffs = [];
     private Queue<string> _buffStatements = [];
 
     private float _statementRate = 0.3f;
@@ -21,83 +22,6 @@ public class PlayerState : BehaviorComponent
 
     private PlayerShoot _shoot;
     private PlayerMovement _movement;
-
-    public void QueueStatement(string statement)
-    {
-        _buffStatements.Enqueue(statement);
-    }
-
-    public void AddBuff(Buffs buff, string statement, float time)
-    {
-        bool activate = true;
-        
-        if (!_buffTimes.ContainsKey(buff))
-        {
-            _buffTimes.Add(buff, (true, time));
-        }
-        else
-        {
-            activate = !_buffTimes[buff].Item1;
-            _buffTimes[buff] = (true, time);
-        }
-
-        if (activate)
-        {
-            switch (buff)
-            {
-                case (Buffs.TripleShot):
-                    _shoot.TripleShot = true;
-                    break;
-                case (Buffs.EnhancedThrowing):
-                    _shoot.ThrowRate /= 2f;
-                    _shoot.ProjectileSpeed *= 1.5f;
-                    _shoot.Knockback *= 2f;
-                    break;
-                case (Buffs.DoubleDamage):
-                    _shoot.DoubleDamage = true;
-                    break;
-                case (Buffs.SpeedUp):
-                    _movement.JumpPower *= 1.5f;
-                    _movement.DashVelocity *= 1.5f;
-                    _movement.MoveSpeed *= 2f;
-                    break;
-                default:
-                    break;
-            }
-
-            _activeBuffs.Add(buff);
-            Debug.WriteLine(buff + " activated");
-        }
-
-        QueueStatement(statement);
-    }
-
-    private void RemoveBuff(Buffs buff)
-    {
-        switch (buff)
-        {
-            case (Buffs.TripleShot):
-                _shoot.TripleShot = false;
-                break;
-            case (Buffs.EnhancedThrowing):
-                _shoot.ThrowRate *= 2f;
-                _shoot.ProjectileSpeed /= 1.5f;
-                _shoot.Knockback /= 2f;
-                break;
-            case (Buffs.DoubleDamage):
-                _shoot.DoubleDamage = false;
-                break;
-            case (Buffs.SpeedUp):
-                _movement.JumpPower /= 1.5f;
-                _movement.DashVelocity /= 1.5f;
-                _movement.MoveSpeed /= 2f;
-                break;
-            default:
-                break;
-        }
-
-        Debug.WriteLine(buff + " removed");
-    }
 
     public override void Start()
     {
@@ -110,15 +34,21 @@ public class PlayerState : BehaviorComponent
         // handle active buffs
         for (int i = _activeBuffs.Count - 1; i >= 0; i--)
         {
-            _buffTimes[_activeBuffs[i]] = (true, _buffTimes[_activeBuffs[i]].Item2 - (float)gameTime.ElapsedGameTime.TotalSeconds);
+            Buffs buff = _activeBuffs[i].Item1;
+            _buffTimes[buff] = (true, _buffTimes[buff].Item2 - (float)gameTime.ElapsedGameTime.TotalSeconds);
+            _activeBuffs[i] = (buff, _buffTimes[buff].Item2);
 
-            if (_buffTimes[_activeBuffs[i]].Item2 <= 0)
+            if (_buffTimes[buff].Item2 <= 0)
             {
-                _buffTimes[_activeBuffs[i]] = (false, 0);
-                RemoveBuff(_activeBuffs[i]);
+                _buffTimes[buff] = (false, 0);
+                ChooseBuff(buff, false);
                 _activeBuffs.RemoveAt(i);
+                Debug.WriteLine(buff + " removed");
             }
         }
+
+        // update the ui
+        BuffUI.Instance.Update([.. _activeBuffs]);
 
         // handle buff statements
         if (_buffStatements.Count > 0)
@@ -133,5 +63,80 @@ public class PlayerState : BehaviorComponent
                 _nextStatementTime = time + _statementRate;
             }
         }
+    }
+
+    public void QueueStatement(string statement)
+    {
+        _buffStatements.Enqueue(statement);
+    }
+
+    public void AddBuff(Buffs buff, string statement, float time)
+    {
+        QueueStatement(statement);
+
+        bool activate = true;
+
+        if (!_buffTimes.ContainsKey(buff))
+        {
+            _buffTimes.Add(buff, (true, time));
+        }
+        else
+        {
+            activate = !_buffTimes[buff].Item1;
+            _buffTimes[buff] = (true, time);
+        }
+
+        if (activate)
+        {
+            ChooseBuff(buff, true);
+            _activeBuffs.Add((buff, time));
+            Debug.WriteLine(buff + " activated");
+        }
+    }
+
+    private void ChooseBuff(Buffs buff, bool add)
+    {
+        switch (buff)
+        {
+            case (Buffs.TripleShot):
+                TripleShot(add);
+                break;
+            case (Buffs.EnhancedThrowing):
+                EnhancedThrowing(add);
+                break;
+            case (Buffs.DoubleDamage):
+                DoubleDamage(add);
+                break;
+            case (Buffs.SpeedUp):
+                SpeedUp(add);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void TripleShot(bool add)
+    {
+        _shoot.TripleShot = add;
+    }
+
+    private void EnhancedThrowing(bool add)
+    {
+        _shoot.ModifyRate(add, false, 0.5f);
+        _shoot.ModifySpeed(add, false, 1.5f);
+        _shoot.ModifyKnockback(add, false, 2f);
+    }
+
+    private void DoubleDamage(bool add)
+    {
+        _shoot.DoubleDamage = add;
+    }
+
+    private void SpeedUp(bool add)
+    {
+        _movement.ModifyJump(add, false, 1.5f);
+        _movement.ModifyDash(add, false, 1.5f);
+        _movement.ModifyMove(add, false, 2f);
+        _movement.ModifyFall(add, false, 2f);
     }
 }

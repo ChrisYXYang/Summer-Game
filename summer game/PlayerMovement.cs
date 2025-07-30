@@ -16,6 +16,7 @@ public class PlayerMovement : BehaviorComponent
 {
     // variables and properties
     public float JumpPower { get; set; }
+    public float FallMultipler { get; set; } = 1;
     public float MoveSpeed { get; set; }
     public float DashVelocity { get; set; }
     public float DashTime { get; set; }
@@ -152,7 +153,7 @@ public class PlayerMovement : BehaviorComponent
 
             if (_rb.YVelocity < 0 && !InputManager.Keyboard.IsKeyDown(Keys.W))
             {
-                _rb.YVelocity += SceneTools.Gravity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                _rb.YVelocity += FallMultipler * SceneTools.Gravity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
             // descending platform
@@ -189,6 +190,78 @@ public class PlayerMovement : BehaviorComponent
                     Parent.Animator.Animation = _idle;
                 }
             }
+        }
+    }
+
+    public void ModifyJump(bool add, bool sum, float amount)
+    {
+        if (add)
+        {
+            if (sum)
+                JumpPower += amount;
+            else
+                JumpPower *= amount;
+        }
+        else
+        {
+            if (sum)
+                JumpPower -= amount;
+            else
+                JumpPower /= amount;
+        }
+    }
+
+    public void ModifyFall(bool add, bool sum, float amount)
+    {
+        if (add)
+        {
+            if (sum)
+                FallMultipler += amount;
+            else
+                FallMultipler *= amount;
+        }
+        else
+        {
+            if (sum)
+                FallMultipler -= amount;
+            else
+                FallMultipler /= amount;
+        }
+    }
+
+    public void ModifyMove(bool add, bool sum, float amount)
+    {
+        if (add)
+        {
+            if (sum)
+                MoveSpeed += amount;
+            else
+                MoveSpeed *= amount;
+        }
+        else
+        {
+            if (sum)
+                MoveSpeed -= amount;
+            else
+                MoveSpeed /= amount;
+        }
+    }
+
+    public void ModifyDash(bool add, bool sum, float amount)
+    {
+        if (add)
+        {
+            if (sum)
+                DashVelocity += amount;
+            else
+                DashVelocity *= amount;
+        }
+        else
+        {
+            if (sum)
+                DashVelocity -= amount;
+            else
+                DashVelocity /= amount;
         }
     }
 }

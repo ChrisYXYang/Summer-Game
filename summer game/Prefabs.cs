@@ -15,6 +15,7 @@ namespace summer_game;
 // this class contains static methods corresponding to prefabs to use in scenes.
 public static class Prefabs
 {
+    // ui
     public static PrefabInstance HeartIcon()
     {
         Component[] components =
@@ -25,6 +26,29 @@ public static class Prefabs
             ];
 
         return new PrefabInstance("heart icon", components);
+    }
+
+    public static PrefabInstance BuffIcon()
+    {
+        Component[] components =
+            [
+                new Transform(),
+                new UISprite(),
+                new BuffIcon()
+            ];
+
+        return new PrefabInstance("buff icon", components, [BuffText()]);
+    }
+
+    public static PrefabInstance BuffText()
+    {
+        Component[] components =
+            [
+                new Transform(new Vector2(90, 0)),
+                new UIText(Core.GlobalLibrary.GetFont("04B_30"), "", AnchorMode.MiddleLeft),
+            ];
+
+        return new PrefabInstance("buff text", components);
     }
 
     public static PrefabInstance Player()
@@ -104,11 +128,27 @@ public static class Prefabs
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowman"), 0.4f),
             new Animator(),
-            new EnemyBehavior(7.5f, false, 1, 0.5f, 3, 3, Prefabs.Carrot, Core.GlobalLibrary.GetAnimation("characters", "snowman_run")),
+            new EnemyBehavior(7.5f, false, 1.5f, 0.5f, 3, 3, Prefabs.Carrot, Core.GlobalLibrary.GetAnimation("characters", "snowman_run")),
             new EnemyHealth(4)
             ];
 
         return new PrefabInstance("snowman", components);
+    }
+
+    public static PrefabInstance Iceman()
+    {
+        Component[] components =
+            [
+            new Transform(),
+            new BoxCollider(Converter.PixelToUnit(8), Converter.PixelToUnit(10), "enemy"),
+            new Rigidbody(true, true),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "iceman"), 0.4f),
+            new Animator(),
+            new EnemyBehavior(4f, true, 3, 0.6f, 2, 4, Prefabs.Icicle, Core.GlobalLibrary.GetAnimation("characters", "iceman_run")),
+            new EnemyHealth(8)
+            ];
+
+        return new PrefabInstance("iceman", components);
     }
 
     public static PrefabInstance TestDummy()
@@ -140,6 +180,21 @@ public static class Prefabs
             ];
 
         return new PrefabInstance("carrot", components);
+    }
+
+    public static PrefabInstance Icicle()
+    {
+        Component[] components =
+            [
+            new Transform(),
+            new CircleCollider(Converter.PixelToUnit(6), "hurt"),
+            new Rigidbody(false, false),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "icicle"), 0.5f),
+            new Animator(Core.GlobalLibrary.GetAnimation("characters", "icicle")),
+            new EnemyProjectile(),
+            ];
+
+        return new PrefabInstance("icicle", components);
     }
 
     // buffs

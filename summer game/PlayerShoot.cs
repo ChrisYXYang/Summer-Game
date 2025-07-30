@@ -96,4 +96,58 @@ public class PlayerShoot : BehaviorComponent
         projectile.Rigidbody.XVelocity = direction.X * ProjectileSpeed;
         projectile.Rigidbody.YVelocity = direction.Y * ProjectileSpeed;
     }
+
+    public void ModifySpeed(bool add, bool sum, float amount)
+    {
+        if (add)
+        {
+            if (sum)
+                ProjectileSpeed += amount;
+            else
+                ProjectileSpeed *= amount;
+        }
+        else
+        {
+            if (sum)
+                ProjectileSpeed -= amount;
+            else
+                ProjectileSpeed /= amount;
+        }
+    }
+
+    public void ModifyRate(bool add, bool sum, float amount)
+    {
+        if (add)
+        {
+            if (sum)
+                ThrowRate += amount;
+            else
+                ThrowRate *= amount;
+        }
+        else
+        {
+            if (sum)
+                ThrowRate -= amount;
+            else
+                ThrowRate /= amount;
+        }
+    }
+
+    public void ModifyKnockback(bool add, bool sum, float amount)
+    {
+        if (add)
+        {
+            if (sum)
+                Knockback += amount;
+            else
+                Knockback *= amount;
+        }
+        else
+        {
+            if (sum)
+                Knockback -= amount;
+            else
+                Knockback /= amount;
+        }
+    }
 }

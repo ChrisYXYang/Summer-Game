@@ -38,11 +38,16 @@ public class Scene1 : Scene
         SetTilemap("level1", SceneLibrary.GetTileset("snowy tileset"));
         Setup(Prefabs.Player());
         Setup(Prefabs.Snowman(), new Vector2(7, 0));
+        Setup(Prefabs.Iceman(), new Vector2(-7, 0));
+
         Setup(Prefabs.SpeedUp(), new Vector2(10, 0));
         Setup(Prefabs.EnhancedThrowing(), new Vector2(9, 0));
         Setup(Prefabs.TripleShot(), new Vector2(11, 0));
         Setup(Prefabs.DoubleDamage(), new Vector2(12, 0));
-
+        Setup(Prefabs.SpeedUp(), new Vector2(-10, 0));
+        Setup(Prefabs.EnhancedThrowing(), new Vector2(-9, 0));
+        Setup(Prefabs.TripleShot(), new Vector2(-11, 0));
+        Setup(Prefabs.DoubleDamage(), new Vector2(-12, 0));
 
         //Setup(Prefabs.TestDummy(), new Vector2(-7, 0));
 
@@ -67,7 +72,8 @@ public class Scene1 : Scene
         (
             "UI Manager",
             [
-                new HealthUI()
+                new HealthUI(),
+                new BuffUI(),
             ]
         );
 
