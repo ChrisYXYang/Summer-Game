@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SpriteSheet>
+	<Settings texture="images/ui" size="64" centered="true"/>
+	<Sprites>
+		<Sprite name="pause"/>
+		<Sprite name="pause_h"/>
+		<Sprite name="resume"/>
+		<Sprite name="resume_h"/>
+	</Sprites>
+</SpriteSheet>

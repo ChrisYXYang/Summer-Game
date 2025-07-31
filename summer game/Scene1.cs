@@ -77,6 +77,28 @@ public class Scene1 : Scene
             ]
         );
 
+        Setup
+        (
+            "pause button",
+            [
+                new Transform(new Vector2(1840, 80)),
+                new UISprite(),
+                new BoxCollider(80, 80),
+                new PauseButton()
+            ]
+        );
+
+        Setup
+        (
+            "resume button",
+            [
+                new Transform(new Vector2(960, 540)),
+                new UISprite(),
+                new BoxCollider(360, 120),
+                new ResumeButton()
+            ]
+        );
+
         base.LoadContent();
     }
 
@@ -97,22 +119,18 @@ public class Scene1 : Scene
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);
 
         //debugging
-        foreach (GameObject gameObject in GetGameObjects())
-        {
-            DebugMode.DrawOrigin(gameObject);
-        }
-
         foreach (GameObject gameObject in GetGameDrawObjects())
         {
+            DebugMode.DrawOrigin(gameObject);
             DebugMode.DrawCollider(gameObject);
         }
-
-        foreach (GameObject gameObject in GetUIDrawObjects())
-        {
-            DebugMode.DrawUICollider(gameObject);
-        }
-
         DebugMode.DrawTilemapCollider(Tilemap);
+
+        //foreach (GameObject gameObject in GetUIDrawObjects())
+        //{
+        //    DebugMode.DrawUICollider(gameObject);
+        //}
+
 
         base.Draw(gameTime);
     }

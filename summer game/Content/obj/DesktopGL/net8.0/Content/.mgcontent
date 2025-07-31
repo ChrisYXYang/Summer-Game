@@ -12,8 +12,10 @@
     <File>C:/Users/chris/Games/Summer-Game/summer game/Content/images/characters.png</File>
     <File>C:/Users/chris/Games/Summer-Game/summer game/Content/images/debug.png</File>
     <File>C:/Users/chris/Games/Summer-Game/summer game/Content/images/snowy tileset.png</File>
+    <File>C:/Users/chris/Games/Summer-Game/summer game/Content/images/ui.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
