@@ -94,22 +94,22 @@ public class Scene1 : Scene
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);
 
         //debugging
-        //foreach (GameObject gameObject in GetGameObjects())
-        //{
-        //    DebugMode.DrawOrigin(gameObject);
-        //}
+        foreach (GameObject gameObject in GetGameObjects())
+        {
+            DebugMode.DrawOrigin(gameObject);
+        }
 
-        //foreach (GameObject gameObject in GetGameDrawObjects())
-        //{
-        //    DebugMode.DrawCollider(gameObject);
-        //}
+        foreach (GameObject gameObject in GetGameDrawObjects())
+        {
+            DebugMode.DrawCollider(gameObject);
+        }
 
-        //foreach (GameObject gameObject in GetUIDrawObjects())
-        //{
-        //    DebugMode.DrawUICollider(gameObject);
-        //}
+        foreach (GameObject gameObject in GetUIDrawObjects())
+        {
+            DebugMode.DrawUICollider(gameObject);
+        }
 
-        //DebugMode.DrawTilemapCollider(Tilemap);
+        DebugMode.DrawTilemapCollider(Tilemap);
 
         base.Draw(gameTime);
     }

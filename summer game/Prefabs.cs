@@ -51,6 +51,7 @@ public static class Prefabs
         return new PrefabInstance("buff text", components);
     }
 
+    // player
     public static PrefabInstance Player()
     {
         Component[] components =
@@ -60,7 +61,7 @@ public static class Prefabs
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player"), 0.6f),
             new Animator(),
-            new PlayerMovement(5, 13, 9, 0.2f),
+            new PlayerMovement(5, 13, 10, 0.2f),
             new PlayerShoot(10, false, false, 4, 0.5f, 0.5f),
             new PlayerHealth(6),
             new PlayerState(),
@@ -74,7 +75,7 @@ public static class Prefabs
         Component[] components =
         [
             new Transform(new Vector2(0, Converter.PixelToUnit(-4))),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player hat"), 0.63f),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player hat"), 0.61f),
         ];
 
         return new PrefabInstance("hat", components);
@@ -85,7 +86,7 @@ public static class Prefabs
         Component[] components =
         [
             new Transform(),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player hat"), 0.65f),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player hat"), 0.61f),
             new Rigidbody(true, false),
             new Hat()
         ];
@@ -100,7 +101,7 @@ public static class Prefabs
             new Transform(),
             new CircleCollider(Converter.PixelToUnit(4), "attack"),
             new Rigidbody(true, false),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowball"), 0.7f),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowball"), 0.63f),
             new Animator(Core.GlobalLibrary.GetAnimation("characters", "snowball")),
             new Snowball(),
             ];
@@ -113,12 +114,13 @@ public static class Prefabs
         Component[] components =
             [
             new Transform(),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowball"), 0.7f)
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowball"), 0.62f)
             ];
 
         return new PrefabInstance("snowball indicator", components);
     }
 
+    // enemies
     public static PrefabInstance Snowman()
     {
         Component[] components =
@@ -158,7 +160,7 @@ public static class Prefabs
             new Transform(),
             new BoxCollider(Converter.PixelToUnit(8), Converter.PixelToUnit(9), Converter.PixelToUnit(0), Converter.PixelToUnit(-0.5f), "enemy"),
             new Rigidbody(true, true),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowman")),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowman"), 0.4f),
             new Animator(),
             new EnemyBehavior(7.5f, false, 1, 0.5f, 3, 3, Prefabs.Carrot, Core.GlobalLibrary.GetAnimation("characters", "snowman_run")),
             new EnemyHealth(1000)
@@ -203,7 +205,7 @@ public static class Prefabs
         Component[] components =
             [
             new Transform(),
-            new TextRenderer(Core.GlobalLibrary.GetFont("04B_30_small"), "", AnchorMode.MiddleCenter),
+            new TextRenderer(Core.GlobalLibrary.GetFont("04B_30_small"), "", AnchorMode.MiddleCenter, 0.36f),
             new BuffStatement(),
             ];
 

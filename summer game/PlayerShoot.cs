@@ -49,9 +49,8 @@ public class PlayerShoot : BehaviorComponent
         // get current game time
         float time = (float)gameTime.TotalGameTime.TotalSeconds;
 
-        // get unit vector from player to mouse and rotation
+        // get unit vector from player to mouse
         Vector2 mouseDist = Vector2.Normalize(Camera.PixelToUnit(InputManager.Mouse.Position) - Transform.position);
-        float rotation = MathF.Atan2(mouseDist.Y, mouseDist.X);
 
         // update snowball indicator
         _indicator.Transform.position = mouseDist * HandRange;
@@ -61,12 +60,12 @@ public class PlayerShoot : BehaviorComponent
         // throw snowball
         if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left) && time >= _timeToNextThrow)
         {
-            Shoot(mouseDist, rotation, 0);
+            Shoot(mouseDist, 0);
 
             if (TripleShot)
             {
-                Shoot(mouseDist, rotation, -30);
-                Shoot(mouseDist, rotation, 30);
+                Shoot(mouseDist, -30);
+                Shoot(mouseDist, 30);
             }
 
             Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("bounce"));
@@ -87,12 +86,13 @@ public class PlayerShoot : BehaviorComponent
         }
     }
 
-    private void Shoot(Vector2 mouseDist, float rotation, float skew)
+    private void Shoot(Vector2 mouseDist, float skew)
     {
+        float rotation = MathF.Atan2(mouseDist.Y, mouseDist.X) + MathHelper.ToRadians(skew);
         GameObject projectile = SceneTools.Instantiate(Prefabs.Snowball(), Transform.position + (mouseDist * HandRange), 0f);
         projectile.GetComponent<Snowball>().Damage = DoubleDamage ? 2 : 1;
         projectile.GetComponent<Snowball>().Knockback = Knockback;
-        Vector2 direction = new Vector2((float)MathF.Cos(rotation - MathHelper.ToRadians(skew)), (float)MathF.Sin(rotation - MathHelper.ToRadians(skew)));
+        Vector2 direction = new((float)MathF.Cos(rotation), (float)MathF.Sin(rotation));
         projectile.Rigidbody.XVelocity = direction.X * ProjectileSpeed;
         projectile.Rigidbody.YVelocity = direction.Y * ProjectileSpeed;
     }
