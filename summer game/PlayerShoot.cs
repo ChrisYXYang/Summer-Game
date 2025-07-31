@@ -25,7 +25,7 @@ public class PlayerShoot : BehaviorComponent
     private PlayerMovement _movement;
     private SpriteRenderer _sr;
     private GameObject _indicator;
-    private float _timeToNextThrow = 0;
+    private float _throwTimer = 0;
 
     public PlayerShoot(float speed, bool doubleDmg, bool tripleShot, float knockback, float throwRate, float handRange)
     {
@@ -47,18 +47,18 @@ public class PlayerShoot : BehaviorComponent
     public override void Update(GameTime gameTime)
     {
         // get current game time
-        float time = (float)gameTime.TotalGameTime.TotalSeconds;
+        _throwTimer -= SceneTools.DeltaTime;
 
         // get unit vector from player to mouse
         Vector2 mouseDist = Vector2.Normalize(Camera.PixelToUnit(InputManager.Mouse.Position) - Transform.position);
 
         // update snowball indicator
         _indicator.Transform.position = mouseDist * HandRange;
-        float readyScale = MathF.Min(1, (time + ThrowRate - _timeToNextThrow) / ThrowRate);
+        float readyScale = float.Clamp(-((_throwTimer - ThrowRate) / ThrowRate), 0f , 1f);
         _indicator.Transform.Scale = new Vector2(readyScale, readyScale);
 
         // throw snowball
-        if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left) && time >= _timeToNextThrow)
+        if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left) && _throwTimer <= 0)
         {
             Shoot(mouseDist, 0);
 
@@ -69,7 +69,7 @@ public class PlayerShoot : BehaviorComponent
             }
 
             Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("bounce"));
-            _timeToNextThrow = time + ThrowRate;
+            _throwTimer = ThrowRate;
         }
 
         if (!_movement.Dashing)

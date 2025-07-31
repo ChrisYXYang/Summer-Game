@@ -18,7 +18,7 @@ public class PlayerState : BehaviorComponent
     private Queue<string> _buffStatements = [];
 
     private float _statementRate = 0.3f;
-    private float _nextStatementTime = 0;
+    private float _statementTimer = 0;
 
     private PlayerShoot _shoot;
     private PlayerMovement _movement;
@@ -31,6 +31,8 @@ public class PlayerState : BehaviorComponent
 
     public override void Update(GameTime gameTime)
     {
+        _statementTimer -= SceneTools.DeltaTime;
+
         // handle active buffs
         for (int i = _activeBuffs.Count - 1; i >= 0; i--)
         {
@@ -52,15 +54,13 @@ public class PlayerState : BehaviorComponent
 
         // handle buff statements
         if (_buffStatements.Count > 0)
-        {
-            float time = (float)gameTime.TotalGameTime.TotalSeconds;
-            
-            if (_nextStatementTime <= time)
+        {            
+            if (_statementTimer <= 0)
             {
                 string statement = _buffStatements.Dequeue();
                 GameObject text = SceneTools.Instantiate(Prefabs.BuffStatement(), Transform.position - (Vector2.UnitY * Converter.PixelToUnit(4)));
                 ((TextRenderer)text.Renderer).Text = statement;
-                _nextStatementTime = time + _statementRate;
+                _statementTimer = _statementRate;
             }
         }
     }

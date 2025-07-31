@@ -18,7 +18,7 @@ public class EnemyHealth : Health
     private float _knockbackReducer = 20f;
     private bool _damaged = false;
     private bool _knockRight = false;
-    private float _whenWhite;
+    private float _redTime = 0;
     
     public EnemyHealth(int health) : base(health)
     {
@@ -58,16 +58,17 @@ public class EnemyHealth : Health
 
     public override void Update(GameTime gameTime)
     {
+        _redTime -= SceneTools.DeltaTime;
+
         // handle if damaged.
-        float time = (float)gameTime.TotalGameTime.TotalSeconds;
         if (_damaged)
         {
-            _whenWhite = time + _damageColorTime;
+            _redTime = _damageColorTime;
             _damaged = false;
         }
 
         // handle when to turn color back to normal
-        if (_whenWhite <= time)
+        if (_redTime <= 0)
         {
             _sr.Color = Color.White;
         }

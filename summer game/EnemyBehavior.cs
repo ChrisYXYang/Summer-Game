@@ -52,7 +52,7 @@ public class EnemyBehavior : BehaviorComponent
     private readonly Animation _run;
     private readonly Func<PrefabInstance> _projectile;
     //private GameObject _indicator;
-    private float timeToNextAttack = 0;
+    private float _attackTimer = 0;
 
     public EnemyBehavior(float projectileSpeed, bool doubleDmg, float attackRate, float handRange, 
         float moveSpeed, float range, Func<PrefabInstance> projectile, Animation run)
@@ -77,6 +77,8 @@ public class EnemyBehavior : BehaviorComponent
 
     public override void Update(GameTime gameTime)
     {
+        _attackTimer -= SceneTools.DeltaTime;
+
         if (!Knockbacked)
         {
             // move
@@ -114,16 +116,14 @@ public class EnemyBehavior : BehaviorComponent
             }
 
             // shoot
-            float time = (float)gameTime.TotalGameTime.TotalSeconds;
             Vector2 playerDist = Vector2.Normalize(_player.position - Transform.position);
 
             //_indicator.Transform.position = playerDist * HandRange;
-
-            if (time >= timeToNextAttack)
+            if (_attackTimer <= 0)
             {
                 Shoot(playerDist, 0);
 
-                timeToNextAttack = time + AttackRate;
+                _attackTimer = AttackRate;
             }
         }
         else

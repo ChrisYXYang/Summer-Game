@@ -31,7 +31,7 @@ public class PlayerMovement : BehaviorComponent
     private Animation _dash;
     private SpriteRenderer _hat;
     private float _jumpBuffer;
-    private float _stopDashTime;
+    private float _dashTimer;
     private bool _canDash = true;
     private bool _running;
 
@@ -65,12 +65,12 @@ public class PlayerMovement : BehaviorComponent
     public override void Update(GameTime gameTime)
     {
         // get game time
-        float time = (float)gameTime.TotalGameTime.TotalSeconds;
+        _dashTimer -= SceneTools.DeltaTime;
 
         // jump input handling
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.W))
         {
-            _jumpBuffer = 0.1f + time;
+            _jumpBuffer = 0.1f + SceneTools.Time;
         }
 
         // dash
@@ -86,13 +86,13 @@ public class PlayerMovement : BehaviorComponent
         {
             Dashing = true;
             _canDash = false;
-            _stopDashTime = time + DashTime;
+            _dashTimer = DashTime;
             Parent.Animator.Animation = _dash;
             _hat.IsVisible = false;
             SceneTools.Instantiate(Prefabs.DiscardedHat(), new Vector2(Transform.position.X, Transform.position.Y + Converter.PixelToUnit(-4)));
 
             // jump if needed
-            if (_jumpBuffer >= time && _rb.TouchingBottom)
+            if (_jumpBuffer >= SceneTools.Time && _rb.TouchingBottom)
             {
                 _rb.YVelocity -= JumpPower;
                 Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("collect"));
@@ -111,7 +111,7 @@ public class PlayerMovement : BehaviorComponent
             }
         }
         
-        if (Dashing && time >= _stopDashTime)
+        if (Dashing && _dashTimer <= 0)
         {
             Dashing = false;
             Parent.Rigidbody.XVelocity = 0;
@@ -145,7 +145,7 @@ public class PlayerMovement : BehaviorComponent
             }
 
             // jump
-            if (_jumpBuffer >= time && _rb.TouchingBottom)
+            if (_jumpBuffer >= SceneTools.Time && _rb.TouchingBottom)
             {
                 _rb.YVelocity = -JumpPower;
                 Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("collect"));

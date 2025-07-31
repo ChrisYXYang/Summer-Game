@@ -82,7 +82,10 @@ public class Scene1 : Scene
 
     public override void Update(GameTime gameTime)
     {
-
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.Escape))
+        {
+            SceneTools.Paused = !SceneTools.Paused;
+        }
 
         base.Update(gameTime);
     }
