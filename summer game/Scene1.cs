@@ -24,7 +24,7 @@ public class Scene1 : Scene
     {
         Gravity = 25f;
         UICamera.Scale = 10;
-        Camera.PixelScale = 4;
+        //Camera.PixelScale = 4;
         base.Initialize();
     }
     
@@ -53,6 +53,8 @@ public class Scene1 : Scene
         Setup(Prefabs.EnhancedThrowing(), new Vector2(-9, 0));
         Setup(Prefabs.TripleShot(), new Vector2(-11, 0));
         Setup(Prefabs.DoubleDamage(), new Vector2(-12, 0));
+        Setup(Prefabs.Fish(), new Vector2(14, 0));
+
 
         //Setup(Prefabs.TestDummy(), new Vector2(-7, 0));
 
@@ -101,6 +103,15 @@ public class Scene1 : Scene
                 new UISprite(),
                 new BoxCollider(360, 120),
                 new ResumeButton()
+            ]
+        );
+
+        Setup
+        (
+            "score text",
+            [
+                new Transform(new Vector2(20, 40)),
+                new UIText(_big, "", AnchorMode.MiddleLeft),
             ]
         );
 

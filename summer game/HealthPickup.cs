@@ -7,27 +7,16 @@ using MyMonoGameLibrary.Scenes;
 
 namespace summer_game;
 
-public class HealthItem : BehaviorComponent
+public class HealthPickup : Pickup
 {
-    public int Amount { get; protected set; }
+    public int Amount { get; private set; }
 
-    public HealthItem(int amount)
+    public HealthPickup(int amount) : base("healed " + amount)
     {
         Amount = amount;
     }
 
-    public override void OnCollisionEnter(ICollider other)
-    {
-        Use(other);
-
-    }
-
-    public override void OnCollisionStay(ICollider other)
-    {
-        Use(other);
-    }
-
-    private void Use(ICollider other)
+    protected override void Use(ICollider other)
     {
         if (other is ColliderComponent col)
         {
@@ -38,7 +27,7 @@ public class HealthItem : BehaviorComponent
                 {
                     playerHealth.Heal(Amount);
                     SceneTools.Destroy(Parent);
-                    playerHealth.GetComponent<PlayerState>().QueueStatement("healed " + Amount);
+                    playerHealth.GetComponent<PlayerState>().QueueStatement(Statement);
                 }
             }
         }

@@ -11,8 +11,8 @@ public class HealthUI : BehaviorComponent
 {
     public static HealthUI Instance { get; private set; }
 
-    private float _y = 80;
-    private float _x = 80;
+    private float _y = 120;
+    private float _x = 60;
     private float _spacing = 90;
     private Func<PrefabInstance> _heart = Prefabs.HeartIcon;
     private List<HeartIcon> _hearts = [];

@@ -55,6 +55,7 @@
 		<Sprite name="double damage"/>
 		<Sprite name="speed up ui"/>
 		<Sprite name="speed up"/>
+		<Sprite name="fish"/>
 
 	</Sprites>
 	<Animations>

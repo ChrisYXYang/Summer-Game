@@ -130,7 +130,7 @@ public static class Prefabs
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowman"), 0.4f),
             new Animator(),
-            new EnemyBehavior(7.5f, false, 1.5f, 0.5f, 3, 3, Prefabs.Carrot, Core.GlobalLibrary.GetAnimation("characters", "snowman_run")),
+            new EnemyBehavior(7.5f, false, 1.5f, 0.5f, 2.75f, 3, Prefabs.Carrot, Core.GlobalLibrary.GetAnimation("characters", "snowman_run")),
             new EnemyHealth(4)
             ];
 
@@ -199,7 +199,7 @@ public static class Prefabs
         return new PrefabInstance("icicle", components);
     }
 
-    // buffs
+    // pickups
     public static PrefabInstance BuffStatement()
     {
         Component[] components =
@@ -212,6 +212,19 @@ public static class Prefabs
         return new PrefabInstance("buff statement", components);
     }
 
+    public static PrefabInstance Fish()
+    {
+        Component[] components =
+            [
+            new Transform(),
+            new BoxCollider(Tools.PixelToUnit(6), Tools.PixelToUnit(6), "buff"),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "fish"), 0.35f),
+            new ScorePickup(1),
+            ];
+
+        return new PrefabInstance("fish", components);
+    }
+
     public static PrefabInstance Heart()
     {
         Component[] components =
@@ -219,7 +232,7 @@ public static class Prefabs
             new Transform(),
             new BoxCollider(Tools.PixelToUnit(6), Tools.PixelToUnit(6), "buff"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "heart"), 0.35f),
-            new HealthItem(2),
+            new HealthPickup(2),
             ];
 
         return new PrefabInstance("heart", components);
@@ -232,7 +245,7 @@ public static class Prefabs
             new Transform(),
             new BoxCollider(Tools.PixelToUnit(6), Tools.PixelToUnit(6), "buff"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "half heart"), 0.35f),
-            new HealthItem(1),
+            new HealthPickup(1),
             ];
 
         return new PrefabInstance("half heart", components);
@@ -245,7 +258,7 @@ public static class Prefabs
             new Transform(),
             new BoxCollider(Tools.PixelToUnit(6), Tools.PixelToUnit(6), "buff"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "speed up"), 0.35f),
-            new BuffItem(Buffs.SpeedUp, "speed up!", 10),
+            new BuffPickup(Buffs.SpeedUp, "speed up!", 10),
             ];
 
         return new PrefabInstance("speed up", components);
@@ -258,7 +271,7 @@ public static class Prefabs
             new Transform(),
             new BoxCollider(Tools.PixelToUnit(6), Tools.PixelToUnit(6), "buff"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "enhanced throwing"), 0.35f),
-            new BuffItem(Buffs.EnhancedThrowing, "enhanced throwing!", 15),
+            new BuffPickup(Buffs.EnhancedThrowing, "enhanced throwing!", 15),
             ];
 
         return new PrefabInstance("enhanced throwing", components);
@@ -270,7 +283,7 @@ public static class Prefabs
             new Transform(),
             new BoxCollider(Tools.PixelToUnit(6), Tools.PixelToUnit(6), "buff"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "double damage"), 0.35f),
-            new BuffItem(Buffs.DoubleDamage, "double damage!", 20),
+            new BuffPickup(Buffs.DoubleDamage, "double damage!", 20),
             ];
 
         return new PrefabInstance("double damage", components);
@@ -283,7 +296,7 @@ public static class Prefabs
             new Transform(),
             new BoxCollider(Tools.PixelToUnit(6), Tools.PixelToUnit(6), "buff"),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "triple shot"), 0.35f),
-            new BuffItem(Buffs.TripleShot, "triple shot!", 25),
+            new BuffPickup(Buffs.TripleShot, "triple shot!", 25),
             ];
 
         return new PrefabInstance("triple shot", components);

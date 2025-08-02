@@ -36,7 +36,7 @@ public class EnemyBehavior : BehaviorComponent
     public float MoveSpeed
     {
         get =>_moveSpeed;
-        set => _moveSpeed = value * (1 + (float)Core.Random.NextDouble() * 0.1f);
+        set => _moveSpeed = value * (1 - (float)Core.Random.NextDouble() * 0.1f);
     }
     
     // x distance from player until stopping movement
@@ -58,6 +58,8 @@ public class EnemyBehavior : BehaviorComponent
     private float _attackTimer = 0;
     private bool _attackMode;
     private float _stateTimer = 0;
+    private bool _forgetting;
+    private bool _delay = true;
     private bool _roam = true;
 
     public EnemyBehavior(float projectileSpeed, bool doubleDmg, float attackRate, float handRange, 
@@ -91,10 +93,12 @@ public class EnemyBehavior : BehaviorComponent
             if (Level == 3)
             {
                 _attackMode = true;
+                _forgetting = false;
             }
             else
             {
                 _attackMode = false;
+                _forgetting = true;
             }
         }
         else if (_player.position.Y > 3.5)
@@ -102,10 +106,12 @@ public class EnemyBehavior : BehaviorComponent
             if (Level == 1)
             {
                 _attackMode = true;
+                _forgetting = false;
             }
             else
             {
                 _attackMode = false;
+                _forgetting = true;
             }
         }
         else
@@ -113,11 +119,33 @@ public class EnemyBehavior : BehaviorComponent
             if (Level == 2)
             {
                 _attackMode = true;
+                _forgetting = false;
             }
             else
             {
                 _attackMode = false;
+                _forgetting = true;
             }
+        }
+
+        if (_forgetting)
+        {
+            if (_attackTimer <= 0)
+            {
+                _delay = true;
+            }
+        }
+
+
+        if (_delay)
+        {
+            _sr.Color = Color.Blue;
+
+        }
+        else
+        {
+            _sr.Color = Color.White;
+
         }
 
         if (!Knockbacked)
@@ -162,14 +190,18 @@ public class EnemyBehavior : BehaviorComponent
                 Vector2 playerDist = Vector2.Normalize(_player.position - Transform.position);
 
                 //_indicator.Transform.position = playerDist * HandRange;
+                if (_delay)
+                {
+                    _attackTimer = 0.5f;
+                    _delay = false;
+                }
+
                 if (_attackTimer <= 0)
                 {
                     Shoot(playerDist, 0);
 
                     _attackTimer = AttackRate;
                 }
-                _sr.Color = Color.White;
-
             }
             else
             {
@@ -189,7 +221,7 @@ public class EnemyBehavior : BehaviorComponent
                     if (_roam)
                     {
                         Parent.Animator.Animation = _run;
-                        
+
                         bool left = Tools.HalfChance();
                         if (left)
                         {
@@ -230,8 +262,6 @@ public class EnemyBehavior : BehaviorComponent
                 {
                     Parent.Animator.Animation = null;
                 }
-
-                _sr.Color = Color.Blue;
             }
         }
         else
