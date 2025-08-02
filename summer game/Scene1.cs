@@ -24,6 +24,7 @@ public class Scene1 : Scene
     {
         Gravity = 25f;
         UICamera.Scale = 10;
+        Camera.PixelScale = 4;
         base.Initialize();
     }
     
@@ -37,8 +38,12 @@ public class Scene1 : Scene
         // set up scene
         SetTilemap("level1", SceneLibrary.GetTileset("snowy tileset"));
         Setup(Prefabs.Player());
-        Setup(Prefabs.Snowman(), new Vector2(7, 0));
-        Setup(Prefabs.Iceman(), new Vector2(-7, 0));
+        Setup(Prefabs.Snowman(), new Vector2(7, 0)).GetComponent<EnemyBehavior>().Level = 2;
+        Setup(Prefabs.Iceman(), new Vector2(-7, 0)).GetComponent<EnemyBehavior>().Level = 2;
+        Setup(Prefabs.Snowman(), new Vector2(7, 12)).GetComponent<EnemyBehavior>().Level = 1;
+        Setup(Prefabs.Iceman(), new Vector2(-7, 12)).GetComponent<EnemyBehavior>().Level = 1;
+        Setup(Prefabs.Snowman(), new Vector2(7, -12)).GetComponent<EnemyBehavior>().Level = 3;
+        Setup(Prefabs.Iceman(), new Vector2(-7, -12)).GetComponent<EnemyBehavior>().Level = 3;
 
         Setup(Prefabs.SpeedUp(), new Vector2(10, 0));
         Setup(Prefabs.EnhancedThrowing(), new Vector2(9, 0));

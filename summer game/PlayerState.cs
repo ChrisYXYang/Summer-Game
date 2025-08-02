@@ -58,7 +58,7 @@ public class PlayerState : BehaviorComponent
             if (_statementTimer <= 0)
             {
                 string statement = _buffStatements.Dequeue();
-                GameObject text = SceneTools.Instantiate(Prefabs.BuffStatement(), Transform.position - (Vector2.UnitY * Converter.PixelToUnit(4)));
+                GameObject text = SceneTools.Instantiate(Prefabs.BuffStatement(), Transform.position - (Vector2.UnitY * Tools.PixelToUnit(4)));
                 ((TextRenderer)text.Renderer).Text = statement;
                 _statementTimer = _statementRate;
             }

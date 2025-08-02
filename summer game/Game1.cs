@@ -41,7 +41,7 @@ public class Game1 : DebugMode
         GlobalLibrary.AddSoundEffect("collect");
 
 
-        //Audio.PlaySong(GlobalLibrary.GetSong("theme"));
+        Audio.PlaySong(GlobalLibrary.GetSong("theme"));
 
         base.LoadContent();
     }

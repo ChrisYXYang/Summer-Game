@@ -9,6 +9,7 @@ using MyMonoGameLibrary;
 using MyMonoGameLibrary.Graphics;
 using MyMonoGameLibrary.Input;
 using MyMonoGameLibrary.Scenes;
+using MyMonoGameLibrary.Tools;
 using MyMonoGameLibrary.UI;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -46,6 +47,8 @@ public class EnemyBehavior : BehaviorComponent
         set => _range = value * (1 + (float)Core.Random.NextDouble() * 0.25f);
     }
 
+    public int Level { get; set; }
+
     private Transform _player;
     private SpriteRenderer _sr;
     private Health _health;
@@ -53,6 +56,9 @@ public class EnemyBehavior : BehaviorComponent
     private readonly Func<PrefabInstance> _projectile;
     //private GameObject _indicator;
     private float _attackTimer = 0;
+    private bool _attackMode;
+    private float _stateTimer = 0;
+    private bool _roam = true;
 
     public EnemyBehavior(float projectileSpeed, bool doubleDmg, float attackRate, float handRange, 
         float moveSpeed, float range, Func<PrefabInstance> projectile, Animation run)
@@ -78,52 +84,154 @@ public class EnemyBehavior : BehaviorComponent
     public override void Update(GameTime gameTime)
     {
         _attackTimer -= SceneTools.DeltaTime;
+        _stateTimer -= SceneTools.DeltaTime;
 
-        if (!Knockbacked)
+        if (_player.position.Y <= -6.5)
         {
-            // move
-            bool outRange = MathF.Abs(_player.Transform.position.X - Transform.position.X) > Range;
-
-            if (_player.position.X > Transform.position.X)
+            if (Level == 3)
             {
-                if (outRange)
-                {
-                    Parent.Rigidbody.XVelocity = MoveSpeed;
-                    Parent.Animator.Animation = _run;
-                }
-                else
-                {
-                    Parent.Rigidbody.XVelocity = 0;
-                    Parent.Animator.Animation = null;
-                }
-                _sr.FlipX = false;
+                _attackMode = true;
             }
             else
             {
-                if (outRange)
+                _attackMode = false;
+            }
+        }
+        else if (_player.position.Y > 3.5)
+        {
+            if (Level == 1)
+            {
+                _attackMode = true;
+            }
+            else
+            {
+                _attackMode = false;
+            }
+        }
+        else
+        {
+            if (Level == 2)
+            {
+                _attackMode = true;
+            }
+            else
+            {
+                _attackMode = false;
+            }
+        }
+
+        if (!Knockbacked)
+        {
+            if (_attackMode)
+            {
+                // move
+                bool outRange = MathF.Abs(_player.Transform.position.X - Transform.position.X) > Range;
+
+                if (_player.position.X > Transform.position.X)
                 {
-                    Parent.Rigidbody.XVelocity = -MoveSpeed;
-                    Parent.Animator.Animation = _run;
+                    if (outRange)
+                    {
+                        Parent.Rigidbody.XVelocity = MoveSpeed;
+                        Parent.Animator.Animation = _run;
+                    }
+                    else
+                    {
+                        Parent.Rigidbody.XVelocity = 0;
+                        Parent.Animator.Animation = null;
+                    }
+                    _sr.FlipX = false;
                 }
                 else
                 {
-                    Parent.Rigidbody.XVelocity = 0;
+                    if (outRange)
+                    {
+                        Parent.Rigidbody.XVelocity = -MoveSpeed;
+                        Parent.Animator.Animation = _run;
+                    }
+                    else
+                    {
+                        Parent.Rigidbody.XVelocity = 0;
+                        Parent.Animator.Animation = null;
+                    }
+
+                    _sr.FlipX = true;
+
+                }
+
+                // shoot
+                Vector2 playerDist = Vector2.Normalize(_player.position - Transform.position);
+
+                //_indicator.Transform.position = playerDist * HandRange;
+                if (_attackTimer <= 0)
+                {
+                    Shoot(playerDist, 0);
+
+                    _attackTimer = AttackRate;
+                }
+                _sr.Color = Color.White;
+
+            }
+            else
+            {
+                if (_stateTimer <= 0)
+                {
+                    _stateTimer = 1.5f + ((float)Core.Random.NextDouble() * 2.5f);
+
+                    if (!_roam)
+                    {
+                        _roam = true;
+                    }
+                    else
+                    {
+                        _roam = Tools.HalfChance();
+                    }
+
+                    if (_roam)
+                    {
+                        Parent.Animator.Animation = _run;
+                        
+                        bool left = Tools.HalfChance();
+                        if (left)
+                        {
+                            Parent.Rigidbody.XVelocity = -MoveSpeed;
+                        }
+                        else
+                        {
+                            Parent.Rigidbody.XVelocity = MoveSpeed;
+                        }
+                    }
+                    else
+                    {
+                        Parent.Rigidbody.XVelocity = 0;
+                    }
+                }
+
+                if (Parent.Rigidbody.TouchingLeft)
+                {
+                    Parent.Rigidbody.XVelocity = MoveSpeed;
+                }
+
+                if (Parent.Rigidbody.TouchingRight)
+                {
+                    Parent.Rigidbody.XVelocity = -MoveSpeed;
+                }
+
+                if (Parent.Rigidbody.XVelocity < 0)
+                {
+                    Parent.Animator.Animation = _run;
+                    _sr.FlipX = true;
+                }
+                else if (Parent.Rigidbody.XVelocity > 0)
+                {
+                    Parent.Animator.Animation = _run;
+                    _sr.FlipX = false;
+                }
+                else
+                {
                     Parent.Animator.Animation = null;
                 }
 
-                _sr.FlipX = true;
-
-            }
-
-            // shoot
-            Vector2 playerDist = Vector2.Normalize(_player.position - Transform.position);
-
-            //_indicator.Transform.position = playerDist * HandRange;
-            if (_attackTimer <= 0)
-            {
-                Shoot(playerDist, 0);
-
-                _attackTimer = AttackRate;
+                _sr.Color = Color.Blue;
             }
         }
         else

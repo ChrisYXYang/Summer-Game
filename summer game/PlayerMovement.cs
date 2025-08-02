@@ -89,7 +89,7 @@ public class PlayerMovement : BehaviorComponent
             _dashTimer = DashTime;
             Parent.Animator.Animation = _dash;
             _hat.IsVisible = false;
-            SceneTools.Instantiate(Prefabs.DiscardedHat(), new Vector2(Transform.position.X, Transform.position.Y + Converter.PixelToUnit(-4)));
+            SceneTools.Instantiate(Prefabs.DiscardedHat(), new Vector2(Transform.position.X, Transform.position.Y + Tools.PixelToUnit(-4)));
 
             // jump if needed
             if (_jumpBuffer >= SceneTools.Time && _rb.TouchingBottom)
@@ -170,17 +170,17 @@ public class PlayerMovement : BehaviorComponent
             if (_rb.YVelocity < 0)
             {
                 Parent.Animator.Animation = _jump;
-                _hat.Transform.position.Y = Converter.PixelToUnit(-5);
+                _hat.Transform.position.Y = Tools.PixelToUnit(-5);
 
             }
             else if (_rb.YVelocity > 0)
             {
                 Parent.Animator.Animation = _fall;
-                _hat.Transform.position.Y = Converter.PixelToUnit(-4);
+                _hat.Transform.position.Y = Tools.PixelToUnit(-4);
             }
             else
             {
-                _hat.Transform.position.Y = Converter.PixelToUnit(-4);
+                _hat.Transform.position.Y = Tools.PixelToUnit(-4);
                 if (_running)
                 {
                     Parent.Animator.Animation = _run;
