@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MyMonoGameLibrary.Input;
-using MyMonoGameLibrary.Scenes;
 
 namespace summer_game;
 
 public class PlayerHealth : Health
 {
-    private HealthUI _ui;
-    
     public override int MaxHealth 
     { 
         get => base.MaxHealth;
@@ -25,7 +22,7 @@ public class PlayerHealth : Health
             }
             
             base.MaxHealth = value;
-            _ui?.Update(CurrentHealth, MaxHealth);
+            HealthUI.Instance?.Update(CurrentHealth, MaxHealth);
         } 
     }
     public override int CurrentHealth 
@@ -34,7 +31,7 @@ public class PlayerHealth : Health
         set
         {
             base.CurrentHealth = value;
-            _ui?.Update(CurrentHealth, MaxHealth);
+            HealthUI.Instance?.Update(CurrentHealth, MaxHealth);
 
         }
     }
@@ -62,19 +59,18 @@ public class PlayerHealth : Health
 
     public override void Start()
     {
-        _ui = SceneTools.GetGameObject("ui manager").GetComponent<HealthUI>();
-        _ui.Update(CurrentHealth, MaxHealth);
+        HealthUI.Instance.Update(CurrentHealth, MaxHealth);
     }
 
     public override void Heal(int heal)
     {
         base.Heal(heal);
-        _ui.Update(CurrentHealth, MaxHealth);
+        HealthUI.Instance.Update(CurrentHealth, MaxHealth);
     }
 
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        _ui.Update(CurrentHealth, MaxHealth);
+        HealthUI.Instance.Update(CurrentHealth, MaxHealth);
     }
 }

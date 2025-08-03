@@ -11,6 +11,8 @@ namespace summer_game;
 
 public class GameManager : BehaviorComponent
 {
+    public static GameManager Instance { get; private set; }
+
     private int _score;
     public int Score 
     {
@@ -27,6 +29,18 @@ public class GameManager : BehaviorComponent
     public GameManager()
     {
 
+    }
+
+    public override void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            SceneTools.Destroy(this.Parent);
+        }
     }
 
     public override void Start()
