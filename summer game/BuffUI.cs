@@ -8,26 +8,12 @@ namespace summer_game;
 
 public class BuffUI : BehaviorComponent
 {
-    public static BuffUI Instance { get; set; }
-
     private float _y = 220;
     private float _x = 60;
     private float _spacing = 90;
     private Func<PrefabInstance> _icon = Prefabs.BuffIcon;
     private List<BuffIcon> _buffs = [];
 
-    public override void Awake()
-    {
-        if (Instance == null)
-        {
-
-            Instance = this;
-        }
-        else
-        {
-            SceneTools.Destroy(this.Parent);
-        }
-    }
 
     public void Update((Buffs, float)[] buffs)
     {

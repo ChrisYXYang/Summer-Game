@@ -45,45 +45,4 @@ public class Game1 : DebugMode
 
         base.LoadContent();
     }
-
-    protected override void Update(GameTime gameTime)
-    {
-        // debugging purposes
-        if (InputManager.Keyboard.WasKeyJustReleased(Keys.NumPad2))
-        {
-            List<GameObject> gameObjects = SceneTools.GetGameObjects();
-            for (int i = 0; i < gameObjects.Count; i++)
-            {
-                for (int k = i + 1; k < gameObjects.Count; k++)
-                {
-                    if (gameObjects[i].Name.Equals(gameObjects[k].Name))
-                    {
-                        throw new Exception("same name");
-                    }
-                }
-            }
-
-            Debug.WriteLine("all names unique\n");
-        }   
-
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.NumPad0))
-        {
-            DebugMode.PrintScene();
-        }
-
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.NumPad1))
-        {
-            foreach (ICollider collider in SceneTools.GetColliders())
-            {
-                if (collider is ColliderComponent comp)
-                {
-                    Debug.WriteLine(comp.GetName());
-                }
-            }
-
-            Debug.WriteLine("");
-        }
-
-        base.Update(gameTime);
-    }
 }

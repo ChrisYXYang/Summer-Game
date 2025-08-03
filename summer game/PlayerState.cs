@@ -23,8 +23,10 @@ public class PlayerState : BehaviorComponent
     private PlayerShoot _shoot;
     private PlayerMovement _movement;
 
+    private BuffUI _ui;
     public override void Start()
     {
+        _ui = SceneTools.GetGameObject("ui manager").GetComponent<BuffUI>();
         _shoot = GetComponent<PlayerShoot>();
         _movement = GetComponent<PlayerMovement>();
     }
@@ -50,7 +52,7 @@ public class PlayerState : BehaviorComponent
         }
 
         // update the ui
-        BuffUI.Instance.Update([.. _activeBuffs]);
+        _ui.Update([.. _activeBuffs]);
 
         // handle buff statements
         if (_buffStatements.Count > 0)

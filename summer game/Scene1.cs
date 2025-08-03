@@ -69,7 +69,7 @@ public class Scene1 : Scene
 
         Setup
         (
-            "Game Manager",
+            "game manager",
             [
                 new GameManager()
             ]
@@ -77,7 +77,7 @@ public class Scene1 : Scene
 
         Setup
         (
-            "UI Manager",
+            "ui manager",
             [
                 new HealthUI(),
                 new BuffUI(),
@@ -146,6 +146,11 @@ public class Scene1 : Scene
         //{
         //    DebugMode.DrawUICollider(gameObject);
         //}
+
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.NumPad0))
+        {
+            DebugMode.PrintScene();
+        }
 
 
         base.Draw(gameTime);

@@ -9,26 +9,12 @@ namespace summer_game;
 
 public class HealthUI : BehaviorComponent
 {
-    public static HealthUI Instance { get; private set; }
-
     private float _y = 120;
     private float _x = 60;
     private float _spacing = 90;
     private Func<PrefabInstance> _heart = Prefabs.HeartIcon;
     private List<HeartIcon> _hearts = [];
 
-    public override void Awake()
-    {
-        if (Instance == null)
-        {
-
-            Instance = this;
-        }
-        else
-        {
-            SceneTools.Destroy(this.Parent);
-        }
-    }
 
     public void Update(int health, int maxHealth)
     {

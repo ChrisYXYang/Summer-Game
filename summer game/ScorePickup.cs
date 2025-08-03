@@ -11,16 +11,23 @@ public class ScorePickup : Pickup
 {
     public int Amount { get; private set; }
 
+    private GameManager _gameManager;
+
     public ScorePickup(int amount) : base("+" + amount)
     {
         Amount = amount;
+    }
+
+    public override void Start()
+    {
+        _gameManager = SceneTools.GetGameObject("game manager").GetComponent<GameManager>();
     }
 
     protected override void Use(ICollider other)
     {
         if (other.Layer == "player")
         {
-            GameManager.Instance.Score++;
+            _gameManager.Score++;
             SceneTools.Destroy(Parent);
         }
     }
