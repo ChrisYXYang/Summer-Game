@@ -15,7 +15,7 @@ using MyMonoGameLibrary.UI;
 
 namespace summer_game;
 
-public class Scene1 : Scene
+public class Scene2 : Scene
 {
     private SpriteFont _big;
     private SpriteFont _small;
@@ -27,7 +27,7 @@ public class Scene1 : Scene
         //Camera.PixelScale = 4;
         base.Initialize();
     }
-    
+
     public override void LoadContent()
     {
         // load assets
@@ -37,7 +37,6 @@ public class Scene1 : Scene
 
         // set up scene
         SetTilemap("level1", SceneLibrary.GetTileset("snowy tileset"));
-        Setup(Prefabs.Player()).Persist = true;
         Setup(Prefabs.Snowman(), new Vector2(7, 0)).GetComponent<EnemyBehavior>().Level = 2;
         Setup(Prefabs.Iceman(), new Vector2(-7, 0)).GetComponent<EnemyBehavior>().Level = 2;
         Setup(Prefabs.Snowman(), new Vector2(7, 12)).GetComponent<EnemyBehavior>().Level = 1;
@@ -73,7 +72,7 @@ public class Scene1 : Scene
             [
                 new GameManager()
             ]
-        ).Persist = true;
+        );
 
         Setup
         (
@@ -82,7 +81,7 @@ public class Scene1 : Scene
                 new HealthUI(),
                 new BuffUI(),
             ]
-        ).Persist = true;
+        );
 
         Setup
         (

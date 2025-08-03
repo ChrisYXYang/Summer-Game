@@ -48,6 +48,11 @@ public class Game1 : DebugMode
 
     protected override void Update(GameTime gameTime)
     {
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.Enter))
+        {
+            Core.ChangeScene(new Scene2());
+        }
+        
         // debugging purposes
         if (InputManager.Keyboard.WasKeyJustReleased(Keys.NumPad2))
         {

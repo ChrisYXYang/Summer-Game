@@ -8,23 +8,12 @@ using MyMonoGameLibrary.Scenes;
 namespace summer_game;
 
 public class CameraManager : BehaviorComponent
-{
-    public static CameraManager Instance { get; private set; }
-    
+{    
     private Transform _player;
     private float _speed = 50f; 
 
     public override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            SceneTools.Destroy(Parent);
-        }
-
         _player = SceneTools.GetGameObject("player").Transform;
     }
 

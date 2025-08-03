@@ -63,7 +63,7 @@ public static class Prefabs
             new Animator(),
             new PlayerMovement(5, 13, 10, 0.2f),
             new PlayerShoot(10, false, false, 4, 0.5f, 0.5f),
-            new PlayerHealth(6),
+            new PlayerHealth(6, 4),
             new PlayerState(),
             ];
 

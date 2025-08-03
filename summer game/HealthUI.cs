@@ -44,7 +44,7 @@ public class HealthUI : BehaviorComponent
                 // create heart icons if needed
                 while (_hearts.Count <= i)
                 {
-                    _hearts.Add(SceneTools.Instantiate(_heart.Invoke()).GetComponent<HeartIcon>());
+                    _hearts.Add(SceneTools.Instantiate(_heart.Invoke(), Parent).GetComponent<HeartIcon>());
                     _hearts.Last().Transform.position = new Vector2(_x + ((_hearts.Count - 1) * _spacing), _y);
                 }
 

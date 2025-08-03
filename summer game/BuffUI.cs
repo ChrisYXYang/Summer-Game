@@ -43,7 +43,7 @@ public class BuffUI : BehaviorComponent
                 // create buff icons if needed
                 while (_buffs.Count <= i)
                 {
-                    _buffs.Add(SceneTools.Instantiate(_icon.Invoke()).GetComponent<BuffIcon>());
+                    _buffs.Add(SceneTools.Instantiate(_icon.Invoke(), Parent).GetComponent<BuffIcon>());
                     _buffs.Last().Transform.position = new Vector2(_x, _y + ((_buffs.Count - 1) * _spacing));
                 }
 

@@ -46,6 +46,7 @@ public class GameManager : BehaviorComponent
     public override void Start()
     {
         _scoreText = SceneTools.GetGameObject("score text").GetComponent<UIText>();
+        Parent.AddChild(_scoreText.Parent);
         _scoreText.Text = "Score: " + _score;
     }
 }
