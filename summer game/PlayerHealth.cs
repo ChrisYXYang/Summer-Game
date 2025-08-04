@@ -6,11 +6,21 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MyMonoGameLibrary.Input;
+using MyMonoGameLibrary.Scenes;
 
 namespace summer_game;
 
 public class PlayerHealth : Health
 {
+    public bool Invincible { get; set; } = false;
+    public bool Damageable { get; set; } = true;
+    public float RecoverTime { get; set; }
+
+    private SpriteRenderer _sr;
+    private float _recoverTimer;
+    private float _blinkTimer;
+    private float _blinkTime = 0.15f;
+    
     public override int MaxHealth 
     { 
         get => base.MaxHealth;
@@ -48,18 +58,44 @@ public class PlayerHealth : Health
     //}
 
 
-
-    public PlayerHealth(int health) : base(health)
+    public PlayerHealth(int health, float recoverTime) : base(health)
     {
+        RecoverTime = recoverTime;
     }
 
-    public PlayerHealth(int maxHealth, int currentHealth) : base(maxHealth, currentHealth)
+    public PlayerHealth(int maxHealth, int currentHealth, float recoverTime) : base(maxHealth, currentHealth)
     {
+        RecoverTime = recoverTime;
     }
 
     public override void Start()
     {
+        _sr= GetComponent<SpriteRenderer>();
         HealthUI.Instance.Update(CurrentHealth, MaxHealth);
+    }
+
+    public override void Update(GameTime gameTime)
+    {
+        if (!Damageable)
+        {
+            _recoverTimer -= SceneTools.DeltaTime;
+            _blinkTimer -= SceneTools.DeltaTime;
+
+            if (_recoverTimer <= 0)
+            {
+                Damageable = true;
+            }
+
+            if (_blinkTimer <= 0)
+            {
+                _sr.IsVisible = !_sr.IsVisible;
+                _blinkTimer = _blinkTime;
+            }
+        }
+        else
+        {
+            _sr.IsVisible = true;
+        }
     }
 
     public override void Heal(int heal)
@@ -70,7 +106,15 @@ public class PlayerHealth : Health
 
     public override void TakeDamage(int damage)
     {
-        base.TakeDamage(damage);
-        HealthUI.Instance.Update(CurrentHealth, MaxHealth);
+        if (!Invincible)
+        {
+            if (Damageable)
+            {
+                base.TakeDamage(damage);
+                Damageable = false;
+                _recoverTimer = RecoverTime;
+                HealthUI.Instance.Update(CurrentHealth, MaxHealth);
+            }
+        }
     }
 }

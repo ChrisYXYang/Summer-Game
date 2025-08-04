@@ -12,18 +12,23 @@ using MyMonoGameLibrary;
 
 namespace summer_game;
 
-public class PauseButton : BehaviorComponent
+public class PauseButton : Button
 {
     private UISprite _sprite;
-    private Sprite _normal;
-    private Sprite _hover;
+
+    public PauseButton(Sprite normal, Sprite hover) : base(normal, hover) { }
+    
+
+    public PauseButton(Sprite normal, Sprite hover, Sprite press) : base(normal, hover, press)
+    {
+    }
 
     public override void Start()
     {
         _sprite = GetComponent<UISprite>();
-        _normal = Core.GlobalLibrary.GetSprite("ui", "pause");
-        _hover = Core.GlobalLibrary.GetSprite("ui", "pause_h");
         Parent.IgnorePause = true;
+
+        base.Start();
     }
 
     public override void Update(GameTime gameTime)
@@ -35,18 +40,13 @@ public class PauseButton : BehaviorComponent
         else
         {
             _sprite.IsVisible = true;
-
-            if (Collisions.MouseInUICollider(Parent.Collider))
-            {
-                _sprite.Sprite = _hover;
-
-                if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left))
-                    SceneTools.Paused = true;
-            }
-            else
-            {
-                _sprite.Sprite = _normal;
-            }
         }
+
+        base.Update(gameTime);
+    }
+
+    public override void Clicked()
+    {
+        SceneTools.Paused = true;
     }
 }

@@ -18,6 +18,8 @@ public class EnemyProjectile : BehaviorComponent
         {
             if (other.Layer == "player")
             {
+                PlayerHealth playerHealth = ((ColliderComponent)other).GetComponent<PlayerHealth>();
+                playerHealth.TakeDamage(Damage);
             }
 
             SceneTools.Destroy(this.Parent);

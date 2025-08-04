@@ -2,6 +2,7 @@
 <SpriteSheet>
 	<Settings texture="images/characters" size="16" centered="true"/>
 	<Sprites>
+		<Sprite name="full player"/>
 		<Sprite name="player"/>
 		<Sprite name="player hat"/>
 		<Sprite name="player_dash"/>
@@ -13,6 +14,7 @@
 		<Sprite name="player_run_1"/>
 		<Sprite name="player_run_2"/>
 		<Sprite name="player_run_3"/>
+		<Sprite name="alerted"/>
 		<Sprite name="snowman"/>
 		<Sprite name="snowman_run_0"/>
 		<Sprite name="snowman_run_1"/>

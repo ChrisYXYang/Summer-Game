@@ -54,13 +54,13 @@ public class EnemyBehavior : BehaviorComponent
     private Health _health;
     private readonly Animation _run;
     private readonly Func<PrefabInstance> _projectile;
-    //private GameObject _indicator;
     private float _attackTimer = 0;
     private bool _attackMode;
     private float _stateTimer = 0;
     private bool _forgetting;
     private bool _delay = true;
     private bool _roam = true;
+    private Alert _alert;
 
     public EnemyBehavior(float projectileSpeed, bool doubleDmg, float attackRate, float handRange, 
         float moveSpeed, float range, Func<PrefabInstance> projectile, Animation run)
@@ -80,7 +80,7 @@ public class EnemyBehavior : BehaviorComponent
         _player = SceneTools.GetGameObject("player").Transform;
         _sr = GetComponent<SpriteRenderer>();
         _health = GetComponent<Health>();
-        //_indicator = Parent.GetChild(0);
+        _alert = Parent.GetChild(0).GetComponent<Alert>();
     }
 
     public override void Update(GameTime gameTime)
@@ -136,18 +136,6 @@ public class EnemyBehavior : BehaviorComponent
             }
         }
 
-
-        if (_delay)
-        {
-            _sr.Color = Color.Blue;
-
-        }
-        else
-        {
-            _sr.Color = Color.White;
-
-        }
-
         if (!Knockbacked)
         {
             if (_attackMode)
@@ -189,11 +177,12 @@ public class EnemyBehavior : BehaviorComponent
                 // shoot
                 Vector2 playerDist = Vector2.Normalize(_player.position - Transform.position);
 
-                //_indicator.Transform.position = playerDist * HandRange;
+                // check if delay and alert if there is
                 if (_delay)
                 {
                     _attackTimer = 0.5f;
                     _delay = false;
+                    _alert.Alerted();
                 }
 
                 if (_attackTimer <= 0)
@@ -280,17 +269,4 @@ public class EnemyBehavior : BehaviorComponent
         projectile.Rigidbody.YVelocity = direction.Y * ProjectileSpeed;
         projectile.Transform.Rotation = MathHelper.ToDegrees(rotation);
     }
-
-    //public override void OnCollisionEnter(ICollider other)
-    //{
-    //    if (other is ColliderComponent col)
-    //    {
-    //        PlayerHealth playerHealth = col.GetComponent<PlayerHealth>();
-    //        if (playerHealth != null)
-    //        {
-    //            int damage = DoubleDamage ? 2 : 1;
-    //            playerHealth.TakeDamage(damage);
-    //        }
-    //    }
-    //}
 }

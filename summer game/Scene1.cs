@@ -24,7 +24,8 @@ public class Scene1 : Scene
     {
         Gravity = 25f;
         UICamera.Scale = 10;
-        //Camera.PixelScale = 4;
+        Camera.PixelScale = 4;
+        Core.Audio.MasterVolume = 0;
         base.Initialize();
     }
     
@@ -59,13 +60,13 @@ public class Scene1 : Scene
         //Setup(Prefabs.TestDummy(), new Vector2(-7, 0));
 
 
-        Setup
-        (
-            "Camera Manager",
-            [
-                new CameraManager()
-            ]
-        );
+        //Setup
+        //(
+        //    "Camera Manager",
+        //    [
+        //        new CameraManager()
+        //    ]
+        //);
 
         Setup
         (
@@ -91,7 +92,7 @@ public class Scene1 : Scene
                 new Transform(new Vector2(1840, 80)),
                 new UISprite(),
                 new BoxCollider(80, 80),
-                new PauseButton()
+                new PauseButton(Core.GlobalLibrary.GetSprite("ui", "pause"), Core.GlobalLibrary.GetSprite("ui", "pause_h"))
             ]
         );
 
@@ -102,7 +103,7 @@ public class Scene1 : Scene
                 new Transform(new Vector2(960, 540)),
                 new UISprite(),
                 new BoxCollider(360, 120),
-                new ResumeButton()
+                new ResumeButton(Core.GlobalLibrary.GetSprite("ui", "resume"), Core.GlobalLibrary.GetSprite("ui", "resume_h"))
             ]
         );
 

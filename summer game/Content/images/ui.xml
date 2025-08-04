@@ -2,6 +2,8 @@
 <SpriteSheet>
 	<Settings texture="images/ui" size="64" centered="true"/>
 	<Sprites>
+		<Sprite name="play"/>
+		<Sprite name="play_h"/>
 		<Sprite name="pause"/>
 		<Sprite name="pause_h"/>
 		<Sprite name="resume"/>

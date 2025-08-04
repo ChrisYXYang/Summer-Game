@@ -33,7 +33,7 @@ public class EnemyHealth : Health
         base.TakeDamage(damage);
 
         _damaged = true;
-        //_sr.Color = Color.Pink;
+        _sr.Color = Color.Pink;
         _behavior.Knockbacked = true;
         _knockRight = knockRight;
         Parent.Rigidbody.XVelocity = knockRight ? knockback : -knockback;
@@ -68,10 +68,10 @@ public class EnemyHealth : Health
         }
 
         // handle when to turn color back to normal
-        //if (_redTime <= 0)
-        //{
-        //    _sr.Color = Color.White;
-        //}
+        if (_redTime <= 0)
+        {
+            _sr.Color = Color.White;
+        }
 
         // handle knockback
         if (_behavior.Knockbacked)

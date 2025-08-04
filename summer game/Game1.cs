@@ -48,11 +48,6 @@ public class Game1 : DebugMode
 
     protected override void Update(GameTime gameTime)
     {
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.Enter))
-        {
-            Core.ChangeScene(new Scene2());
-        }
-        
         // debugging purposes
         if (InputManager.Keyboard.WasKeyJustReleased(Keys.NumPad2))
         {
@@ -74,19 +69,6 @@ public class Game1 : DebugMode
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.NumPad0))
         {
             DebugMode.PrintScene();
-        }
-
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.NumPad1))
-        {
-            foreach (ICollider collider in SceneTools.GetColliders())
-            {
-                if (collider is ColliderComponent comp)
-                {
-                    Debug.WriteLine(comp.GetName());
-                }
-            }
-
-            Debug.WriteLine("");
         }
 
         base.Update(gameTime);

@@ -63,7 +63,7 @@ public static class Prefabs
             new Animator(),
             new PlayerMovement(5, 13, 10, 0.2f),
             new PlayerShoot(10, false, false, 4, 0.5f, 0.5f),
-            new PlayerHealth(6, 4),
+            new PlayerHealth(6, 1.5f),
             new PlayerState(),
             ];
 
@@ -134,7 +134,7 @@ public static class Prefabs
             new EnemyHealth(4)
             ];
 
-        return new PrefabInstance("snowman", components);
+        return new PrefabInstance("snowman", components, [Alerted()]);
     }
 
     public static PrefabInstance Iceman()
@@ -150,23 +150,19 @@ public static class Prefabs
             new EnemyHealth(8)
             ];
 
-        return new PrefabInstance("iceman", components);
+        return new PrefabInstance("iceman", components, [Alerted()]);
     }
 
-    public static PrefabInstance TestDummy()
+    public static PrefabInstance Alerted()
     {
         Component[] components =
             [
-            new Transform(),
-            new BoxCollider(Tools.PixelToUnit(8), Tools.PixelToUnit(9), Tools.PixelToUnit(0), Tools.PixelToUnit(-0.5f), "enemy"),
-            new Rigidbody(true, true),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowman"), 0.4f),
-            new Animator(),
-            new EnemyBehavior(7.5f, false, 1, 0.5f, 3, 3, Prefabs.Carrot, Core.GlobalLibrary.GetAnimation("characters", "snowman_run")),
-            new EnemyHealth(1000)
+                new Transform(new Vector2(0, -1.5f)),
+                new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "alerted"), 0.4f),
+                new Alert()
             ];
 
-        return new PrefabInstance("test dummy", components, [SnowballIndicator()]);
+        return new PrefabInstance("alert", components);
     }
 
     public static PrefabInstance Carrot()

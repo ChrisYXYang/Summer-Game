@@ -12,18 +12,24 @@ using MyMonoGameLibrary.UI;
 
 namespace summer_game;
 
-public class ResumeButton : BehaviorComponent
+public class ResumeButton : Button
 {
     private UISprite _sprite;
-    private Sprite _normal;
-    private Sprite _hover;
+
+    public ResumeButton(Sprite normal, Sprite hover) : base(normal, hover)
+    {
+    }
+
+    public ResumeButton(Sprite normal, Sprite hover, Sprite press) : base(normal, hover, press)
+    {
+    }
 
     public override void Start()
     {
         _sprite = GetComponent<UISprite>();
-        _normal = Core.GlobalLibrary.GetSprite("ui", "resume");
-        _hover = Core.GlobalLibrary.GetSprite("ui", "resume_h");
         Parent.IgnorePause = true;
+
+        base.Start();
     }
 
     public override void Update(GameTime gameTime)
@@ -31,22 +37,17 @@ public class ResumeButton : BehaviorComponent
         if (SceneTools.Paused)
         {
             _sprite.IsVisible = true;
-
-            if (Collisions.MouseInUICollider(Parent.Collider))
-            {
-                _sprite.Sprite = _hover;
-
-                if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left))
-                    SceneTools.Paused = false;
-            }
-            else
-            {
-                _sprite.Sprite = _normal;
-            }
         }
         else
         {
             _sprite.IsVisible = false;
         }
+
+        base.Update(gameTime);
+    }
+
+    public override void Clicked()
+    {
+        SceneTools.Paused = false;
     }
 }
