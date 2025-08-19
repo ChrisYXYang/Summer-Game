@@ -18,8 +18,7 @@ public class EnemyHealth : Health
     private float _knockbackReducer = 20f;
     private bool _damaged = false;
     private bool _knockRight = false;
-    private float _redTime = 0;
-    
+    private float _redTime = 0;    
     public EnemyHealth(int health) : base(health)
     {
     }
@@ -37,16 +36,11 @@ public class EnemyHealth : Health
         _behavior.Knockbacked = true;
         _knockRight = knockRight;
         Parent.Rigidbody.XVelocity = knockRight ? knockback : -knockback;
-
-        if (Dead)
-        {
-            Die();
-        }
-
     }
 
-    public void Die()
+    public override void Die()
     {
+        GameManager.Instance.MinusEnemy(GetComponent<EnemyBehavior>().Level);
         SceneTools.Destroy(Parent);
     }
 

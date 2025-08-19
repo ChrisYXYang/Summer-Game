@@ -20,14 +20,12 @@ public class BuffPickup : Pickup
 
     protected override void Use(ICollider other)
     {
-        if (other is ColliderComponent col)
+        PlayerState playerState = ((ColliderComponent)other).GetComponent<PlayerState>();
+        if (playerState != null)
         {
-            PlayerState playerState = col.GetComponent<PlayerState>();
-            if (playerState != null)
-            {
-                playerState.AddBuff(Buff, Statement, Time);
-                SceneTools.Destroy(Parent);
-            }
+            playerState.AddBuff(Buff, Statement, Time);
+            GameManager.Instance.MinusItem(Level);
+            SceneTools.Destroy(Parent);
         }
     }
 }

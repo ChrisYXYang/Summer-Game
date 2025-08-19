@@ -8,7 +8,7 @@ using MyMonoGameLibrary.Scenes;
 
 namespace summer_game;
 
-public class Health : BehaviorComponent
+public abstract class Health : BehaviorComponent
 {
 
     private int _maxHealth;
@@ -43,6 +43,8 @@ public class Health : BehaviorComponent
     public virtual bool Dead => CurrentHealth <= 0;
     public virtual bool Full => CurrentHealth == MaxHealth;
 
+    private bool _died = false;
+
     public Health(int health)
     {
         MaxHealth = health;
@@ -58,7 +60,15 @@ public class Health : BehaviorComponent
     public virtual void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
+
+        if (Dead && !_died)
+        {
+            Die();
+            _died = true;
+        }
     }
+
+    public virtual void Die() { }
 
     public virtual void Heal(int heal)
     {

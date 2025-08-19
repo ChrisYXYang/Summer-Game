@@ -93,7 +93,7 @@ public class EnemyBehavior : BehaviorComponent
 
         if (_player.position.Y <= -6.5)
         {
-            if (Level == 3)
+            if (Level == 1)
             {
                 _attackMode = true;
                 _forgetting = false;
@@ -106,7 +106,7 @@ public class EnemyBehavior : BehaviorComponent
         }
         else if (_player.position.Y > 3.5)
         {
-            if (Level == 1)
+            if (Level == 3)
             {
                 _attackMode = true;
                 _forgetting = false;

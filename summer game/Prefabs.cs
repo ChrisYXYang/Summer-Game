@@ -141,8 +141,8 @@ public static class Prefabs
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowman"), 0.4f),
             new Animator(),
-            new EnemyBehavior(7.5f, false, 1.5f, 0.5f, 2.75f, 3, Prefabs.Carrot, Core.GlobalLibrary.GetAnimation("characters", "snowman_run")),
-            new EnemyHealth(4),
+            new EnemyBehavior(7f, false, 2f, 0.5f, 2.75f, 3, Prefabs.Carrot, Core.GlobalLibrary.GetAnimation("characters", "snowman_run")),
+            new EnemyHealth(3),
             new ParticleSystem([Core.GlobalLibrary.GetSprite("characters", "snow")], true, 0.3f, 3, -70f, 25f, 5f,  0.4f, Tools.PixelToUnit(2), Tools.PixelToUnit(4))
             ];
 
@@ -158,8 +158,8 @@ public static class Prefabs
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "iceman"), 0.4f),
             new Animator(),
-            new EnemyBehavior(4f, true, 3, 0.6f, 2, 4, Prefabs.Icicle, Core.GlobalLibrary.GetAnimation("characters", "iceman_run")),
-            new EnemyHealth(8),
+            new EnemyBehavior(3.5f, true, 4, 0.6f, 2, 4, Prefabs.Icicle, Core.GlobalLibrary.GetAnimation("characters", "iceman_run")),
+            new EnemyHealth(6),
             new ParticleSystem([Core.GlobalLibrary.GetSprite("characters", "snow")], true, 0.5f, 5, -70f, 40f, 8f,  0.6f, Tools.PixelToUnit(3), Tools.PixelToUnit(5))
             ];
 
@@ -234,7 +234,7 @@ public static class Prefabs
         Component[] components =
             [
             new Transform(),
-            new TextRenderer(Core.GlobalLibrary.GetFont("04B_30_small"), "", AnchorMode.MiddleCenter, 0.36f),
+            new TextRenderer(Core.GlobalLibrary.GetFont("04B_30_small"), "", AnchorMode.MiddleCenter, 0.71f),
             new BuffStatement(),
             ];
 
@@ -247,7 +247,7 @@ public static class Prefabs
             [
             new Transform(),
             new BoxCollider(Tools.PixelToUnit(6), Tools.PixelToUnit(6), "buff"),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "fish"), 0.35f),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "fish"), 0.7f),
             new ScorePickup(1),
             ];
 
@@ -260,7 +260,7 @@ public static class Prefabs
             [
             new Transform(),
             new BoxCollider(Tools.PixelToUnit(6), Tools.PixelToUnit(6), "buff"),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "heart"), 0.35f),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "heart"), 0.7f),
             new HealthPickup(2),
             ];
 
@@ -273,7 +273,7 @@ public static class Prefabs
             [
             new Transform(),
             new BoxCollider(Tools.PixelToUnit(6), Tools.PixelToUnit(6), "buff"),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "half heart"), 0.35f),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "half heart"), 0.7f),
             new HealthPickup(1),
             ];
 
@@ -286,7 +286,7 @@ public static class Prefabs
             [
             new Transform(),
             new BoxCollider(Tools.PixelToUnit(6), Tools.PixelToUnit(6), "buff"),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "speed up"), 0.35f),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "speed up"), 0.7f),
             new BuffPickup(Buffs.SpeedUp, "speed up!", 10),
             ];
 
@@ -299,8 +299,8 @@ public static class Prefabs
             [
             new Transform(),
             new BoxCollider(Tools.PixelToUnit(6), Tools.PixelToUnit(6), "buff"),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "enhanced throwing"), 0.35f),
-            new BuffPickup(Buffs.EnhancedThrowing, "enhanced throwing!", 15),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "enhanced throwing"), 0.7f),
+            new BuffPickup(Buffs.EnhancedThrowing, "enhanced throwing!", 10),
             ];
 
         return new PrefabInstance("enhanced throwing", components);
@@ -311,8 +311,8 @@ public static class Prefabs
             [
             new Transform(),
             new BoxCollider(Tools.PixelToUnit(6), Tools.PixelToUnit(6), "buff"),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "double damage"), 0.35f),
-            new BuffPickup(Buffs.DoubleDamage, "double damage!", 20),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "double damage"), 0.7f),
+            new BuffPickup(Buffs.DoubleDamage, "double damage!", 10),
             ];
 
         return new PrefabInstance("double damage", components);
@@ -324,8 +324,8 @@ public static class Prefabs
             [
             new Transform(),
             new BoxCollider(Tools.PixelToUnit(6), Tools.PixelToUnit(6), "buff"),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "triple shot"), 0.35f),
-            new BuffPickup(Buffs.TripleShot, "triple shot!", 25),
+            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "triple shot"), 0.7f),
+            new BuffPickup(Buffs.TripleShot, "triple shot!", 10),
             ];
 
         return new PrefabInstance("triple shot", components);

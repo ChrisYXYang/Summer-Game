@@ -18,18 +18,14 @@ public class HealthPickup : Pickup
 
     protected override void Use(ICollider other)
     {
-        if (other is ColliderComponent col)
+        PlayerHealth playerHealth = ((ColliderComponent)other).GetComponent<PlayerHealth>();
+
+        if (!playerHealth.Full)
         {
-            PlayerHealth playerHealth = col.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                if (!playerHealth.Full)
-                {
-                    playerHealth.Heal(Amount);
-                    SceneTools.Destroy(Parent);
-                    playerHealth.GetComponent<PlayerState>().QueueStatement(Statement);
-                }
-            }
+            playerHealth.Heal(Amount);
+            GameManager.Instance.MinusItem(Level);
+            SceneTools.Destroy(Parent);
+            playerHealth.GetComponent<PlayerState>().QueueStatement(Statement);
         }
     }
 }

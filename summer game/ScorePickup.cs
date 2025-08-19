@@ -18,10 +18,8 @@ public class ScorePickup : Pickup
 
     protected override void Use(ICollider other)
     {
-        if (other.Layer == "player")
-        {
-            GameManager.Instance.Score++;
-            SceneTools.Destroy(Parent);
-        }
+        GameManager.Instance.Score++;
+        GameManager.Instance.NewFish(Level);
+        SceneTools.Destroy(Parent);
     }
 }

@@ -24,8 +24,7 @@ public class GameScene : Scene
     {
         Gravity = 25f;
         UICamera.Scale = 10;
-        Camera.PixelScale = 4;
-        Core.Audio.MasterVolume = 0;
+        //Camera.PixelScale = 4;
         base.Initialize();
     }
     
@@ -40,31 +39,14 @@ public class GameScene : Scene
         SetTilemap("level1", SceneLibrary.GetTileset("snowy tileset"));
         Setup(Prefabs.Player());
 
-        Setup(Prefabs.Snowman(), new Vector2(7, 0)).GetComponent<EnemyBehavior>().Level = 2;
-        Setup(Prefabs.Iceman(), new Vector2(-7, 0)).GetComponent<EnemyBehavior>().Level = 2;
-        Setup(Prefabs.Snowman(), new Vector2(7, 12)).GetComponent<EnemyBehavior>().Level = 1;
-        Setup(Prefabs.Iceman(), new Vector2(-7, 12)).GetComponent<EnemyBehavior>().Level = 1;
-        Setup(Prefabs.Snowman(), new Vector2(7, -12)).GetComponent<EnemyBehavior>().Level = 3;
-        Setup(Prefabs.Iceman(), new Vector2(-7, -12)).GetComponent<EnemyBehavior>().Level = 3;
 
-        Setup(Prefabs.SpeedUp(), new Vector2(10, 0));
-        Setup(Prefabs.EnhancedThrowing(), new Vector2(9, 0));
-        Setup(Prefabs.TripleShot(), new Vector2(11, 0));
-        Setup(Prefabs.DoubleDamage(), new Vector2(12, 0));
-        Setup(Prefabs.SpeedUp(), new Vector2(-10, 0));
-        Setup(Prefabs.EnhancedThrowing(), new Vector2(-9, 0));
-        Setup(Prefabs.TripleShot(), new Vector2(-11, 0));
-        Setup(Prefabs.DoubleDamage(), new Vector2(-12, 0));
-        Setup(Prefabs.Fish(), new Vector2(14, 0));
-
-
-        //Setup
-        //(
-        //    "Camera Manager",
-        //    [
-        //        new CameraManager()
-        //    ]
-        //);
+        Setup
+        (
+            "Camera Manager",
+            [
+                new CameraManager()
+            ]
+        );
 
         Setup
         (
@@ -110,7 +92,7 @@ public class GameScene : Scene
             "score text",
             [
                 new Transform(new Vector2(20, 20)),
-                new UIText(_big, "", AnchorMode.TopLeft, Color.Navy),
+                new UIText(_big, "", AnchorMode.TopLeft),
             ]
         );
 
