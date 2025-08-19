@@ -54,10 +54,12 @@ public class EnemyBehavior : BehaviorComponent
     private Health _health;
     private readonly Animation _run;
     private readonly Func<PrefabInstance> _projectile;
+    private ParticleSystem _particle;
     private float _attackTimer = 0;
     private bool _attackMode;
     private float _stateTimer = 0;
     private bool _forgetting;
+    private float _alertTime = 0.4f;
     private bool _delay = true;
     private bool _roam = true;
     private Alert _alert;
@@ -81,6 +83,7 @@ public class EnemyBehavior : BehaviorComponent
         _sr = GetComponent<SpriteRenderer>();
         _health = GetComponent<Health>();
         _alert = Parent.GetChild(0).GetComponent<Alert>();
+        _particle = GetComponent<ParticleSystem>();
     }
 
     public override void Update(GameTime gameTime)
@@ -149,13 +152,17 @@ public class EnemyBehavior : BehaviorComponent
                     {
                         Parent.Rigidbody.XVelocity = MoveSpeed;
                         Parent.Animator.Animation = _run;
+                        _particle.Enabled = true;
+
                     }
                     else
                     {
                         Parent.Rigidbody.XVelocity = 0;
                         Parent.Animator.Animation = null;
+                        _particle.Enabled = false;
                     }
                     _sr.FlipX = false;
+                    _particle.FlipX = true;
                 }
                 else
                 {
@@ -163,15 +170,16 @@ public class EnemyBehavior : BehaviorComponent
                     {
                         Parent.Rigidbody.XVelocity = -MoveSpeed;
                         Parent.Animator.Animation = _run;
+                        _particle.Enabled = true;
                     }
                     else
                     {
                         Parent.Rigidbody.XVelocity = 0;
                         Parent.Animator.Animation = null;
+                        _particle.Enabled = false;
                     }
-
                     _sr.FlipX = true;
-
+                    _particle.FlipX = false;
                 }
 
                 // shoot
@@ -180,9 +188,9 @@ public class EnemyBehavior : BehaviorComponent
                 // check if delay and alert if there is
                 if (_delay)
                 {
-                    _attackTimer = 0.5f;
+                    _attackTimer = _alertTime;
                     _delay = false;
-                    _alert.Alerted();
+                    _alert.Alerted(_alertTime);
                 }
 
                 if (_attackTimer <= 0)
@@ -241,21 +249,27 @@ public class EnemyBehavior : BehaviorComponent
                 {
                     Parent.Animator.Animation = _run;
                     _sr.FlipX = true;
+                    _particle.Enabled = true;
+                    _particle.FlipX = false;
                 }
                 else if (Parent.Rigidbody.XVelocity > 0)
                 {
                     Parent.Animator.Animation = _run;
                     _sr.FlipX = false;
+                    _particle.Enabled = true;
+                    _particle.FlipX = true;
                 }
                 else
                 {
                     Parent.Animator.Animation = null;
+                    _particle.Enabled = false;
                 }
             }
         }
         else
         {
             Parent.Animator.Animation = null;
+            _particle.Enabled = false;
         }
     }
 

@@ -10,7 +10,7 @@ public class BuffUI : BehaviorComponent
 {
     public static BuffUI Instance { get; set; }
 
-    private float _y = 220;
+    private float _y = 260;
     private float _x = 60;
     private float _spacing = 90;
     private Func<PrefabInstance> _icon = Prefabs.BuffIcon;

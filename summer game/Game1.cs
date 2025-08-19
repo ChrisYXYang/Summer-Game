@@ -25,7 +25,7 @@ public class Game1 : DebugMode
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
-        ChangeScene(new Scene1());
+        ChangeScene(new GameScene());
         
         base.Initialize();
     }
@@ -48,23 +48,23 @@ public class Game1 : DebugMode
 
     protected override void Update(GameTime gameTime)
     {
-        // debugging purposes
-        if (InputManager.Keyboard.WasKeyJustReleased(Keys.NumPad2))
-        {
-            List<GameObject> gameObjects = SceneTools.GetGameObjects();
-            for (int i = 0; i < gameObjects.Count; i++)
-            {
-                for (int k = i + 1; k < gameObjects.Count; k++)
-                {
-                    if (gameObjects[i].Name.Equals(gameObjects[k].Name))
-                    {
-                        throw new Exception("same name");
-                    }
-                }
-            }
+        //// debugging purposes
+        //if (InputManager.Keyboard.WasKeyJustReleased(Keys.NumPad2))
+        //{
+        //    List<GameObject> gameObjects = SceneTools.GetGameObjects();
+        //    for (int i = 0; i < gameObjects.Count; i++)
+        //    {
+        //        for (int k = i + 1; k < gameObjects.Count; k++)
+        //        {
+        //            if (gameObjects[i].Name.Equals(gameObjects[k].Name))
+        //            {
+        //                throw new Exception("same name");
+        //            }
+        //        }
+        //    }
 
-            Debug.WriteLine("all names unique\n");
-        }   
+        //    Debug.WriteLine("all names unique\n");
+        //}
 
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.NumPad0))
         {

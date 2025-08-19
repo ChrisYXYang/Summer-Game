@@ -2,6 +2,7 @@
 <SpriteSheet>
 	<Settings texture="images/characters" size="16" centered="true"/>
 	<Sprites>
+		<Sprite name="snow"/>
 		<Sprite name="full player"/>
 		<Sprite name="player"/>
 		<Sprite name="player hat"/>
@@ -26,16 +27,22 @@
 		<Sprite name="iceman_run_2"/>
 		<Sprite name="iceman_run_3"/>
 		<Sprite name="snowball"/>
+		<Sprite name="snowball_debris_0"/>
+		<Sprite name="snowball_debris_1"/>
 		<Sprite name="snowball_0"/>
 		<Sprite name="snowball_1"/>
 		<Sprite name="snowball_2"/>
 		<Sprite name="snowball_3"/>
 		<Sprite name="icicle"/>
+		<Sprite name="icicle_debris_0"/>
+		<Sprite name="icicle_debris_1"/>
 		<Sprite name="icicle_0"/>
 		<Sprite name="icicle_1"/>
 		<Sprite name="icicle_2"/>
 		<Sprite name="icicle_3"/>
 		<Sprite name="carrot"/>
+		<Sprite name="carrot_debris_0"/>
+		<Sprite name="carrot_debris_1"/>
 		<Sprite name="carrot_0"/>
 		<Sprite name="carrot_1"/>
 		<Sprite name="carrot_2"/>

@@ -33,8 +33,8 @@ public class Alert : BehaviorComponent
         }
     }
 
-    public void Alerted()
+    public void Alerted(float time)
     {
-        _timer = 0.5f;
+        _timer = time;
     }
 }

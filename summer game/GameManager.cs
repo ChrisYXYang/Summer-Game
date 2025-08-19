@@ -13,6 +13,8 @@ public class GameManager : BehaviorComponent
 {
     public static GameManager Instance { get; private set; }
 
+    public static int HighScore { get; private set; } = 0;
+
     private int _score;
     public int Score 
     {
@@ -20,7 +22,13 @@ public class GameManager : BehaviorComponent
         set
         {
             _score = value;
-            _scoreText.Text = "Score: " + _score;
+
+            if (_score > HighScore)
+            {
+                HighScore = _score;
+            }
+
+            _scoreText.Text = "High Score: " + HighScore + "\nScore: " + _score;
         } 
     }
 
@@ -47,6 +55,14 @@ public class GameManager : BehaviorComponent
     {
         _scoreText = SceneTools.GetGameObject("score text").GetComponent<UIText>();
         Parent.AddChild(_scoreText.Parent);
-        _scoreText.Text = "Score: " + _score;
+        Score = 0;
+    }
+
+    public override void Update(GameTime gameTime)
+    {
+        if (InputManager.Keyboard.WasKeyJustPressed(Keys.Escape))
+        {
+            SceneTools.Paused = !SceneTools.Paused;
+        }
     }
 }

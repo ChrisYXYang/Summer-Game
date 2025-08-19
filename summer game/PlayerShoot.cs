@@ -95,6 +95,7 @@ public class PlayerShoot : BehaviorComponent
         Vector2 direction = new((float)MathF.Cos(rotation), (float)MathF.Sin(rotation));
         projectile.Rigidbody.XVelocity = direction.X * ProjectileSpeed;
         projectile.Rigidbody.YVelocity = direction.Y * ProjectileSpeed;
+        projectile.Transform.Rotation = MathHelper.ToDegrees(rotation);
     }
 
     public void ModifySpeed(bool add, bool sum, float amount)

@@ -11,6 +11,7 @@ public class Snowball : BehaviorComponent
     public int Damage { get; set; }
     public float Knockback { get; set; }
     private bool _used = false;
+    private bool _destroyed = false;
 
     public override void Update(GameTime gameTime)
     {
@@ -37,8 +38,15 @@ public class Snowball : BehaviorComponent
                     _used = true;
                 }
             }
-            
-            SceneTools.Destroy(this.Parent);
+
+            if (!_destroyed)
+            {
+                GetComponent<ParticleSystem>().Rotation = Transform.Rotation + 180f;
+                GetComponent<ParticleSystem>().Play();
+                SceneTools.Destroy(this.Parent);
+                _destroyed = true;
+            }
+
         }
     }
 }

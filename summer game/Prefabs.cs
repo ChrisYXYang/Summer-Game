@@ -65,6 +65,7 @@ public static class Prefabs
             new PlayerShoot(10, false, false, 4, 0.5f, 0.5f),
             new PlayerHealth(6, 1.5f),
             new PlayerState(),
+            new ParticleSystem([Core.GlobalLibrary.GetSprite("characters", "snow")], true, 0.2f, 2, -70f, 20f, 4f,  0.3f, Tools.PixelToUnit(3), Tools.PixelToUnit(4))
             ];
 
         return new PrefabInstance("player", components, [SnowballIndicator(), Hat()]);
@@ -98,12 +99,22 @@ public static class Prefabs
     {
         Component[] components =
             [
-            new Transform(),
-            new CircleCollider(Tools.PixelToUnit(4), "attack"),
-            new Rigidbody(true, false),
-            new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowball"), 0.63f),
-            new Animator(Core.GlobalLibrary.GetAnimation("characters", "snowball")),
-            new Snowball(),
+                new Transform(),
+                new CircleCollider(Tools.PixelToUnit(4), "attack"),
+                new Rigidbody(true, false),
+                new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowball"), 0.63f),
+                new Animator(Core.GlobalLibrary.GetAnimation("characters", "snowball")),
+                new Snowball(),
+                new ParticleSystem
+                (
+                    [Core.GlobalLibrary.GetSprite("characters", "snowball_debris_0"), 
+                    Core.GlobalLibrary.GetSprite("characters", "snowball_debris_1")],
+                    true,
+                    3,
+                    120f,
+                    4f,
+                    0.5f
+                )
             ];
 
         return new PrefabInstance("snowball", components);
@@ -131,7 +142,8 @@ public static class Prefabs
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowman"), 0.4f),
             new Animator(),
             new EnemyBehavior(7.5f, false, 1.5f, 0.5f, 2.75f, 3, Prefabs.Carrot, Core.GlobalLibrary.GetAnimation("characters", "snowman_run")),
-            new EnemyHealth(4)
+            new EnemyHealth(4),
+            new ParticleSystem([Core.GlobalLibrary.GetSprite("characters", "snow")], true, 0.3f, 3, -70f, 25f, 5f,  0.4f, Tools.PixelToUnit(2), Tools.PixelToUnit(4))
             ];
 
         return new PrefabInstance("snowman", components, [Alerted()]);
@@ -147,7 +159,8 @@ public static class Prefabs
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "iceman"), 0.4f),
             new Animator(),
             new EnemyBehavior(4f, true, 3, 0.6f, 2, 4, Prefabs.Icicle, Core.GlobalLibrary.GetAnimation("characters", "iceman_run")),
-            new EnemyHealth(8)
+            new EnemyHealth(8),
+            new ParticleSystem([Core.GlobalLibrary.GetSprite("characters", "snow")], true, 0.5f, 5, -70f, 40f, 8f,  0.6f, Tools.PixelToUnit(3), Tools.PixelToUnit(5))
             ];
 
         return new PrefabInstance("iceman", components, [Alerted()]);
@@ -175,6 +188,16 @@ public static class Prefabs
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "carrot"), 0.5f),
             new Animator(Core.GlobalLibrary.GetAnimation("characters", "carrot")),
             new EnemyProjectile(),
+            new ParticleSystem
+                (
+                    [Core.GlobalLibrary.GetSprite("characters", "carrot_debris_0"),
+                    Core.GlobalLibrary.GetSprite("characters", "carrot_debris_1")],
+                    true,
+                    3,
+                    120f,
+                    3f,
+                    0.5f
+                )
             ];
 
         return new PrefabInstance("carrot", components);
@@ -190,6 +213,16 @@ public static class Prefabs
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "icicle"), 0.5f),
             new Animator(Core.GlobalLibrary.GetAnimation("characters", "icicle")),
             new EnemyProjectile(),
+                        new ParticleSystem
+                (
+                    [Core.GlobalLibrary.GetSprite("characters", "icicle_debris_0"),
+                    Core.GlobalLibrary.GetSprite("characters", "icicle_debris_1")],
+                    true,
+                    3,
+                    120f,
+                    2f,
+                    0.5f
+                )
             ];
 
         return new PrefabInstance("icicle", components);

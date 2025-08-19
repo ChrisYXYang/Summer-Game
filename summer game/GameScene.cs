@@ -15,7 +15,7 @@ using MyMonoGameLibrary.UI;
 
 namespace summer_game;
 
-public class Scene1 : Scene
+public class GameScene : Scene
 {
     private SpriteFont _big;
     private SpriteFont _small;
@@ -38,7 +38,8 @@ public class Scene1 : Scene
 
         // set up scene
         SetTilemap("level1", SceneLibrary.GetTileset("snowy tileset"));
-        Setup(Prefabs.Player()).Persist = true;
+        Setup(Prefabs.Player());
+
         Setup(Prefabs.Snowman(), new Vector2(7, 0)).GetComponent<EnemyBehavior>().Level = 2;
         Setup(Prefabs.Iceman(), new Vector2(-7, 0)).GetComponent<EnemyBehavior>().Level = 2;
         Setup(Prefabs.Snowman(), new Vector2(7, 12)).GetComponent<EnemyBehavior>().Level = 1;
@@ -57,9 +58,6 @@ public class Scene1 : Scene
         Setup(Prefabs.Fish(), new Vector2(14, 0));
 
 
-        //Setup(Prefabs.TestDummy(), new Vector2(-7, 0));
-
-
         //Setup
         //(
         //    "Camera Manager",
@@ -74,7 +72,7 @@ public class Scene1 : Scene
             [
                 new GameManager()
             ]
-        ).Persist = true;
+        ).IgnorePause = true;
 
         Setup
         (
@@ -83,7 +81,7 @@ public class Scene1 : Scene
                 new HealthUI(),
                 new BuffUI(),
             ]
-        ).Persist = true;
+        );
 
         Setup
         (
@@ -111,23 +109,14 @@ public class Scene1 : Scene
         (
             "score text",
             [
-                new Transform(new Vector2(20, 40)),
-                new UIText(_big, "", AnchorMode.MiddleLeft),
+                new Transform(new Vector2(20, 20)),
+                new UIText(_big, "", AnchorMode.TopLeft, Color.Navy),
             ]
         );
 
         base.LoadContent();
     }
 
-    public override void Update(GameTime gameTime)
-    {
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.Escape))
-        {
-            SceneTools.Paused = !SceneTools.Paused;
-        }
-
-        base.Update(gameTime);
-    }
     public override void Draw(GameTime gameTime)
     {
         Core.GraphicsDevice.Clear(Color.PaleVioletRed);
@@ -136,12 +125,12 @@ public class Scene1 : Scene
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);
 
         //debugging
-        foreach (GameObject gameObject in GetGameDrawObjects())
-        {
-            DebugMode.DrawOrigin(gameObject);
-            DebugMode.DrawCollider(gameObject);
-        }
-        DebugMode.DrawTilemapCollider(Tilemap);
+        //foreach (GameObject gameObject in GetGameDrawObjects())
+        //{
+        //    DebugMode.DrawOrigin(gameObject);
+        //    DebugMode.DrawCollider(gameObject);
+        //}
+        //DebugMode.DrawTilemapCollider(Tilemap);
 
         //foreach (GameObject gameObject in GetUIDrawObjects())
         //{

@@ -30,6 +30,7 @@ public class PlayerMovement : BehaviorComponent
     private Animation _fall;
     private Animation _dash;
     private SpriteRenderer _hat;
+    private ParticleSystem _particle;
     private float _jumpBuffer;
     private float _dashTimer;
     private bool _canDash = true;
@@ -57,6 +58,7 @@ public class PlayerMovement : BehaviorComponent
         _fall = Core.GlobalLibrary.GetAnimation("characters", "player_fall");
         _dash = Core.GlobalLibrary.GetAnimation("characters", "player_dash");
         _hat = Parent.GetChild(1).GetComponent<SpriteRenderer>();
+        _particle = GetComponent<ParticleSystem>();
     }
 
     // update
@@ -130,18 +132,26 @@ public class PlayerMovement : BehaviorComponent
             {
                 _running = true;
 
+                if (_rb.TouchingBottom)
+                    _particle.Enabled = true;
+                else
+                    _particle.Enabled = false;
+
                 if (InputManager.Keyboard.IsKeyDown(Keys.A))
                 {
                     _rb.MovePosition(-MoveSpeed, 0);
+                    _particle.FlipX = false;
                 }
                 if (InputManager.Keyboard.IsKeyDown(Keys.D))
                 {
                     _rb.MovePosition(MoveSpeed, 0);
+                    _particle.FlipX = true;
                 }
             }
             else
             {
                 _running = false;
+                _particle.Enabled = false;
             }
 
             // jump

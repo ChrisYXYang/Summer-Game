@@ -11,6 +11,8 @@ namespace summer_game;
 public class EnemyProjectile : BehaviorComponent
 {
     public int Damage { get; set; }
+    private bool _destroyed = false;
+
 
     public override void OnCollisionEnter(ICollider other)
     {
@@ -22,7 +24,13 @@ public class EnemyProjectile : BehaviorComponent
                 playerHealth.TakeDamage(Damage);
             }
 
-            SceneTools.Destroy(this.Parent);
+            if (!_destroyed)
+            {
+                GetComponent<ParticleSystem>().Rotation = Transform.Rotation + 180f;
+                GetComponent<ParticleSystem>().Play();
+                SceneTools.Destroy(this.Parent);
+                _destroyed = true;
+            }
         }
     }
 }
