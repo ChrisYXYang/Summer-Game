@@ -57,14 +57,7 @@ public class GameManager : BehaviorComponent
 
     public override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            SceneTools.Destroy(this.Parent);
-        }
+        Instance = this;
 
         // what items to spawn
         _spawnItems.Add((Prefabs.SpeedUp, Tools.RandomFloat(_itemMin, _itemMax)));
@@ -82,7 +75,6 @@ public class GameManager : BehaviorComponent
     public override void Start()
     {
         _scoreText = SceneTools.GetGameObject("score text").GetComponent<UIText>();
-        Parent.AddChild(_scoreText.Parent);
         Score = 0;
 
         // spawn first fish
@@ -94,12 +86,6 @@ public class GameManager : BehaviorComponent
 
     public override void Update(GameTime gameTime)
     {
-        // pause
-        if (InputManager.Keyboard.WasKeyJustPressed(Keys.Escape))
-        {
-            SceneTools.Paused = !SceneTools.Paused;
-        }
-
         // item spawning
         for (int i = 0; i < _spawnItems.Count; i++)
         {
@@ -150,17 +136,19 @@ public class GameManager : BehaviorComponent
         for (int level = 1; level <= 3; level++)
         {
             if (_enemyCounts[level - 1] < _maxEnemies)
+            {
                 _spawnTimers[level - 1] -= SceneTools.DeltaTime;
 
-            if (_spawnTimers[level - 1] <= 0)
-            {
-                int y = (level - 2) * 10 + 3;
-                int x = Tools.HalfChance() ? 17 : -17;
-                int enemy = Core.Random.Next(_spawnEnemies.Count);
-                SceneTools.Instantiate(_spawnEnemies[enemy].Invoke(), new Vector2(x, y)).GetComponent<EnemyBehavior>().Level = level;
-                _enemyCounts[level - 1]++;
+                if (_spawnTimers[level - 1] <= 0)
+                {
+                    int y = (level - 2) * 10 + 3;
+                    int x = Tools.HalfChance() ? 17 : -17;
+                    int enemy = Core.Random.Next(_spawnEnemies.Count);
+                    SceneTools.Instantiate(_spawnEnemies[enemy].Invoke(), new Vector2(x, y)).GetComponent<EnemyBehavior>().Level = level;
+                    _enemyCounts[level - 1]++;
 
-                _spawnTimers[level - 1] = _spawnTime;
+                    _spawnTimers[level - 1] = _spawnTime;
+                }
             }
         }
     }

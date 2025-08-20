@@ -49,18 +49,28 @@ public class GameScene : Scene
             [
                 new GameManager()
             ]
-        ).IgnorePause = true;
+        );
 
         Setup
+        (
+            "score text",
+            [
+                new Transform(new Vector2(20, 20)),
+                        new UIText(Core.GlobalLibrary.GetFont("04B_30"), "", AnchorMode.TopLeft, Color.Navy),
+            ]
+        );
+
+        GameObject uiManager = Setup
         (
             "UI Manager",
             [
                 new HealthUI(),
                 new BuffUI(),
+                new MenuManager()
             ]
         );
 
-        Setup
+        uiManager.AddChild(Setup
         (
             "pause button",
             [
@@ -69,9 +79,9 @@ public class GameScene : Scene
                 new BoxCollider(80, 80),
                 new PauseButton(Core.GlobalLibrary.GetSprite("ui", "pause"), Core.GlobalLibrary.GetSprite("ui", "pause_h"))
             ]
-        );
+        ));
 
-        Setup
+        uiManager.AddChild(Setup
         (
             "resume button",
             [
@@ -80,16 +90,9 @@ public class GameScene : Scene
                 new BoxCollider(360, 120),
                 new ResumeButton(Core.GlobalLibrary.GetSprite("ui", "resume"), Core.GlobalLibrary.GetSprite("ui", "resume_h"))
             ]
-        );
+        ));
 
-        Setup
-        (
-            "score text",
-            [
-                new Transform(new Vector2(20, 20)),
-                new UIText(Core.GlobalLibrary.GetFont("04B_30"), "", AnchorMode.TopLeft),
-            ]
-        );
+
 
         base.LoadContent();
     }
@@ -102,17 +105,17 @@ public class GameScene : Scene
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);
 
         //debugging
-        //foreach (GameObject gameObject in GetGameDrawObjects())
-        //{
-        //    DebugMode.DrawOrigin(gameObject);
-        //    DebugMode.DrawCollider(gameObject);
-        //}
-        //DebugMode.DrawTilemapCollider(Tilemap);
+        foreach (GameObject gameObject in GetGameDrawObjects())
+        {
+            DebugMode.DrawOrigin(gameObject);
+            DebugMode.DrawCollider(gameObject);
+        }
+        DebugMode.DrawTilemapCollider(Tilemap);
 
-        //foreach (GameObject gameObject in GetUIDrawObjects())
-        //{
-        //    DebugMode.DrawUICollider(gameObject);
-        //}
+        foreach (GameObject gameObject in GetUIDrawObjects())
+        {
+            DebugMode.DrawUICollider(gameObject);
+        }
 
 
         base.Draw(gameTime);

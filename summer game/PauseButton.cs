@@ -9,6 +9,7 @@ using MyMonoGameLibrary.Scenes;
 using MyMonoGameLibrary.Graphics;
 using MyMonoGameLibrary.UI;
 using MyMonoGameLibrary;
+using System.Diagnostics;
 
 namespace summer_game;
 
@@ -26,27 +27,13 @@ public class PauseButton : Button
     public override void Start()
     {
         _sprite = GetComponent<UISprite>();
-        Parent.IgnorePause = true;
 
         base.Start();
     }
 
-    public override void Update(GameTime gameTime)
-    {
-        if (SceneTools.Paused)
-        {
-            _sprite.IsVisible = false;
-        }
-        else
-        {
-            _sprite.IsVisible = true;
-        }
-
-        base.Update(gameTime);
-    }
 
     public override void Clicked()
     {
-        SceneTools.Paused = true;
+        MenuManager.Instance.Pause();
     }
 }

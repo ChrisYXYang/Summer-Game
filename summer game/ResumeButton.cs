@@ -27,27 +27,12 @@ public class ResumeButton : Button
     public override void Start()
     {
         _sprite = GetComponent<UISprite>();
-        Parent.IgnorePause = true;
 
         base.Start();
     }
 
-    public override void Update(GameTime gameTime)
-    {
-        if (SceneTools.Paused)
-        {
-            _sprite.IsVisible = true;
-        }
-        else
-        {
-            _sprite.IsVisible = false;
-        }
-
-        base.Update(gameTime);
-    }
-
     public override void Clicked()
     {
-        SceneTools.Paused = false;
+        MenuManager.Instance.Resume();
     }
 }

@@ -18,15 +18,7 @@ public class BuffUI : BehaviorComponent
 
     public override void Awake()
     {
-        if (Instance == null)
-        {
-
-            Instance = this;
-        }
-        else
-        {
-            SceneTools.Destroy(this.Parent);
-        }
+        Instance = this;
     }
 
     public void Update((Buffs, float)[] buffs)

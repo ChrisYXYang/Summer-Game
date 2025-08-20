@@ -18,11 +18,13 @@
 		<Sprite name="resume_h"/>
 		<Sprite name="sound"/>
 		<Sprite name="arrow"/>
-		<Sprite name="bit"/>
+		<Sprite name="1"/>
+		<Sprite name="2"/>
+		<Sprite name="3"/>
+		<Sprite name="4"/>
+		<Sprite name="5"/>
 		<Sprite name="fullscreen"/>
 		<Sprite name="fullscreen_h"/>
-		<Sprite name="debug"/>
-		<Sprite name="debug_h"/>
 		<Sprite name="on"/>
 		<Sprite name="off"/>
 	</Sprites>

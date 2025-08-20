@@ -15,42 +15,7 @@ namespace summer_game;
 // this class contains static methods corresponding to prefabs to use in scenes.
 public static class Prefabs
 {
-    // ui
-    public static PrefabInstance HeartIcon()
-    {
-        Component[] components =
-            [
-                new Transform(),
-                new UISprite(),
-                new HeartIcon()
-            ];
-
-        return new PrefabInstance("heart icon", components);
-    }
-
-    public static PrefabInstance BuffIcon()
-    {
-        Component[] components =
-            [
-                new Transform(),
-                new UISprite(),
-                new BuffIcon()
-            ];
-
-        return new PrefabInstance("buff icon", components, [BuffText()]);
-    }
-
-    public static PrefabInstance BuffText()
-    {
-        Component[] components =
-            [
-                new Transform(new Vector2(90, 0)),
-                new UIText(Core.GlobalLibrary.GetFont("04B_30"), "", AnchorMode.MiddleLeft),
-            ];
-
-        return new PrefabInstance("buff text", components);
-    }
-
+  
     // player
     public static PrefabInstance Player()
     {
@@ -330,4 +295,42 @@ public static class Prefabs
 
         return new PrefabInstance("triple shot", components);
     }
+
+    // player UI
+    public static PrefabInstance HeartIcon()
+    {
+        Component[] components =
+            [
+                new Transform(),
+                new UISprite(),
+                new HeartIcon()
+            ];
+
+        return new PrefabInstance("heart icon", components);
+    }
+
+    public static PrefabInstance BuffIcon()
+    {
+        Component[] components =
+            [
+                new Transform(),
+                new UISprite(),
+                new BuffIcon()
+            ];
+
+        return new PrefabInstance("buff icon", components, [BuffText()]);
+    }
+
+    public static PrefabInstance BuffText()
+    {
+        Component[] components =
+            [
+                new Transform(new Vector2(90, 0)),
+                new UIText(Core.GlobalLibrary.GetFont("04B_30"), "", AnchorMode.MiddleLeft),
+            ];
+
+        return new PrefabInstance("buff text", components);
+    }
+
+    // menu UI
 }
