@@ -33,14 +33,14 @@ public static class Prefabs
             new ParticleSystem([Core.GlobalLibrary.GetSprite("characters", "snow")], true, 0.2f, 2, -70f, 20f, 4f,  0.3f, Tools.PixelToUnit(3), Tools.PixelToUnit(4))
             ];
 
-        return new PrefabInstance("player", components, [SnowballIndicator(), Hat()]);
+        return new PrefabInstance("player", components, [(SnowballIndicator(), Vector2.Zero), (Hat(), new Vector2(0, Tools.PixelToUnit(-4)))]);
     }
 
     public static PrefabInstance Hat()
     {
         Component[] components =
         [
-            new Transform(new Vector2(0, Tools.PixelToUnit(-4))),
+            new Transform(),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player hat"), 0.61f),
         ];
 
@@ -111,7 +111,7 @@ public static class Prefabs
             new ParticleSystem([Core.GlobalLibrary.GetSprite("characters", "snow")], true, 0.3f, 3, -70f, 25f, 5f,  0.4f, Tools.PixelToUnit(2), Tools.PixelToUnit(4))
             ];
 
-        return new PrefabInstance("snowman", components, [Alerted()]);
+        return new PrefabInstance("snowman", components, [(Alerted(), new Vector2(0, -1.5f))]);
     }
 
     public static PrefabInstance Iceman()
@@ -128,14 +128,14 @@ public static class Prefabs
             new ParticleSystem([Core.GlobalLibrary.GetSprite("characters", "snow")], true, 0.5f, 5, -70f, 40f, 8f,  0.6f, Tools.PixelToUnit(3), Tools.PixelToUnit(5))
             ];
 
-        return new PrefabInstance("iceman", components, [Alerted()]);
+        return new PrefabInstance("iceman", components, [(Alerted(), new Vector2(0, -1.5f))]);
     }
 
     public static PrefabInstance Alerted()
     {
         Component[] components =
             [
-                new Transform(new Vector2(0, -1.5f)),
+                new Transform(),
                 new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "alerted"), 0.4f),
                 new Alert()
             ];
@@ -318,14 +318,14 @@ public static class Prefabs
                 new BuffIcon()
             ];
 
-        return new PrefabInstance("buff icon", components, [BuffText()]);
+        return new PrefabInstance("buff icon", components, [(BuffText(), new Vector2(90, 0))]);
     }
 
     public static PrefabInstance BuffText()
     {
         Component[] components =
             [
-                new Transform(new Vector2(90, 0)),
+                new Transform(),
                 new UIText(Core.GlobalLibrary.GetFont("04B_30"), "", AnchorMode.MiddleLeft),
             ];
 
@@ -333,4 +333,29 @@ public static class Prefabs
     }
 
     // menu UI
+
+    public static PrefabInstance FullscreenButton()
+    {
+        Component[] components =
+            [
+                new Transform(),
+                new UISprite(),
+                new BoxCollider(600, 120),
+                new FullscreenButton(Core.GlobalLibrary.GetSprite("ui", "fullscreen"), Core.GlobalLibrary.GetSprite("ui", "fullscreen_h"))
+            ];
+
+        return new PrefabInstance("fullscreen button", components, [(Check(), new Vector2(500, 0))]);
+    }
+
+    public static PrefabInstance Check()
+    {
+        Component[] components =
+            [
+                new Transform(),
+                new UISprite(),
+                new Check()
+            ];
+
+        return new PrefabInstance("check", components);
+    }
 }

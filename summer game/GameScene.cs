@@ -92,6 +92,7 @@ public class GameScene : Scene
             ]
         ));
 
+        uiManager.AddChild(Setup(Prefabs.FullscreenButton()));
 
 
         base.LoadContent();
