@@ -2,11 +2,28 @@
 <SpriteSheet>
 	<Settings texture="images/ui" size="64" centered="true"/>
 	<Sprites>
+		<Sprite name="title"/>
+		<Sprite name="credit"/>
+		<Sprite name="settings"/>
+		<Sprite name="settings_h"/>
+		<Sprite name="howto"/>
+		<Sprite name="howto_h"/>
+		<Sprite name="exit"/>
+		<Sprite name="exit_h"/>
 		<Sprite name="play"/>
 		<Sprite name="play_h"/>
 		<Sprite name="pause"/>
 		<Sprite name="pause_h"/>
 		<Sprite name="resume"/>
 		<Sprite name="resume_h"/>
+		<Sprite name="sound"/>
+		<Sprite name="arrow"/>
+		<Sprite name="bit"/>
+		<Sprite name="fullscreen"/>
+		<Sprite name="fullscreen_h"/>
+		<Sprite name="debug"/>
+		<Sprite name="debug_h"/>
+		<Sprite name="on"/>
+		<Sprite name="off"/>
 	</Sprites>
 </SpriteSheet>

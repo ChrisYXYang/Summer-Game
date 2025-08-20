@@ -62,7 +62,7 @@ public static class Prefabs
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "player"), 0.6f),
             new Animator(),
             new PlayerMovement(5, 13, 10, 0.2f),
-            new PlayerShoot(10, false, false, 4, 0.5f, 0.5f),
+            new PlayerShoot(12, false, false, 4, 0.4f, 0.5f),
             new PlayerHealth(6, 1.5f),
             new PlayerState(),
             new ParticleSystem([Core.GlobalLibrary.GetSprite("characters", "snow")], true, 0.2f, 2, -70f, 20f, 4f,  0.3f, Tools.PixelToUnit(3), Tools.PixelToUnit(4))
@@ -141,7 +141,7 @@ public static class Prefabs
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "snowman"), 0.4f),
             new Animator(),
-            new EnemyBehavior(7f, false, 2f, 0.5f, 2.75f, 3, Prefabs.Carrot, Core.GlobalLibrary.GetAnimation("characters", "snowman_run")),
+            new EnemyBehavior(7f, false, 2.5f, 0.5f, 2.75f, 3, Prefabs.Carrot, Core.GlobalLibrary.GetAnimation("characters", "snowman_run")),
             new EnemyHealth(3),
             new ParticleSystem([Core.GlobalLibrary.GetSprite("characters", "snow")], true, 0.3f, 3, -70f, 25f, 5f,  0.4f, Tools.PixelToUnit(2), Tools.PixelToUnit(4))
             ];
@@ -158,7 +158,7 @@ public static class Prefabs
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "iceman"), 0.4f),
             new Animator(),
-            new EnemyBehavior(3.5f, true, 4, 0.6f, 2, 4, Prefabs.Icicle, Core.GlobalLibrary.GetAnimation("characters", "iceman_run")),
+            new EnemyBehavior(3.5f, true, 4f, 0.6f, 2, 4, Prefabs.Icicle, Core.GlobalLibrary.GetAnimation("characters", "iceman_run")),
             new EnemyHealth(6),
             new ParticleSystem([Core.GlobalLibrary.GetSprite("characters", "snow")], true, 0.5f, 5, -70f, 40f, 8f,  0.6f, Tools.PixelToUnit(3), Tools.PixelToUnit(5))
             ];

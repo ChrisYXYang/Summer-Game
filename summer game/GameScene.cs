@@ -17,22 +17,17 @@ namespace summer_game;
 
 public class GameScene : Scene
 {
-    private SpriteFont _big;
-    private SpriteFont _small;
-
     public override void Initialize()
     {
         Gravity = 25f;
         UICamera.Scale = 10;
-        //Camera.PixelScale = 4;
+        Camera.PixelScale = 4;
         base.Initialize();
     }
     
     public override void LoadContent()
     {
         // load assets
-        _big = Core.GlobalLibrary.GetFont("04B_30");
-        _small = Core.GlobalLibrary.GetFont("04B_30_small");
         SceneLibrary.AddTileset("snowy tileset");
 
         // set up scene
@@ -40,13 +35,13 @@ public class GameScene : Scene
         Setup(Prefabs.Player());
 
 
-        Setup
-        (
-            "Camera Manager",
-            [
-                new CameraManager()
-            ]
-        );
+        //Setup
+        //(
+        //    "Camera Manager",
+        //    [
+        //        new CameraManager()
+        //    ]
+        //);
 
         Setup
         (
@@ -92,7 +87,7 @@ public class GameScene : Scene
             "score text",
             [
                 new Transform(new Vector2(20, 20)),
-                new UIText(_big, "", AnchorMode.TopLeft),
+                new UIText(Core.GlobalLibrary.GetFont("04B_30"), "", AnchorMode.TopLeft),
             ]
         );
 
