@@ -334,17 +334,17 @@ public static class Prefabs
 
     // menu UI
 
-    public static PrefabInstance FullscreenButton()
+    public static PrefabInstance DebugButton()
     {
         Component[] components =
             [
                 new Transform(),
                 new UISprite(),
-                new BoxCollider(600, 120),
-                new FullscreenButton(Core.GlobalLibrary.GetSprite("ui", "fullscreen"), Core.GlobalLibrary.GetSprite("ui", "fullscreen_h"))
+                new BoxCollider(440, 120),
+                new DebugButton(Core.GlobalLibrary.GetSprite("ui", "debug"), Core.GlobalLibrary.GetSprite("ui", "debug_h"))
             ];
 
-        return new PrefabInstance("fullscreen button", components, [(Check(), new Vector2(220, 0))]);
+        return new PrefabInstance("debug button", components, [(Check(), new Vector2(140, 0))]);
     }
 
     public static PrefabInstance Check()

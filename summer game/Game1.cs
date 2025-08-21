@@ -20,7 +20,7 @@ namespace summer_game;
 
 public class Game1 : Core
 {
-    public Game1() : base("Summer Game", 1920, 1080, false) {}
+    public Game1() : base("Summer Game", 1920, 1080) {}
 
     protected override void Initialize()
     {

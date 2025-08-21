@@ -10,6 +10,8 @@
 		<Sprite name="howto_h"/>
 		<Sprite name="exit"/>
 		<Sprite name="exit_h"/>
+		<Sprite name="back"/>
+		<Sprite name="back_h"/>
 		<Sprite name="play"/>
 		<Sprite name="play_h"/>
 		<Sprite name="pause"/>
@@ -23,8 +25,8 @@
 		<Sprite name="3"/>
 		<Sprite name="4"/>
 		<Sprite name="5"/>
-		<Sprite name="fullscreen"/>
-		<Sprite name="fullscreen_h"/>
+		<Sprite name="debug"/>
+		<Sprite name="debug_h"/>
 		<Sprite name="on"/>
 		<Sprite name="off"/>
 	</Sprites>

@@ -21,7 +21,7 @@ public class GameScene : Scene
     {
         Gravity = 25f;
         UICamera.Scale = 10;
-        Camera.PixelScale = 4;
+        //Camera.PixelScale = 4;
         base.Initialize();
     }
     
@@ -35,13 +35,13 @@ public class GameScene : Scene
         Setup(Prefabs.Player());
 
 
-        //Setup
-        //(
-        //    "Camera Manager",
-        //    [
-        //        new CameraManager()
-        //    ]
-        //);
+        Setup
+        (
+            "Camera Manager",
+            [
+                new CameraManager()
+            ]
+        );
 
         Setup
         (
@@ -66,7 +66,7 @@ public class GameScene : Scene
             [
                 new HealthUI(),
                 new BuffUI(),
-                new MenuManager()
+                new SettingManager()
             ]
         );
 
@@ -92,7 +92,7 @@ public class GameScene : Scene
             ]
         ));
 
-        uiManager.AddChild(Setup(Prefabs.FullscreenButton(), new Vector2(960, 440)));
+        uiManager.AddChild(Setup(Prefabs.DebugButton(), new Vector2(960, 440)));
 
 
         base.LoadContent();
@@ -104,12 +104,6 @@ public class GameScene : Scene
 
         // set render modes
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);
-
-        Core.ColliderGameObject = GetGameDrawObjects();
-        Core.OriginGameObject = GetGameDrawObjects();
-        Core.ColliderUI = GetUIDrawObjects();
-        Core.OriginUI = GetUIDrawObjects();
-        Core.DrawTilemap = true;
 
         base.Draw(gameTime);
     }

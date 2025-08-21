@@ -5,18 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using MyMonoGameLibrary;
 using MyMonoGameLibrary.Input;
 using MyMonoGameLibrary.Scenes;
 
 namespace summer_game;
 
-public class MenuManager : BehaviorComponent
+public class SettingManager : BehaviorComponent
 {
-    public static MenuManager Instance {  get; private set; }
+    public static SettingManager Instance {  get; private set; }
+    public bool Debug { get; set; } = false;
     
     private GameObject _pause;
     private GameObject _resume;
-    private GameObject _fullscreen;
+    private GameObject _debug;
 
     public override void Awake()
     {
@@ -29,7 +31,7 @@ public class MenuManager : BehaviorComponent
     {
         _pause = Parent.GetChild(0);
         _resume = Parent.GetChild(1);
-        _fullscreen = Parent.GetChild(2);
+        _debug = Parent.GetChild(2);
 
         Resume();
     }
@@ -48,6 +50,30 @@ public class MenuManager : BehaviorComponent
                 Pause();
             }
         }
+
+        // debug
+        if (Debug)
+        {
+            foreach (GameObject gameObject in SceneTools.GetGameDrawObjects())
+            {
+                if (gameObject.Enabled)
+                {
+                    Core.DrawOrigin(gameObject);
+                    Core.DrawCollider(gameObject);
+                }
+            }
+
+            foreach (GameObject gameObject in SceneTools.GetUIDrawObjects())
+            {
+                if (gameObject.Enabled)
+                {
+                    Core.DrawUIOrigin(gameObject);
+                    Core.DrawUICollider(gameObject);
+                }
+            }
+        }
+
+        Core.DrawTilemap = Debug;
     }
 
     public void Pause()
@@ -57,7 +83,7 @@ public class MenuManager : BehaviorComponent
         _pause.Enabled = false;
         
         _resume.Enabled = true;
-        _fullscreen.Enabled = true;
+        _debug.Enabled = true;
 
     }
 
@@ -66,7 +92,7 @@ public class MenuManager : BehaviorComponent
         SceneTools.Paused = false;
 
         _resume.Enabled = false;
-        _fullscreen.Enabled = false;
+        _debug.Enabled = false;
 
         _pause.Enabled = true;
     }

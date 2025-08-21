@@ -33,6 +33,6 @@ public class ResumeButton : Button
 
     public override void Clicked()
     {
-        MenuManager.Instance.Resume();
+        SettingManager.Instance.Resume();
     }
 }
