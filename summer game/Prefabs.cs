@@ -134,7 +134,7 @@ public static class Prefabs
             new Rigidbody(true, true),
             new SpriteRenderer(Core.GlobalLibrary.GetSprite("characters", "iceman"), 0.4f),
             new Animator(),
-            new EnemyBehavior(3.5f, true, 4f, 0.6f, 2, 4, Prefabs.Icicle, Core.GlobalLibrary.GetAnimation("characters", "iceman_run")),
+            new EnemyBehavior(4f, true, 4f, 0.6f, 2, 4, Prefabs.Icicle, Core.GlobalLibrary.GetAnimation("characters", "iceman_run")),
             new EnemyHealth(6),
             new ParticleSystem([Core.GlobalLibrary.GetSprite("characters", "snow")], true, 0.5f, 5, -70f, 40f, 8f,  0.6f, Tools.PixelToUnit(3), Tools.PixelToUnit(5))
             ];
@@ -354,9 +354,45 @@ public static class Prefabs
                 new UISprite(Core.GlobalLibrary.GetSprite("ui", "sound"))
             ];
 
-        return new PrefabInstance("sound setting", components);
+        return new PrefabInstance("sound setting", components, [(MusicBar(), new Vector2(120, -20)), (SFXBar(), new Vector2(120, 90))]);
     }
 
+    public static PrefabInstance MusicBar()
+    {
+        Component[] components =
+            [
+                new Transform(),
+                new UISprite(0.6f),
+                new SoundBar(true)
+            ];
+
+        return new PrefabInstance("music bar", components);
+    }
+
+    public static PrefabInstance SFXBar()
+    {
+        Component[] components =
+            [
+                new Transform(),
+                new UISprite(0.6f),
+                new SoundBar(false)
+            ];
+
+        return new PrefabInstance("sfx bar", components);
+    }
+
+    public static PrefabInstance SoundButton()
+    {
+        Component[] components =
+            [
+                new Transform(),
+                new UISprite(0.6f),
+                new SoundButton(Core.GlobalLibrary.GetSprite("ui", "arrow"), Core.GlobalLibrary.GetSprite("ui", "arrow_h")),
+                new BoxCollider(40, 60)
+            ];
+
+        return new PrefabInstance("sound button", components);
+    }
 
     public static PrefabInstance DebugButton()
     {
