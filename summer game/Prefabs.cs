@@ -406,6 +406,18 @@ public static class Prefabs
 
         return new PrefabInstance("debug button", components, [(Check(), new Vector2(140, 0))]);
     }
+    public static PrefabInstance ParticleButton()
+    {
+        Component[] components =
+            [
+                new Transform(),
+                new UISprite(),
+                new BoxCollider(540, 120),
+                new ParticleButton(Core.GlobalLibrary.GetSprite("ui", "particles"), Core.GlobalLibrary.GetSprite("ui", "particles_h"))
+            ];
+
+        return new PrefabInstance("particle button", components, [(Check(), new Vector2(200, 0))]);
+    }
 
     public static PrefabInstance Check()
     {

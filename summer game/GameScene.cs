@@ -85,15 +85,19 @@ public class GameScene : Scene
         (
             "resume button",
             [
-                new Transform(new Vector2(960, 810)),
-                new UISprite(),
-                new BoxCollider(360, 120),
-                new ResumeButton(Core.GlobalLibrary.GetSprite("ui", "resume"), Core.GlobalLibrary.GetSprite("ui", "resume_h"))
+                new Transform(new Vector2(960, 900)),
+                        new UISprite(),
+                        new BoxCollider(360, 120),
+                        new ResumeButton(Core.GlobalLibrary.GetSprite("ui", "resume"), Core.GlobalLibrary.GetSprite("ui", "resume_h"))
             ]
         ));
 
-        uiManager.AddChild(Setup(Prefabs.DebugButton(), new Vector2(960, 660)));
-        uiManager.AddChild(Setup(Prefabs.SoundSetting(), new Vector2(960, 400)));
+        uiManager.AddChild(Setup(Prefabs.DebugButton(), new Vector2(960, 750)));
+        uiManager.AddChild(Setup(Prefabs.SoundSetting(), new Vector2(960, 340)));
+        uiManager.AddChild(Setup(Prefabs.ParticleButton(), new Vector2(960, 600)));
+
+
+
 
 
         base.LoadContent();

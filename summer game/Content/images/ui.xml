@@ -28,6 +28,8 @@
 		<Sprite name="5"/>
 		<Sprite name="debug"/>
 		<Sprite name="debug_h"/>
+		<Sprite name="particles"/>
+		<Sprite name="particles_h"/>
 		<Sprite name="on"/>
 		<Sprite name="off"/>
 	</Sprites>
