@@ -10,7 +10,6 @@ namespace summer_game;
 
 public class DebugButton : Button
 {
-    private UISprite _sprite;
     private Check _check;
 
     public DebugButton(Sprite normal, Sprite hover) : base(normal, hover)
@@ -23,7 +22,6 @@ public class DebugButton : Button
 
     public override void Start()
     {
-        _sprite = GetComponent<UISprite>();
         _check = Parent.GetChild(0).GetComponent<Check>();
         _check.Off();
 
@@ -32,14 +30,14 @@ public class DebugButton : Button
 
     public override void Clicked()
     {
-        if (SettingManager.Instance.Debug)
+        if (Settings.Debug)
         {
-            SettingManager.Instance.Debug = false;
+            Settings.Debug = false;
             _check.Off();
         }
         else
         {
-            SettingManager.Instance.Debug = true;
+            Settings.Debug = true;
             _check.On();
         }
     }

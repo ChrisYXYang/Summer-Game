@@ -66,7 +66,7 @@ public class GameScene : Scene
             [
                 new HealthUI(),
                 new BuffUI(),
-                new SettingManager()
+                new MenuUI()
             ]
         );
 
@@ -85,14 +85,15 @@ public class GameScene : Scene
         (
             "resume button",
             [
-                new Transform(new Vector2(960, 640)),
+                new Transform(new Vector2(960, 810)),
                 new UISprite(),
                 new BoxCollider(360, 120),
                 new ResumeButton(Core.GlobalLibrary.GetSprite("ui", "resume"), Core.GlobalLibrary.GetSprite("ui", "resume_h"))
             ]
         ));
 
-        uiManager.AddChild(Setup(Prefabs.DebugButton(), new Vector2(960, 440)));
+        uiManager.AddChild(Setup(Prefabs.DebugButton(), new Vector2(960, 660)));
+        uiManager.AddChild(Setup(Prefabs.SoundSetting(), new Vector2(960, 400)));
 
 
         base.LoadContent();

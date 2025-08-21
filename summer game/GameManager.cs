@@ -44,9 +44,9 @@ public class GameManager : BehaviorComponent
     private List<int> _itemCounts = new List<int> { 0, 0, 0 };
 
     // enemy spawn settings
-    private List<Func<PrefabInstance>> _spawnEnemies = [];
-    private int _maxEnemies = 4;
+    private int _maxEnemies = 5;
     private float _spawnTime = 2.5f;
+    private List<Func<PrefabInstance>> _spawnEnemies = [];
     private List<float> _spawnTimers = new List<float> { 0, 0, 0 };
     private List<int> _enemyCounts = new List<int> { 0, 0, 0 };
 

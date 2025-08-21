@@ -11,11 +11,11 @@ using MyMonoGameLibrary.Scenes;
 
 namespace summer_game;
 
-public class SettingManager : BehaviorComponent
+public class MenuUI : BehaviorComponent
 {
-    public static SettingManager Instance {  get; private set; }
-    public bool Debug { get; set; } = false;
-    
+    public static MenuUI Instance {  get; private set; }
+
+    // buttons
     private GameObject _pause;
     private GameObject _resume;
     private GameObject _debug;
@@ -52,7 +52,7 @@ public class SettingManager : BehaviorComponent
         }
 
         // debug
-        if (Debug)
+        if (Settings.Debug)
         {
             foreach (GameObject gameObject in SceneTools.GetGameDrawObjects())
             {
@@ -73,7 +73,7 @@ public class SettingManager : BehaviorComponent
             }
         }
 
-        Core.DrawTilemap = Debug;
+        Core.DrawTilemap = Settings.Debug;
     }
 
     public void Pause()

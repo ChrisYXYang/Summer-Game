@@ -14,8 +14,6 @@ namespace summer_game;
 
 public class ResumeButton : Button
 {
-    private UISprite _sprite;
-
     public ResumeButton(Sprite normal, Sprite hover) : base(normal, hover)
     {
     }
@@ -24,15 +22,8 @@ public class ResumeButton : Button
     {
     }
 
-    public override void Start()
-    {
-        _sprite = GetComponent<UISprite>();
-
-        base.Start();
-    }
-
     public override void Clicked()
     {
-        SettingManager.Instance.Resume();
+        MenuUI.Instance.Resume();
     }
 }

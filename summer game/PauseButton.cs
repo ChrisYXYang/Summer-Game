@@ -34,6 +34,6 @@ public class PauseButton : Button
 
     public override void Clicked()
     {
-        SettingManager.Instance.Pause();
+        MenuUI.Instance.Pause();
     }
 }

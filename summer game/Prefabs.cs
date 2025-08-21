@@ -15,7 +15,18 @@ namespace summer_game;
 // this class contains static methods corresponding to prefabs to use in scenes.
 public static class Prefabs
 {
-  
+    // TEMPLATE
+    //public static PrefabInstance Name()
+    //{
+    //    Component[] components =
+    //        [
+
+    //        ];
+
+    //    return new PrefabInstance("name", components);
+    //}
+
+
     // player
     public static PrefabInstance Player()
     {
@@ -297,6 +308,7 @@ public static class Prefabs
     }
 
     // player UI
+
     public static PrefabInstance HeartIcon()
     {
         Component[] components =
@@ -332,7 +344,19 @@ public static class Prefabs
         return new PrefabInstance("buff text", components);
     }
 
-    // menu UI
+    // Menu UI
+
+    public static PrefabInstance SoundSetting()
+    {
+        Component[] components =
+            [
+                new Transform(),
+                new UISprite(Core.GlobalLibrary.GetSprite("ui", "sound"))
+            ];
+
+        return new PrefabInstance("sound setting", components);
+    }
+
 
     public static PrefabInstance DebugButton()
     {
