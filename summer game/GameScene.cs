@@ -85,14 +85,14 @@ public class GameScene : Scene
         (
             "resume button",
             [
-                new Transform(new Vector2(960, 540)),
+                new Transform(new Vector2(960, 640)),
                 new UISprite(),
                 new BoxCollider(360, 120),
                 new ResumeButton(Core.GlobalLibrary.GetSprite("ui", "resume"), Core.GlobalLibrary.GetSprite("ui", "resume_h"))
             ]
         ));
 
-        uiManager.AddChild(Setup(Prefabs.FullscreenButton()));
+        uiManager.AddChild(Setup(Prefabs.FullscreenButton(), new Vector2(960, 440)));
 
 
         base.LoadContent();
@@ -105,19 +105,11 @@ public class GameScene : Scene
         // set render modes
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);
 
-        //debugging
-        foreach (GameObject gameObject in GetGameDrawObjects())
-        {
-            DebugMode.DrawOrigin(gameObject);
-            DebugMode.DrawCollider(gameObject);
-        }
-        DebugMode.DrawTilemapCollider(Tilemap);
-
-        foreach (GameObject gameObject in GetUIDrawObjects())
-        {
-            DebugMode.DrawUICollider(gameObject);
-        }
-
+        Core.ColliderGameObject = GetGameDrawObjects();
+        Core.OriginGameObject = GetGameDrawObjects();
+        Core.ColliderUI = GetUIDrawObjects();
+        Core.OriginUI = GetUIDrawObjects();
+        Core.DrawTilemap = true;
 
         base.Draw(gameTime);
     }

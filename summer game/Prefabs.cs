@@ -344,7 +344,7 @@ public static class Prefabs
                 new FullscreenButton(Core.GlobalLibrary.GetSprite("ui", "fullscreen"), Core.GlobalLibrary.GetSprite("ui", "fullscreen_h"))
             ];
 
-        return new PrefabInstance("fullscreen button", components, [(Check(), new Vector2(500, 0))]);
+        return new PrefabInstance("fullscreen button", components, [(Check(), new Vector2(220, 0))]);
     }
 
     public static PrefabInstance Check()
@@ -352,7 +352,7 @@ public static class Prefabs
         Component[] components =
             [
                 new Transform(),
-                new UISprite(),
+                new UISprite(0.6f),
                 new Check()
             ];
 

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using MyMonoGameLibrary;
 using MyMonoGameLibrary.Graphics;
 using MyMonoGameLibrary.UI;
@@ -25,24 +27,29 @@ public class FullscreenButton : Button
     {
         _sprite = GetComponent<UISprite>();
         _check = Parent.GetChild(0).GetComponent<Check>();
+        _check.On();
 
         base.Start();
     }
+
 
 
     public override void Clicked()
     {
         if (Core.Graphics.IsFullScreen)
         {
-            Core.Graphics.IsFullScreen = false;
-            Core.Graphics.ApplyChanges();
+            //Core.Graphics.IsFullScreen = false;
+            //Core.Graphics.PreferredBackBufferWidth = Core.Width;
+            //Core.Graphics.PreferredBackBufferHeight = Core.Height;
+            //Core.Graphics.HardwareModeSwitch = false;
+            //Core.Graphics.ApplyChanges();
 
             _check.Off();
         }
         else
         {
-            Core.Graphics.IsFullScreen = true;
-            Core.Graphics.ApplyChanges();
+            //Core.Graphics.IsFullScreen = true;
+            //Core.Graphics.ApplyChanges();
 
             _check.On();
         }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using MyMonoGameLibrary;
 using MyMonoGameLibrary.Scenes;
 using MyMonoGameLibrary.UI;
@@ -13,7 +15,7 @@ public class Check : BehaviorComponent
 {
     private UISprite _sprite;
 
-    public override void Start()
+    public override void Awake()
     {
         _sprite = GetComponent<UISprite>();
     }

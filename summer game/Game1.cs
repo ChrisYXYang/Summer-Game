@@ -18,7 +18,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace summer_game;
 
-public class Game1 : DebugMode
+public class Game1 : Core
 {
     public Game1() : base("Summer Game", 1920, 1080, false) {}
 
@@ -68,7 +68,7 @@ public class Game1 : DebugMode
 
         if (InputManager.Keyboard.WasKeyJustPressed(Keys.NumPad0))
         {
-            DebugMode.PrintScene();
+            Debugging.PrintScene();
         }
 
         base.Update(gameTime);
