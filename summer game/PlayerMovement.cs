@@ -96,8 +96,7 @@ public class PlayerMovement : BehaviorComponent
             // jump if needed
             if (_jumpBuffer >= SceneTools.Time && _rb.TouchingBottom)
             {
-                _rb.YVelocity -= JumpPower;
-                Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("collect"));
+                Jump();
             }
 
             if (InputManager.Keyboard.IsKeyDown(Keys.A))
@@ -157,8 +156,7 @@ public class PlayerMovement : BehaviorComponent
             // jump
             if (_jumpBuffer >= SceneTools.Time && _rb.TouchingBottom)
             {
-                _rb.YVelocity = -JumpPower;
-                Core.Audio.PlaySoundEffect(SceneTools.SceneLibrary.GetSoundEffect("collect"));
+                Jump();
             }
 
             if (_rb.YVelocity < 0 && !InputManager.Keyboard.IsKeyDown(Keys.W))
@@ -201,6 +199,12 @@ public class PlayerMovement : BehaviorComponent
                 }
             }
         }
+    }
+
+    private void Jump()
+    {
+        _rb.YVelocity = -JumpPower;
+        Core.Audio.PlaySoundEffect(SceneTools.SceneLibrary.GetSoundEffect("collect"));
     }
 
     public void ModifyJump(bool add, bool sum, float amount)
