@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using MyMonoGameLibrary;
 using MyMonoGameLibrary.Input;
 using MyMonoGameLibrary.Scenes;
 
@@ -114,6 +115,7 @@ public class PlayerHealth : Health
                 Damageable = false;
                 _recoverTimer = RecoverTime;
                 HealthUI.Instance.Update(CurrentHealth, MaxHealth);
+                Core.Audio.PlaySoundEffect(SceneTools.SceneLibrary.GetSoundEffect("bounce"));
             }
         }
     }

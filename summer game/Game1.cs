@@ -37,8 +37,6 @@ public class Game1 : Core
         GlobalLibrary.AddFont("04B_30");
         GlobalLibrary.AddFont("04B_30_small");
         GlobalLibrary.AddSong("theme");
-        GlobalLibrary.AddSoundEffect("bounce");
-        GlobalLibrary.AddSoundEffect("collect");
 
 
         Audio.PlaySong(GlobalLibrary.GetSong("theme"));

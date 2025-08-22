@@ -25,6 +25,24 @@
 /processorParam:Quality=Best
 /build:audio/collect.wav
 
+#begin audio/crystal0.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/crystal0.wav
+
+#begin audio/crystal1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/crystal1.wav
+
+#begin audio/crystal2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:audio/crystal2.wav
+
 #begin audio/theme.ogg
 /importer:OggImporter
 /processor:SongProcessor

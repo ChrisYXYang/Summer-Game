@@ -6,6 +6,9 @@
   <SourceFiles>
     <File>C:/Users/chris/Games/Summer-Game/summer game/Content/audio/bounce.wav</File>
     <File>C:/Users/chris/Games/Summer-Game/summer game/Content/audio/collect.wav</File>
+    <File>C:/Users/chris/Games/Summer-Game/summer game/Content/audio/crystal0.wav</File>
+    <File>C:/Users/chris/Games/Summer-Game/summer game/Content/audio/crystal1.wav</File>
+    <File>C:/Users/chris/Games/Summer-Game/summer game/Content/audio/crystal2.wav</File>
     <File>C:/Users/chris/Games/Summer-Game/summer game/Content/audio/theme.ogg</File>
     <File>C:/Users/chris/Games/Summer-Game/summer game/Content/fonts/04B_30_small.spritefont</File>
     <File>C:/Users/chris/Games/Summer-Game/summer game/Content/fonts/04B_30.spritefont</File>
@@ -16,6 +19,9 @@
     <File>C:/Users/chris/Games/Summer-Game/summer game/Content/images/ui.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

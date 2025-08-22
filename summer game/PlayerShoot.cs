@@ -68,8 +68,25 @@ public class PlayerShoot : BehaviorComponent
                 Shoot(mouseDist, 30);
             }
 
-            Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("bounce"));
             _throwTimer = ThrowRate;
+
+            // play sound
+            int sound = Core.Random.Next(1, 4);
+
+            if (sound == 1)
+            {
+                Core.Audio.PlaySoundEffect(SceneTools.SceneLibrary.GetSoundEffect("crystal0"));
+            }
+
+            if (sound == 2)
+            {
+                Core.Audio.PlaySoundEffect(SceneTools.SceneLibrary.GetSoundEffect("crystal1"));
+            }
+
+            if (sound == 3)
+            {
+                Core.Audio.PlaySoundEffect(SceneTools.SceneLibrary.GetSoundEffect("crystal2"));
+            }
         }
 
         if (!_movement.Dashing)

@@ -29,6 +29,12 @@ public class GameScene : Scene
     {
         // load assets
         SceneLibrary.AddTileset("snowy tileset");
+        SceneLibrary.AddSoundEffect("bounce");
+        SceneLibrary.AddSoundEffect("collect");
+        SceneLibrary.AddSoundEffect("crystal0");
+        SceneLibrary.AddSoundEffect("crystal1");
+        SceneLibrary.AddSoundEffect("crystal2");
+
 
         // set up scene
         SetTilemap("level1", SceneLibrary.GetTileset("snowy tileset"));

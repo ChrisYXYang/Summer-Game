@@ -158,7 +158,7 @@ public class PlayerMovement : BehaviorComponent
             if (_jumpBuffer >= SceneTools.Time && _rb.TouchingBottom)
             {
                 _rb.YVelocity = -JumpPower;
-                Core.Audio.PlaySoundEffect(Core.GlobalLibrary.GetSoundEffect("collect"));
+                Core.Audio.PlaySoundEffect(SceneTools.SceneLibrary.GetSoundEffect("collect"));
             }
 
             if (_rb.YVelocity < 0 && !InputManager.Keyboard.IsKeyDown(Keys.W))
