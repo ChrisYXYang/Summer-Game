@@ -1,4 +1,5 @@
 # Summer-Game
-My game for the summer. Made using Monogame using the class library that I made (private repository currently).
+My game for the summer. Made in C# using the 2D game engine I created in Monogame.
 
-Download (Windows only): 
+
+**Download** (Windows only): 
