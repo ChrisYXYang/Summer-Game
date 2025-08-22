@@ -32,7 +32,7 @@ public class GameScene : Scene
 
         // set up scene
         SetTilemap("level1", SceneLibrary.GetTileset("snowy tileset"));
-        Setup(Prefabs.Player());
+        Setup(Prefabs.Player(), new Vector2(0, 3.5f));
 
 
         Setup
@@ -85,7 +85,7 @@ public class GameScene : Scene
         (
             "resume button",
             [
-                new Transform(new Vector2(960, 900)),
+                new Transform(new Vector2(820, 900)),
                         new UISprite(),
                         new BoxCollider(360, 120),
                         new Button(Core.GlobalLibrary.GetSprite("ui", "resume"), Core.GlobalLibrary.GetSprite("ui", "resume_h"), () => MenuUI.Instance.Resume())
@@ -96,9 +96,25 @@ public class GameScene : Scene
         uiManager.AddChild(Setup(Prefabs.SoundSetting(), new Vector2(960, 340)));
         uiManager.AddChild(Setup(Prefabs.ParticleButton(), new Vector2(960, 600)));
 
+        uiManager.AddChild(Setup
+        (
+            "exit",
+            [
+                new Transform(new Vector2(1160, 900)),
+                                new UISprite(),
+                                new BoxCollider(200, 120),
+                                new Button(Core.GlobalLibrary.GetSprite("ui", "exit"), Core.GlobalLibrary.GetSprite("ui", "exit_h"), () => Core.ChangeScene(new HomeScene()))
+            ]
+        ));
 
-
-
+        uiManager.AddChild(Setup
+        (
+            "credit",
+            [
+                new Transform(new Vector2(1760, 1050), Vector2.One * 0.5f, 0f),
+                                new UISprite(Core.GlobalLibrary.GetSprite("ui", "credit"))
+            ]
+        ));
 
         base.LoadContent();
     }

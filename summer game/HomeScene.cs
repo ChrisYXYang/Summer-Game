@@ -23,10 +23,19 @@ public class HomeScene : Scene
     {
         Setup
         (
-            "Title",
+            "title",
             [
-                new Transform(new Vector2(960, 240)),
+                new Transform(new Vector2(960, 250)),
                 new UISprite(Core.GlobalLibrary.GetSprite("ui", "title"))
+            ]
+        );
+
+        Setup
+        (
+            "credit",
+            [
+                new Transform(new Vector2(1760, 1050), Vector2.One * 0.5f, 0f),
+                        new UISprite(Core.GlobalLibrary.GetSprite("ui", "credit"))
             ]
         );
 
@@ -34,10 +43,43 @@ public class HomeScene : Scene
         (
             "play button",
             [
-                new Transform(new Vector2(960, 360)),
+                new Transform(new Vector2(960, 510)),
                 new UISprite(),
                 new BoxCollider(220, 120),
                 new Button(Core.GlobalLibrary.GetSprite("ui", "play"), Core.GlobalLibrary.GetSprite("ui", "play_h"), ()=>Core.ChangeScene(new GameScene()))
+            ]
+        );
+
+        Setup
+        (
+            "howto button",
+            [
+                new Transform(new Vector2(960, 660)),
+                                new UISprite(),
+                                new BoxCollider(360, 120),
+                                new Button(Core.GlobalLibrary.GetSprite("ui", "howto"), Core.GlobalLibrary.GetSprite("ui", "howto_h"), ()=>Core.ChangeScene(new HowToScene()))
+            ]
+        );
+
+        Setup
+        (
+            "settings button",
+            [
+                new Transform(new Vector2(960, 810)),
+                        new UISprite(),
+                        new BoxCollider(360, 120),
+                        new Button(Core.GlobalLibrary.GetSprite("ui", "settings"), Core.GlobalLibrary.GetSprite("ui", "settings_h"), ()=>Core.ChangeScene(new SettingScene()))
+            ]
+        );
+
+        Setup
+        (
+            "exit button",
+            [
+                new Transform(new Vector2(960, 960)),
+                new UISprite(),
+                new BoxCollider(200, 120),
+                new Button(Core.GlobalLibrary.GetSprite("ui", "exit"), Core.GlobalLibrary.GetSprite("ui", "exit_h"), ()=>Core.Instance.Exit())
             ]
         );
 

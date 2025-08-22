@@ -21,6 +21,8 @@ public class MenuUI : BehaviorComponent
     private GameObject _debug;
     private GameObject _sound;
     private GameObject _particle;
+    private GameObject _exit;
+    private GameObject _credit;
 
     public override void Awake()
     {
@@ -36,6 +38,8 @@ public class MenuUI : BehaviorComponent
         _debug = Parent.GetChild(2);
         _sound = Parent.GetChild(3);
         _particle = Parent.GetChild(4);
+        _exit = Parent.GetChild(5);
+        _credit = Parent.GetChild(6);
 
         Resume();
     }
@@ -66,6 +70,8 @@ public class MenuUI : BehaviorComponent
         _debug.Enabled = true;
         _sound.Enabled = true;
         _particle.Enabled = true;
+        _exit.Enabled = true;
+        _credit.Enabled = true;
     }
 
     public void Resume()
@@ -76,6 +82,8 @@ public class MenuUI : BehaviorComponent
         _debug.Enabled = false;
         _sound.Enabled = false;
         _particle.Enabled = false;
+        _exit.Enabled = false;
+        _credit.Enabled = false;
 
         _pause.Enabled = true;
     }
