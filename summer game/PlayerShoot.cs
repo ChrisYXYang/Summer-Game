@@ -58,7 +58,7 @@ public class PlayerShoot : BehaviorComponent
         _indicator.Transform.Scale = new Vector2(readyScale, readyScale);
 
         // throw snowball
-        if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left) && _throwTimer <= 0)
+        if (InputManager.Mouse.IsButtonDown(MouseButton.Left) && _throwTimer <= 0)
         {
             Shoot(mouseDist, 0);
 

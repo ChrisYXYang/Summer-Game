@@ -16,7 +16,6 @@ public class HomeScene : Scene
     public override void Initialize()
     {
         UICamera.Scale = 10;
-        Settings.MusicSound = 3;
         base.Initialize();
     }
 

@@ -134,9 +134,7 @@ public class PlayerState : BehaviorComponent
 
     private void SpeedUp(bool add)
     {
-        _movement.ModifyJump(add, false, 1.5f);
         _movement.ModifyDash(add, false, 1.5f);
         _movement.ModifyMove(add, false, 2f);
-        _movement.ModifyFall(add, false, 2f);
     }
 }
