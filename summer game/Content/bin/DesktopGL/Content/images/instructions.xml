@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SpriteSheet>
+	<Settings texture="images/instructions" size="256" centered="true"/>
+	<Sprites>
+		<Sprite name="instructions"/>
+	</Sprites>
+</SpriteSheet>
