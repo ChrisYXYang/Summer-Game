@@ -1,2 +1,8 @@
-# Summer-Game
-My game for the summer. Made using Monogame using the class library that I made (private repository currently).
+# Penguin Vs. Snowmen
+My game for the summer. Made in C# using my 2D game engine that I created in Monogame.
+
+**Download** (Windows only): https://github.com/ChrisYXYang/Summer-Game/releases/tag/Game
+
+**Video Demo**: 
+
+**My 2D Game Engine: https://github.com/ChrisYXYang/MyMonoGameLibrary**
