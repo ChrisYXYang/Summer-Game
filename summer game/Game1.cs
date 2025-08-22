@@ -25,7 +25,7 @@ public class Game1 : Core
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
-        ChangeScene(new GameScene());
+        ChangeScene(new HomeScene());
         
         base.Initialize();
     }

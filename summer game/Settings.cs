@@ -10,7 +10,7 @@ namespace summer_game;
 public static class Settings
 {
     // settings
-    public static bool Debug { get; set; } = false;
+    public static bool Debug { get; set; } = true;
 
     private static int _musicSound = 5;
     public static int MusicSound

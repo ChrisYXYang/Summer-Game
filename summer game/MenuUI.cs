@@ -54,30 +54,6 @@ public class MenuUI : BehaviorComponent
                 Pause();
             }
         }
-
-        // debug
-        if (Settings.Debug)
-        {
-            foreach (GameObject gameObject in SceneTools.GetGameDrawObjects())
-            {
-                if (gameObject.Enabled)
-                {
-                    Core.DrawOrigin(gameObject);
-                    Core.DrawCollider(gameObject);
-                }
-            }
-
-            foreach (GameObject gameObject in SceneTools.GetUIDrawObjects())
-            {
-                if (gameObject.Enabled)
-                {
-                    Core.DrawUIOrigin(gameObject);
-                    Core.DrawUICollider(gameObject);
-                }
-            }
-        }
-
-        Core.DrawTilemap = Settings.Debug;
     }
 
     public void Pause()

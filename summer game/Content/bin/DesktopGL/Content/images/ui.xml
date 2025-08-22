@@ -4,6 +4,8 @@
 	<Sprites>
 		<Sprite name="title"/>
 		<Sprite name="credit"/>
+		<Sprite name="play"/>
+		<Sprite name="play_h"/>
 		<Sprite name="settings"/>
 		<Sprite name="settings_h"/>
 		<Sprite name="howto"/>
@@ -12,8 +14,6 @@
 		<Sprite name="exit_h"/>
 		<Sprite name="back"/>
 		<Sprite name="back_h"/>
-		<Sprite name="play"/>
-		<Sprite name="play_h"/>
 		<Sprite name="pause"/>
 		<Sprite name="pause_h"/>
 		<Sprite name="resume"/>

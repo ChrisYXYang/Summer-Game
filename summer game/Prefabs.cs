@@ -401,11 +401,23 @@ public static class Prefabs
                 new Transform(),
                 new UISprite(),
                 new BoxCollider(440, 120),
-                new DebugButton(Core.GlobalLibrary.GetSprite("ui", "debug"), Core.GlobalLibrary.GetSprite("ui", "debug_h"))
+                new Button(Core.GlobalLibrary.GetSprite("ui", "debug"), Core.GlobalLibrary.GetSprite("ui", "debug_h"), () => Settings.Debug = !Settings.Debug)
             ];
 
-        return new PrefabInstance("debug button", components, [(Check(), new Vector2(140, 0))]);
+        return new PrefabInstance("debug button", components, [(DebugCheck(), new Vector2(140, 0))]);
     }
+    public static PrefabInstance DebugCheck()
+    {
+        Component[] components =
+            [
+                new Transform(),
+                new UISprite(0.6f),
+                new Check(() => Settings.Debug == true)
+            ];
+
+        return new PrefabInstance("check", components);
+    }
+
     public static PrefabInstance ParticleButton()
     {
         Component[] components =
@@ -413,19 +425,19 @@ public static class Prefabs
                 new Transform(),
                 new UISprite(),
                 new BoxCollider(540, 120),
-                new ParticleButton(Core.GlobalLibrary.GetSprite("ui", "particles"), Core.GlobalLibrary.GetSprite("ui", "particles_h"))
+                new Button(Core.GlobalLibrary.GetSprite("ui", "particles"), Core.GlobalLibrary.GetSprite("ui", "particles_h"), () => Core.Particles = !Core.Particles)
             ];
 
-        return new PrefabInstance("particle button", components, [(Check(), new Vector2(200, 0))]);
+        return new PrefabInstance("particle button", components, [(ParticleCheck(), new Vector2(200, 0))]);
     }
 
-    public static PrefabInstance Check()
+    public static PrefabInstance ParticleCheck()
     {
         Component[] components =
             [
                 new Transform(),
                 new UISprite(0.6f),
-                new Check()
+                new Check(() => Core.Particles == true)
             ];
 
         return new PrefabInstance("check", components);

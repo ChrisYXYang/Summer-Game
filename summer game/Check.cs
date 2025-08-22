@@ -13,20 +13,31 @@ namespace summer_game;
 
 public class Check : BehaviorComponent
 {
+    private Func<bool> _condition;
     private UISprite _sprite;
 
+    public Check(Func<bool> condition)
+    {
+        _condition = condition;
+    }
+    
     public override void Awake()
     {
         _sprite = GetComponent<UISprite>();
     }
 
-    public void On()
+    public override void Update(GameTime gameTime)
     {
-        _sprite.Sprite = Core.GlobalLibrary.GetSprite("ui", "on");
-    }
+        bool decide = _condition.Invoke();
 
-    public void Off()
-    {
-        _sprite.Sprite = Core.GlobalLibrary.GetSprite("ui", "off");
+        if (decide)
+        {
+            _sprite.Sprite = Core.GlobalLibrary.GetSprite("ui", "on");
+        }
+        else
+        {
+            _sprite.Sprite = Core.GlobalLibrary.GetSprite("ui", "off");
+
+        }
     }
 }

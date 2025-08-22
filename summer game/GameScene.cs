@@ -77,7 +77,7 @@ public class GameScene : Scene
                 new Transform(new Vector2(1840, 80)),
                 new UISprite(),
                 new BoxCollider(80, 80),
-                new PauseButton(Core.GlobalLibrary.GetSprite("ui", "pause"), Core.GlobalLibrary.GetSprite("ui", "pause_h"))
+                new Button(Core.GlobalLibrary.GetSprite("ui", "pause"), Core.GlobalLibrary.GetSprite("ui", "pause_h"), () => MenuUI.Instance.Pause())
             ]
         ));
 
@@ -88,7 +88,7 @@ public class GameScene : Scene
                 new Transform(new Vector2(960, 900)),
                         new UISprite(),
                         new BoxCollider(360, 120),
-                        new ResumeButton(Core.GlobalLibrary.GetSprite("ui", "resume"), Core.GlobalLibrary.GetSprite("ui", "resume_h"))
+                        new Button(Core.GlobalLibrary.GetSprite("ui", "resume"), Core.GlobalLibrary.GetSprite("ui", "resume_h"), () => MenuUI.Instance.Resume())
             ]
         ));
 
@@ -109,6 +109,30 @@ public class GameScene : Scene
 
         // set render modes
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, sortMode: SpriteSortMode.FrontToBack);
+
+        // debug
+        if (Settings.Debug)
+        {
+            foreach (GameObject gameObject in SceneTools.GetGameDrawObjects())
+            {
+                if (gameObject.Enabled)
+                {
+                    Core.DrawOrigin(gameObject);
+                    Core.DrawCollider(gameObject);
+                }
+            }
+
+            foreach (GameObject gameObject in SceneTools.GetUIDrawObjects())
+            {
+                if (gameObject.Enabled)
+                {
+                    Core.DrawUIOrigin(gameObject);
+                    Core.DrawUICollider(gameObject);
+                }
+            }
+        }
+
+        Core.DrawTilemap = Settings.Debug;
 
         base.Draw(gameTime);
     }
