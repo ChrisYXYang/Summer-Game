@@ -23,6 +23,11 @@ public class MenuUI : BehaviorComponent
     private GameObject _particle;
     private GameObject _exit;
     private GameObject _credit;
+    private GameObject _over;
+    private GameObject _exit2;
+    private GameObject _retry;
+
+    private bool _gameOver = false;
 
     public override void Awake()
     {
@@ -40,6 +45,9 @@ public class MenuUI : BehaviorComponent
         _particle = Parent.GetChild(4);
         _exit = Parent.GetChild(5);
         _credit = Parent.GetChild(6);
+        _over = Parent.GetChild(7);
+        _exit2 = Parent.GetChild(8);
+        _retry = Parent.GetChild(9);
 
         Resume();
     }
@@ -55,28 +63,33 @@ public class MenuUI : BehaviorComponent
             }
             else
             {
-                Pause();
+                if (!_gameOver)
+                    Pause();
             }
         }
     }
 
     public void Pause()
     {
-        SceneTools.Paused = true; 
-        
-        _pause.Enabled = false;
-        
-        _resume.Enabled = true;
-        _debug.Enabled = true;
-        _sound.Enabled = true;
-        _particle.Enabled = true;
-        _exit.Enabled = true;
-        _credit.Enabled = true;
+        if (!_gameOver)
+        {
+            SceneTools.Paused = true;
+
+            _pause.Enabled = false;
+
+            _resume.Enabled = true;
+            _debug.Enabled = true;
+            _sound.Enabled = true;
+            _particle.Enabled = true;
+            _exit.Enabled = true;
+            _credit.Enabled = true;
+        }
     }
 
     public void Resume()
     {
         SceneTools.Paused = false;
+
 
         _resume.Enabled = false;
         _debug.Enabled = false;
@@ -84,7 +97,27 @@ public class MenuUI : BehaviorComponent
         _particle.Enabled = false;
         _exit.Enabled = false;
         _credit.Enabled = false;
+        _over.Enabled = false;
+        _exit2.Enabled = false;
+        _retry.Enabled = false;
 
         _pause.Enabled = true;
+    }
+
+    public void GameOver()
+    {
+        _gameOver = true;
+
+        _resume.Enabled = false;
+        _debug.Enabled = false;
+        _sound.Enabled = false;
+        _particle.Enabled = false;
+        _exit.Enabled = false;
+        _pause.Enabled = false;
+
+        _credit.Enabled = true;
+        _over.Enabled = true;
+        _exit2.Enabled = true;
+        _retry.Enabled = true;
     }
 }

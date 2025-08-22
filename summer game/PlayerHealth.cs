@@ -117,4 +117,10 @@ public class PlayerHealth : Health
             }
         }
     }
+
+    public override void Die()
+    {
+        Parent.Enabled = false;
+        MenuUI.Instance.GameOver();
+    }
 }

@@ -116,6 +116,37 @@ public class GameScene : Scene
             ]
         ));
 
+        uiManager.AddChild(Setup
+        (
+            "game over",
+            [
+                new Transform(new Vector2(960, 400)),
+                new UISprite(Core.GlobalLibrary.GetSprite("ui", "game over"))
+            ]
+        ));
+
+        uiManager.AddChild(Setup
+        (
+            "exit",
+            [
+                new Transform(new Vector2(960, 750)),
+                                        new UISprite(),
+                                        new BoxCollider(200, 120),
+                                        new Button(Core.GlobalLibrary.GetSprite("ui", "exit"), Core.GlobalLibrary.GetSprite("ui", "exit_h"), () => Core.ChangeScene(new HomeScene()))
+            ]
+        ));
+
+        uiManager.AddChild(Setup
+        (
+            "retry",
+            [
+                new Transform(new Vector2(960, 600)),
+                                                new UISprite(),
+                                                new BoxCollider(280, 120),
+                                                new Button(Core.GlobalLibrary.GetSprite("ui", "retry"), Core.GlobalLibrary.GetSprite("ui", "retry_h"), () => Core.ChangeScene(new GameScene()))
+            ]
+        ));
+
         base.LoadContent();
     }
 

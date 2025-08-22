@@ -32,5 +32,8 @@
 		<Sprite name="particles_h"/>
 		<Sprite name="on"/>
 		<Sprite name="off"/>
+		<Sprite name="game over"/>
+		<Sprite name="retry"/>
+		<Sprite name="retry_h"/>
 	</Sprites>
 </SpriteSheet>
