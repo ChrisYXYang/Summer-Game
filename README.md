@@ -1,5 +1,6 @@
 # Penguin Vs. Snowmen
-**Creating by Chris Yang**
+**Created by Chris Yang**
+
 My game for the summer. Made in C# using my 2D game engine that I created in Monogame.
 
 **Executable** (Windows only): https://github.com/ChrisYXYang/Summer-Game/releases/tag/Game2
