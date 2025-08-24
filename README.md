@@ -3,6 +3,8 @@
 
 My game for the summer. Made in C# using my 2D game engine that I created in Monogame.
 
+**Video Demo**: https://youtu.be/P6kUx4zYtbg
+
 **Executable** (Windows only): https://github.com/ChrisYXYang/Summer-Game/releases/tag/Game2
 
 
